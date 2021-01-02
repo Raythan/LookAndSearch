@@ -1,11 +1,8 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
-using HtmlAgilityPack;
 using WebScrapperLib.Models;
 
 namespace WebScrapperLib
@@ -16,9 +13,99 @@ namespace WebScrapperLib
         private static HttpClient Client = new HttpClient();
         #endregion
 
-        #region World attributes
-        public static Dictionary<string, WorldEntity> DictionaryWorldEntity { get; private set; }
-        public static DateTime LastUpdateWorldEntity { get; private set; }
+        #region Polls atributes
+        public static Dictionary<string, PollsEntity> DictionaryPollsEntity { get; private set; }
+        public static DateTime LastUpdatePollsEntity { get; private set; }
+        public static int DictionaryPollsKey { get; private set; } = 0;
+        #endregion
+
+        #region Polls scrap list
+
+        private static readonly List<string> ListPollsInfo = new List<string>()
+        {
+            "//div[@class='polls']",
+            "//div[@class='Border_2']",
+            "//div[@class='Border_3']",
+            "//div[@class='BoxContent']",
+            "//table//tr//td//table//tr//td"
+        };
+
+        private static readonly List<string> ListPollsTopicInfo = new List<string>()
+        {
+            "//a"
+        };
+
+        #endregion
+
+        #region Polls methods
+
+        public static void RecoverPollsData()
+        {
+            string responseString = "";
+            DictionaryPollsEntity = new Dictionary<string, PollsEntity>();
+            Client = new HttpClient();
+            Client.BaseAddress = new Uri("https://www.tibia.com/community/?subtopic=polls");
+            AddClientHeaders();
+            HttpResponseMessage response = Client.GetAsync("https://www.tibia.com/community/?subtopic=polls")
+                .GetAwaiter().GetResult();
+
+            if (response.IsSuccessStatusCode)
+                responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+            List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ListPollsInfo);
+            listInfo.RemoveRange(0, 3);
+            DictionaryPollsEntity.Clear();
+            BuildDictionaryPolls(listInfo, true);
+            UpdateLastPollsTime();
+        }
+
+        private static void UpdateLastPollsTime()
+        {
+            LastUpdatePollsEntity = DateTime.Now;
+        }
+
+        private static void BuildDictionaryPolls(List<string> listParameter, bool? isActiveParam = null)
+        {
+            int counter = 0, listNumericIndex = 0;
+            bool isActive = isActiveParam.HasValue ? true : false;
+            PollsEntity PollsEntity = new PollsEntity();
+
+            foreach (var parameter in listParameter)
+            {
+                if (isActive && parameter.Contains("Closed Polls"))
+                    break;
+
+                if (counter == 0)
+                {
+                    string topicName = RecoverInnerHtmlFromTag(parameter, ListPollsTopicInfo);
+                    PollsEntity = new PollsEntity()
+                    {
+                        Topic = topicName,
+                        IsActive = isActive,
+                        Anchor = RecoverAttributeFromTag(parameter, ListPollsTopicInfo, "href", "nothing")
+                    };
+                    DictionaryPollsEntity.Add(DictionaryPollsKey.ToString(), PollsEntity);
+                    DictionaryPollsKey++;
+                }
+                else if (counter == 1)
+                {
+                    PollsEntity.EndDate = parameter.Replace("&#160", "");
+                    counter = 0;
+                    listNumericIndex++;
+                    continue;
+                }
+
+                listNumericIndex++;
+                counter++;
+            }
+
+            if (isActive)
+            {
+                listParameter.RemoveRange(0, listNumericIndex + 3);
+                BuildDictionaryPolls(listParameter);
+            }
+        }
+
         #endregion
 
         #region HighScore atributes
@@ -44,7 +131,7 @@ namespace WebScrapperLib
 
         #region HighScore methods
 
-        public static void RecoverHighScoreNames()
+        public static void RecoverHighScoreData()
         {
             string responseString = "";
             DictionaryHighScoreEntity = new Dictionary<string, HighScoreEntity>();
@@ -64,7 +151,7 @@ namespace WebScrapperLib
             BuildDictionaryHighScore(listHighScore);
             UpdateLastHighScoreTime();
         }
-        
+
         private static void UpdateLastHighScoreTime()
         {
             LastUpdateHighScoreEntity = DateTime.Now;
@@ -102,11 +189,16 @@ namespace WebScrapperLib
                     counter = 0;
                     continue;
                 }
-                
+
                 counter++;
             }
         }
-        
+
+        #endregion
+
+        #region World attributes
+        public static Dictionary<string, WorldEntity> DictionaryWorldEntity { get; private set; }
+        public static DateTime LastUpdateWorldEntity { get; private set; }
         #endregion
 
         #region World scrap list
@@ -137,7 +229,7 @@ namespace WebScrapperLib
 
         #region World methods
 
-        public static void RecoverWorldsNames()
+        public static void RecoverWorldsData()
         {
             string product = "";
             DictionaryWorldEntity = new Dictionary<string, WorldEntity>();
@@ -145,10 +237,10 @@ namespace WebScrapperLib
             Client.BaseAddress = new Uri("https://www.tibia.com/community/?subtopic=worlds");
             AddClientHeaders();
             HttpResponseMessage response = Client.GetAsync("https://www.tibia.com/community/?subtopic=worlds").GetAwaiter().GetResult();
-            
+
             if (response.IsSuccessStatusCode)
                 product = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            
+
             List<string> listEvenWorld = RecoverInnerHtmlFromTagList(product, ListWorldsEven);
             List<string> listOddWorld = RecoverInnerHtmlFromTagList(product, ListWorldsOdd);
 
@@ -224,7 +316,7 @@ namespace WebScrapperLib
             if (tagList.Count == 1)
             {
                 var nodes = document.DocumentNode.SelectNodes(tagList[0]);
-                return nodes != null && nodes.Count() > 0 ? 
+                return nodes != null && nodes.Count() > 0 ?
                     nodes.Select(s => s.GetAttributeValue(attribute, defaultAttributeValue)).FirstOrDefault() :
                     defaultAttributeValue;
             }
@@ -260,7 +352,7 @@ namespace WebScrapperLib
             tagListForward.AddRange(tagList);
             document.LoadHtml(htmlString);
 
-            if(tagList.Count == 1)
+            if (tagList.Count == 1)
             {
                 var nodes = document.DocumentNode.SelectNodes(tagList[0]);
                 List<string> retorno = new List<string>();

@@ -13,6 +13,8 @@ namespace WebScrapperLib
 {
     public static class Extender
     {
+        public static string DateTimeFormatBrazil = "dd/MM/yyyy HH:mm:ss";
+        public static string DateFormatBrazil = "dd/MM/yyyy";
         public static string AssemblyDirectory
         {
             get
@@ -135,6 +137,22 @@ namespace WebScrapperLib
             if(ex.InnerException != null)
                 return $"Exception Message: {ex.Message} || Inner Message: {ex.InnerException.Message} || Stack: {ex.StackTrace}";
             return $"Exception Message: {ex.Message} || Stack: {ex.StackTrace}";
+        }
+
+        public static int GetMonthNumberFromAbreviate(this string obj)
+        {
+            return obj.Equals("Jan") ? 1 :
+                obj.Equals("Feb") ? 2 :
+                obj.Equals("Mar") ? 3 :
+                obj.Equals("Apr") ? 4 :
+                obj.Equals("May") ? 5 :
+                obj.Equals("Jun") ? 6 :
+                obj.Equals("Jul") ? 7 :
+                obj.Equals("Aug") ? 8 :
+                obj.Equals("Sep") ? 9 :
+                obj.Equals("Oct") ? 10 :
+                obj.Equals("Nov") ? 11 :
+                obj.Equals("Dec") ? 12 : 0;
         }
     }
 }

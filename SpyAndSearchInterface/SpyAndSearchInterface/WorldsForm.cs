@@ -9,7 +9,7 @@ namespace SpyAndSearchInterface
         public WorldsForm()
         {
             InitializeComponent();
-            WebScrapper.RecoverWorldsNames();
+            WebScrapper.RecoverWorldsData();
             lblHoraUltimaAtualizacao.Text = $"Hora da última atualização: {WebScrapper.LastUpdateWorldEntity.ToString("dd/MM/yyyy HH:mm:ss")}";
             LoadComponentsData();
         }
@@ -46,7 +46,7 @@ namespace SpyAndSearchInterface
 
         private void btnRefreshWorldDictionary_Click(object sender, System.EventArgs e)
         {
-            WebScrapper.RecoverWorldsNames();
+            WebScrapper.RecoverWorldsData();
             lblHoraUltimaAtualizacao.Text = $"Hora da última atualização: {WebScrapper.LastUpdateWorldEntity.ToString("dd/MM/yyyy HH:mm:ss")}";
         }
     }

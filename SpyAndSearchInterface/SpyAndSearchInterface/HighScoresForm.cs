@@ -12,12 +12,12 @@ using WebScrapperLib.Models;
 
 namespace SpyAndSearchInterface
 {
-    public partial class frmHighScore : Form
+    public partial class HighScoreForm : Form
     {
-        public frmHighScore()
+        public HighScoreForm()
         {
             InitializeComponent();
-            WebScrapper.RecoverHighScoreNames();
+            WebScrapper.RecoverHighScoreData();
             BuildGridViewData();
         }
 

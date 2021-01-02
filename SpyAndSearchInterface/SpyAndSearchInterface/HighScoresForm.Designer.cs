@@ -1,6 +1,6 @@
 ﻿namespace SpyAndSearchInterface
 {
-    partial class frmHighScore
+    partial class HighScoreForm
     {
         /// <summary>
         /// Required designer variable.
@@ -55,7 +55,7 @@
             this.dtGridViewHighScores.Size = new System.Drawing.Size(536, 273);
             this.dtGridViewHighScores.TabIndex = 1;
             // 
-            // frmHighScore
+            // HighScoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -63,7 +63,7 @@
             this.Controls.Add(this.dtGridViewHighScores);
             this.Controls.Add(this.lblHighScoresTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "frmHighScore";
+            this.Name = "HighScoreForm";
             this.Text = "High Scores";
             ((System.ComponentModel.ISupportInitialize)(this.dtGridViewHighScores)).EndInit();
             this.ResumeLayout(false);

@@ -5,16 +5,31 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5EB3C018-175F-49CA-8408-08AC894B61C4}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>SpyAndSearchInterface</RootNamespace>
     <AssemblyName>SpyAndSearchInterface</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -31,6 +46,9 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -58,17 +76,29 @@
     <Compile Include="HighScoresForm.Designer.cs">
       <DependentUpon>HighScoresForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="KillStatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KillStatisticsForm.Designer.cs">
+      <DependentUpon>KillStatisticsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PollsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PollsForm.Designer.cs">
+      <DependentUpon>PollsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SelectionForm.Designer.cs">
       <DependentUpon>SelectionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SpyAndSearchForm.cs">
+    <Compile Include="LookAndSearchForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpyAndSearchForm.Designer.cs">
-      <DependentUpon>SpyAndSearchForm.cs</DependentUpon>
+    <Compile Include="LookAndSearchForm.Designer.cs">
+      <DependentUpon>LookAndSearchForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,11 +114,17 @@
     <EmbeddedResource Include="HighScoresForm.resx">
       <DependentUpon>HighScoresForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="KillStatisticsForm.resx">
+      <DependentUpon>KillStatisticsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PollsForm.resx">
+      <DependentUpon>PollsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SelectionForm.resx">
       <DependentUpon>SelectionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SpyAndSearchForm.resx">
-      <DependentUpon>SpyAndSearchForm.cs</DependentUpon>
+    <EmbeddedResource Include="LookAndSearchForm.resx">
+      <DependentUpon>LookAndSearchForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -124,6 +160,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\magnifying_lass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,7 +11,8 @@ namespace SpyAndSearchInterface
         {
             "Selecione..",
             "Mundos",
-            "HighScores"
+            "HighScores",
+            "Polls"
         };
 
         Dictionary<string, Form> panelForms = new Dictionary<string, Form>();
@@ -34,7 +35,8 @@ namespace SpyAndSearchInterface
             {
                 { "Selecione..", new SelectionForm() },
                 { "Mundos", new WorldsForm() },
-                { "HighScores", new frmHighScore() },
+                { "HighScores", new HighScoreForm() },
+                { "Polls", new PollsForm() },
                 { "Error", new ErrorContextForm() },
             };
         }
