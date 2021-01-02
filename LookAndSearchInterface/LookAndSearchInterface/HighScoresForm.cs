@@ -9,15 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebScrapperLib;
 using WebScrapperLib.Models;
+using WebScrapperLib.ScrapperController;
 
 namespace LookAndSearchInterface
 {
     public partial class HighScoreForm : Form
     {
+        HighScoreScrapper Scrapper = new HighScoreScrapper();
         public HighScoreForm()
         {
             InitializeComponent();
-            WebScrapper.RecoverHighScoreData();
+            Scrapper.RecoverScrapperData();
             BuildGridViewData();
         }
 
@@ -27,16 +29,16 @@ namespace LookAndSearchInterface
 
             List<HighScoreEntity> entities = new List<HighScoreEntity>();
 
-            foreach (var item in WebScrapper.DictionaryHighScoreEntity)
+            foreach (var item in Scrapper.DictionaryEntity)
                 entities.Add(item.Value);
 
             this.dtGridViewHighScores.DataSource = new BindingList<HighScoreEntity>(entities);
-            lblHighScoreLastTimeUpdate.Text = $"Data da última atualização: {WebScrapper.LastUpdateHighScoreEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            lblHighScoreLastTimeUpdate.Text = $"Data da última atualização: {Scrapper.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
 
         private void btnHighScoreRefresh_Click(object sender, EventArgs e)
         {
-            WebScrapper.RecoverHighScoreData();
+            Scrapper.RecoverScrapperData();
             BuildGridViewData();
         }
     }

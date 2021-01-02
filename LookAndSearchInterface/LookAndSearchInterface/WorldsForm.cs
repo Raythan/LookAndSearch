@@ -1,28 +1,31 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 using WebScrapperLib;
+using WebScrapperLib.ScrapperController;
 
 namespace LookAndSearchInterface
 {
     public partial class WorldsForm : Form
     {
+        WorldScrapper ScrapperService = new WorldScrapper();
         public WorldsForm()
         {
             InitializeComponent();
-            WebScrapper.RecoverWorldsData();
-            lblHoraUltimaAtualizacao.Text = $"Hora da última atualização: {WebScrapper.LastUpdateWorldEntity.ToString("dd/MM/yyyy HH:mm:ss")}";
+            ScrapperService.RecoverScrapperData();
+            lblHoraUltimaAtualizacao.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
             LoadComponentsData();
         }
 
         public void LoadComponentsData()
         {
-            cboBoxWorldNames.DataSource = WebScrapper.DictionaryWorldEntity.Keys.ToList();
+            cboBoxWorldNames.DataSource = null;
+            cboBoxWorldNames.DataSource = ScrapperService.DictionaryEntity.Keys.ToList();
         }
 
         private void cboBoxWorldNames_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            WebScrapperLib.Models.WorldEntity entity = new WebScrapperLib.Models.WorldEntity();
-            WebScrapper.DictionaryWorldEntity.TryGetValue(cboBoxWorldNames.Text, out entity);
+            dynamic entity = new WebScrapperLib.Models.WorldEntity();
+            ScrapperService.DictionaryEntity.TryGetValue(cboBoxWorldNames.Text, out entity);
             txtBoxOnline.Text = entity.Online.ToString();
             txtBoxLocation.Text = entity.Location;
             txtBoxPvpType.Text = entity.PvpType;
@@ -48,8 +51,9 @@ namespace LookAndSearchInterface
 
         private void btnRefreshWorldDictionary_Click(object sender, System.EventArgs e)
         {
-            WebScrapper.RecoverWorldsData();
-            lblHoraUltimaAtualizacao.Text = $"Hora da última atualização: {WebScrapper.LastUpdateWorldEntity.ToString("dd/MM/yyyy HH:mm:ss")}";
+            ScrapperService.RecoverScrapperData();
+            lblHoraUltimaAtualizacao.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            LoadComponentsData();
         }
     }
 }

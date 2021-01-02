@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using WebScrapperLib;
 using WebScrapperLib.Models;
+using WebScrapperLib.ScrapperController;
 
 namespace LookAndSearchInterface
 {
     public partial class PollsForm : Form
     {
+        PollsWebScrapper ScrapperService = new PollsWebScrapper();
         public PollsForm()
         {
             InitializeComponent();
-            WebScrapper.RecoverPollsData();
+            ScrapperService.RecoverScrapperData();
             FillUpdateComboTopicNames();
-            lblPollsLastTimeUpdate.Text = $"Data da última atualização: {WebScrapper.LastUpdatePollsEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            lblPollsLastTimeUpdate.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
 
         private void FillUpdateComboTopicNames()
         {
             SortedDictionary<string, string> source = new SortedDictionary<string, string>();
 
-            foreach (var item in WebScrapper.DictionaryPollsEntity)
+            foreach (var item in ScrapperService.DictionaryEntity)
                 source.Add(item.Key, item.Value.Topic);
 
             cboBoxPollsTopicsData.DataSource = new BindingSource(source, null);
@@ -31,8 +33,8 @@ namespace LookAndSearchInterface
 
         private void cboBoxPollsTopicsData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PollsEntity source = new PollsEntity();
-            WebScrapper.DictionaryPollsEntity.TryGetValue(cboBoxPollsTopicsData.SelectedIndex.ToString(), out source);
+            dynamic source = new PollsEntity();
+            ScrapperService.DictionaryEntity.TryGetValue(cboBoxPollsTopicsData.SelectedIndex.ToString(), out source);
             lblPollsStatusValue.Text = source.IsActive ? "Active" : "Closed";
             string[] endDateSplited = source.EndDate.Split(';');
             lblPollsEndDateValue.Text = new DateTime(Convert.ToInt32(endDateSplited[2]),

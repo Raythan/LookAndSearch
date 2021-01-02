@@ -158,7 +158,7 @@
             this.lblHoraUltimaAtualizacao.Name = "lblHoraUltimaAtualizacao";
             this.lblHoraUltimaAtualizacao.Size = new System.Drawing.Size(138, 13);
             this.lblHoraUltimaAtualizacao.TabIndex = 14;
-            this.lblHoraUltimaAtualizacao.Text = "Hora da última atualização: ";
+            this.lblHoraUltimaAtualizacao.Text = "Data da última atualização: ";
             // 
             // btnRefreshWorldDictionary
             // 

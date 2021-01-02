@@ -1,0 +1,95 @@
+﻿using HtmlAgilityPack;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WebScrapperLib.Models
+{
+    public abstract class BaseScrapperEntity
+    {
+        public Dictionary<string, dynamic> DictionaryEntity { get; set; }
+        public DateTime LastUpdateEntity { get; set; }
+
+        public static HttpClient Client = new HttpClient();
+
+        public static void AddClientHeaders()
+        {
+            Client.DefaultRequestHeaders.Clear();
+            //Client.DefaultRequestHeaders.Add("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
+            Client.DefaultRequestHeaders.Add("accept", "text/html");
+            //Client.DefaultRequestHeaders.Add("accept-encoding", "gzip, deflate, br");
+            Client.DefaultRequestHeaders.Add("accept-encoding", "UTF-8");
+            Client.DefaultRequestHeaders.Add("accept-language", "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7");
+            Client.DefaultRequestHeaders.Add("cache-control", "no-cache");
+            Client.DefaultRequestHeaders.Add("cookie", "__cfduid=df4aba1030b9ada4d3ad6ac0addfeb06a1607818705; cf_clearance=0a6991fa94f7d778b0dcfc435281fca9995c516e-1608659141-0-150; SessionLastVisit=1608659186; DM_LandingPage=visited; DM_SessionID=ebf66963c897d3fdcf73c7ed5c915dab1609171284");
+            Client.DefaultRequestHeaders.Add("pragma", "no-cache");
+            Client.DefaultRequestHeaders.Add("sec-fetch-dest", "document");
+            Client.DefaultRequestHeaders.Add("sec-fetch-mode", "navigate");
+            Client.DefaultRequestHeaders.Add("sec-fetch-site", "none");
+            Client.DefaultRequestHeaders.Add("sec-fetch-user", "?1");
+            Client.DefaultRequestHeaders.Add("upgrade-insecure-requests", "1");
+            Client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
+        }
+
+        public static string RecoverAttributeFromTag(string htmlString, List<string> tagList, string attribute, string defaultAttributeValue)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                return nodes != null && nodes.Count() > 0 ?
+                    nodes.Select(s => s.GetAttributeValue(attribute, defaultAttributeValue)).FirstOrDefault() :
+                    defaultAttributeValue;
+            }
+
+            tagListForward.RemoveAt(0);
+            return RecoverAttributeFromTag(document.Text, tagListForward, attribute, defaultAttributeValue);
+        }
+
+        public static string RecoverInnerHtmlFromTag(string htmlString, List<string> tagList)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                string retorno = "";
+                retorno = nodes.Select(s => s.InnerHtml).FirstOrDefault();
+
+                return retorno;
+            }
+
+            tagListForward.RemoveAt(0);
+            return RecoverInnerHtmlFromTag(document.Text, tagListForward);
+        }
+
+        public static List<string> RecoverInnerHtmlFromTagList(string htmlString, List<string> tagList)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                List<string> retorno = new List<string>();
+                retorno = nodes.Select(s => s.InnerHtml).ToList();
+
+                return retorno;
+            }
+            tagListForward.RemoveAt(0);
+            return RecoverInnerHtmlFromTagList(document.Text, tagListForward);
+        }
+    }
+}
