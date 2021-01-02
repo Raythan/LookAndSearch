@@ -1,4 +1,4 @@
-﻿namespace SpyAndSearchInterface
+﻿namespace LookAndSearchInterface
 {
     partial class MainForm
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.cboBoxMenuSelector = new System.Windows.Forms.ComboBox();
-            this.panelSpyAndSearch = new System.Windows.Forms.Panel();
+            this.panelLookAndSearch = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
             // cboBoxMenuSelector
@@ -42,24 +42,24 @@
             this.cboBoxMenuSelector.TabIndex = 0;
             this.cboBoxMenuSelector.SelectedIndexChanged += new System.EventHandler(this.cboBoxMenuSelector_SelectedIndexChanged);
             // 
-            // panelSpyAndSearch
+            // panelLookAndSearch
             // 
-            this.panelSpyAndSearch.Location = new System.Drawing.Point(12, 39);
-            this.panelSpyAndSearch.Name = "panelSpyAndSearch";
-            this.panelSpyAndSearch.Size = new System.Drawing.Size(560, 310);
-            this.panelSpyAndSearch.TabIndex = 1;
+            this.panelLookAndSearch.Location = new System.Drawing.Point(12, 39);
+            this.panelLookAndSearch.Name = "panelLookAndSearch";
+            this.panelLookAndSearch.Size = new System.Drawing.Size(560, 310);
+            this.panelLookAndSearch.TabIndex = 1;
             // 
-            // mainForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.panelSpyAndSearch);
+            this.Controls.Add(this.panelLookAndSearch);
             this.Controls.Add(this.cboBoxMenuSelector);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "mainForm";
-            this.Text = "Spy and Search!";
+            this.Name = "MainForm";
+            this.Text = "Look and Search!";
             this.ResumeLayout(false);
 
         }
@@ -67,7 +67,7 @@
         #endregion
 
         private System.Windows.Forms.ComboBox cboBoxMenuSelector;
-        private System.Windows.Forms.Panel panelSpyAndSearch;
+        private System.Windows.Forms.Panel panelLookAndSearch;
     }
 }
 

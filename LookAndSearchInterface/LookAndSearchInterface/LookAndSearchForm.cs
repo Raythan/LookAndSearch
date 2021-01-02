@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 
 
-namespace SpyAndSearchInterface
+namespace LookAndSearchInterface
 {
     public partial class MainForm : Form
     {
@@ -43,8 +43,8 @@ namespace SpyAndSearchInterface
 
         private void cboBoxMenuSelector_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.panelSpyAndSearch.Controls.Count > 0)
-                this.panelSpyAndSearch.Controls.RemoveAt(0);
+            if (this.panelLookAndSearch.Controls.Count > 0)
+                this.panelLookAndSearch.Controls.RemoveAt(0);
 
             try
             {
@@ -54,7 +54,7 @@ namespace SpyAndSearchInterface
                     panelForms.TryGetValue(cboBoxMenuSelector.Text, out inputFormPanel);
                     inputFormPanel.TopLevel = false;
                     inputFormPanel.AutoScroll = true;
-                    this.panelSpyAndSearch.Controls.Add(inputFormPanel);
+                    this.panelLookAndSearch.Controls.Add(inputFormPanel);
                     inputFormPanel.Show();
                 }
             }
@@ -64,7 +64,7 @@ namespace SpyAndSearchInterface
                 panelForms.TryGetValue("Error", out inputFormPanel);
                 inputFormPanel.TopLevel = false;
                 inputFormPanel.AutoScroll = true;
-                this.panelSpyAndSearch.Controls.Add(inputFormPanel);
+                this.panelLookAndSearch.Controls.Add(inputFormPanel);
                 inputFormPanel.Show();
             }
         }

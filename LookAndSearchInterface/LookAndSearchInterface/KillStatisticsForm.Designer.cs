@@ -1,6 +1,6 @@
-﻿namespace SpyAndSearchInterface
+﻿namespace LookAndSearchInterface
 {
-    partial class ErrorContextForm
+    partial class KillStatisticsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtBoxErrorForm = new System.Windows.Forms.TextBox();
+            this.lblPollsTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // txtBoxErrorForm
+            // lblPollsTitle
             // 
-            this.txtBoxErrorForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBoxErrorForm.Location = new System.Drawing.Point(12, 12);
-            this.txtBoxErrorForm.Multiline = true;
-            this.txtBoxErrorForm.Name = "txtBoxErrorForm";
-            this.txtBoxErrorForm.ReadOnly = true;
-            this.txtBoxErrorForm.Size = new System.Drawing.Size(536, 286);
-            this.txtBoxErrorForm.TabIndex = 0;
-            this.txtBoxErrorForm.Text = "Erro no momento da consulta, por favor tente mais tarde.";
+            this.lblPollsTitle.AutoSize = true;
+            this.lblPollsTitle.Location = new System.Drawing.Point(12, 9);
+            this.lblPollsTitle.Name = "lblPollsTitle";
+            this.lblPollsTitle.Size = new System.Drawing.Size(65, 13);
+            this.lblPollsTitle.TabIndex = 0;
+            this.lblPollsTitle.Text = "Kill Statistics";
             // 
-            // ErrorContextForm
+            // KillStatisticsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 310);
-            this.Controls.Add(this.txtBoxErrorForm);
+            this.Controls.Add(this.lblPollsTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ErrorContextForm";
-            this.Text = "ErrorContextForm";
+            this.Name = "KillStatisticsForm";
+            this.Text = "KillStatisticsForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -58,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtBoxErrorForm;
+        private System.Windows.Forms.Label lblPollsTitle;
     }
 }

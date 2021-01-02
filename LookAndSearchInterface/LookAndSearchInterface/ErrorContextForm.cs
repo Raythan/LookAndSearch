@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SpyAndSearchInterface
+namespace LookAndSearchInterface
 {
     public partial class ErrorContextForm : Form
     {

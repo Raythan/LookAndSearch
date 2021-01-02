@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using WebScrapperLib;
 using WebScrapperLib.Models;
 
-namespace SpyAndSearchInterface
+namespace LookAndSearchInterface
 {
     public partial class PollsForm : Form
     {

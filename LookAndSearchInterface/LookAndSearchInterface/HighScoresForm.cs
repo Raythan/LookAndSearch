@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using WebScrapperLib;
 using WebScrapperLib.Models;
 
-namespace SpyAndSearchInterface
+namespace LookAndSearchInterface
 {
     public partial class HighScoreForm : Form
     {
@@ -31,6 +31,13 @@ namespace SpyAndSearchInterface
                 entities.Add(item.Value);
 
             this.dtGridViewHighScores.DataSource = new BindingList<HighScoreEntity>(entities);
+            lblHighScoreLastTimeUpdate.Text = $"Data da última atualização: {WebScrapper.LastUpdateHighScoreEntity.ToString(Extender.DateTimeFormatBrazil)}";
+        }
+
+        private void btnHighScoreRefresh_Click(object sender, EventArgs e)
+        {
+            WebScrapper.RecoverHighScoreData();
+            BuildGridViewData();
         }
     }
 }

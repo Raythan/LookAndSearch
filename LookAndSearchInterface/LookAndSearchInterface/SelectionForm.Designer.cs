@@ -1,4 +1,4 @@
-﻿namespace SpyAndSearchInterface
+﻿namespace LookAndSearchInterface
 {
     partial class SelectionForm
     {
@@ -28,19 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.picBoxSelectionForm = new System.Windows.Forms.PictureBox();
             this.lblStartSelectForm = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionForm)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // picBoxSelectionForm
             // 
-            this.pictureBox1.Image = global::SpyAndSearchInterface.Properties.Resources.magnifying_lass;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(536, 273);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.picBoxSelectionForm.Image = global::LookAndSearchInterface.Properties.Resources.magnifying_lass;
+            this.picBoxSelectionForm.Location = new System.Drawing.Point(12, 25);
+            this.picBoxSelectionForm.Name = "picBoxSelectionForm";
+            this.picBoxSelectionForm.Size = new System.Drawing.Size(536, 273);
+            this.picBoxSelectionForm.TabIndex = 0;
+            this.picBoxSelectionForm.TabStop = false;
             // 
             // lblStartSelectForm
             // 
@@ -57,11 +57,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 310);
             this.Controls.Add(this.lblStartSelectForm);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picBoxSelectionForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SelectionForm";
             this.Text = "SelectionForm";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionForm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -69,7 +69,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picBoxSelectionForm;
         private System.Windows.Forms.Label lblStartSelectForm;
     }
 }

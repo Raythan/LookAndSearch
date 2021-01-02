@@ -1,4 +1,4 @@
-﻿namespace SpyAndSearchInterface
+﻿namespace LookAndSearchInterface
 {
     partial class HighScoreForm
     {
@@ -30,6 +30,8 @@
         {
             this.lblHighScoresTitle = new System.Windows.Forms.Label();
             this.dtGridViewHighScores = new System.Windows.Forms.DataGridView();
+            this.lblHighScoreLastTimeUpdate = new System.Windows.Forms.Label();
+            this.btnHighScoreRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtGridViewHighScores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,14 +54,35 @@
             this.dtGridViewHighScores.Name = "dtGridViewHighScores";
             this.dtGridViewHighScores.ReadOnly = true;
             this.dtGridViewHighScores.RowHeadersVisible = false;
-            this.dtGridViewHighScores.Size = new System.Drawing.Size(536, 273);
+            this.dtGridViewHighScores.Size = new System.Drawing.Size(536, 215);
             this.dtGridViewHighScores.TabIndex = 1;
+            // 
+            // lblHighScoreLastTimeUpdate
+            // 
+            this.lblHighScoreLastTimeUpdate.AutoSize = true;
+            this.lblHighScoreLastTimeUpdate.Location = new System.Drawing.Point(201, 285);
+            this.lblHighScoreLastTimeUpdate.Name = "lblHighScoreLastTimeUpdate";
+            this.lblHighScoreLastTimeUpdate.Size = new System.Drawing.Size(138, 13);
+            this.lblHighScoreLastTimeUpdate.TabIndex = 2;
+            this.lblHighScoreLastTimeUpdate.Text = "Data da última atualização: ";
+            // 
+            // btnHighScoreRefresh
+            // 
+            this.btnHighScoreRefresh.Location = new System.Drawing.Point(12, 246);
+            this.btnHighScoreRefresh.Name = "btnHighScoreRefresh";
+            this.btnHighScoreRefresh.Size = new System.Drawing.Size(183, 52);
+            this.btnHighScoreRefresh.TabIndex = 3;
+            this.btnHighScoreRefresh.Text = "Atualizar!";
+            this.btnHighScoreRefresh.UseVisualStyleBackColor = true;
+            this.btnHighScoreRefresh.Click += new System.EventHandler(this.btnHighScoreRefresh_Click);
             // 
             // HighScoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 310);
+            this.Controls.Add(this.btnHighScoreRefresh);
+            this.Controls.Add(this.lblHighScoreLastTimeUpdate);
             this.Controls.Add(this.dtGridViewHighScores);
             this.Controls.Add(this.lblHighScoresTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -75,5 +98,7 @@
 
         private System.Windows.Forms.Label lblHighScoresTitle;
         private System.Windows.Forms.DataGridView dtGridViewHighScores;
+        private System.Windows.Forms.Label lblHighScoreLastTimeUpdate;
+        private System.Windows.Forms.Button btnHighScoreRefresh;
     }
 }

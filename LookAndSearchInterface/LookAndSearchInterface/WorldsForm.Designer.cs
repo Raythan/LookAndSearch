@@ -1,4 +1,4 @@
-﻿namespace SpyAndSearchInterface
+﻿namespace LookAndSearchInterface
 {
     partial class WorldsForm
     {

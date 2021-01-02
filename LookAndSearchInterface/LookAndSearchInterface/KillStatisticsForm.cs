@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SpyAndSearchInterface
+namespace LookAndSearchInterface
 {
-    public partial class SelectionForm : Form
+    public partial class KillStatisticsForm : Form
     {
-        public SelectionForm()
+        public KillStatisticsForm()
         {
             InitializeComponent();
         }

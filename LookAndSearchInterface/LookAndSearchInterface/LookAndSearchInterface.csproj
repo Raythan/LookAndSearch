@@ -5,9 +5,9 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5EB3C018-175F-49CA-8408-08AC894B61C4}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>SpyAndSearchInterface</RootNamespace>
-    <AssemblyName>SpyAndSearchInterface</AssemblyName>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LookAndSearchInterface</RootNamespace>
+    <AssemblyName>LookAndSearchInterface</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

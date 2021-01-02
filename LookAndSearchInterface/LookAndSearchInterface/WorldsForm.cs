@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using WebScrapperLib;
 
-namespace SpyAndSearchInterface
+namespace LookAndSearchInterface
 {
     public partial class WorldsForm : Form
     {
@@ -28,7 +28,8 @@ namespace SpyAndSearchInterface
             txtBoxPvpType.Text = entity.PvpType;
             txtBoxAdditionalInformation.Text = entity.AdditionalInformation;
 
-            if (!string.IsNullOrEmpty(entity.BattleEye))
+            if (!string.IsNullOrEmpty(entity.BattleEye) && 
+                !entity.BattleEye.Equals("nothing"))
             {
                 picBoxBattleEye.BorderStyle = BorderStyle.None;
                 picBoxBattleEye.Load(LoadBattleEyeIcon(entity.BattleEye));
@@ -36,6 +37,7 @@ namespace SpyAndSearchInterface
             else
             {
                 picBoxBattleEye.BorderStyle = BorderStyle.FixedSingle;
+                picBoxBattleEye.Image = null;
             }
         }
 
