@@ -154,5 +154,19 @@ namespace WebScrapperLib
                 obj.Equals("Nov") ? 11 :
                 obj.Equals("Dec") ? 12 : 0;
         }
+
+        public static List<string> CleanListName(this List<string> paramList)
+        {
+            for (int i = 0; i < paramList.Count; i++)
+                paramList[i] = paramList[i].Replace("Tibia", "KNOXVILLE");
+
+            for (int i = 0; i < paramList.Count; i++)
+                paramList[i] = paramList[i].Replace("TIBIA", "KNOXVILLE");
+
+            for (int i = 0; i < paramList.Count; i++)
+                paramList[i] = paramList[i].Replace("tibia", "KNOXVILLE");
+
+            return paramList;
+        }
     }
 }

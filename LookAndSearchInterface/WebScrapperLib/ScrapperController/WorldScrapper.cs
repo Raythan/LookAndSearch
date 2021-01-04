@@ -38,9 +38,10 @@ namespace WebScrapperLib.ScrapperController
             string product = "";
             base.DictionaryEntity = new Dictionary<string, dynamic>();
             Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://www.tibia.com/community/?subtopic=worlds");
+            Client.BaseAddress = new Uri(base.BaseUrl);
             AddClientHeaders();
-            HttpResponseMessage response = Client.GetAsync("https://www.tibia.com/community/?subtopic=worlds").GetAwaiter().GetResult();
+            HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
+                .GetAwaiter().GetResult();
 
             if (response.IsSuccessStatusCode)
                 product = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -52,14 +53,9 @@ namespace WebScrapperLib.ScrapperController
             BuildDictionaryData(listEvenWorld);
             BuildDictionaryData(listOddWorld);
             OrderDictionaryWorld();
-            LastUpdateEntityTime();
+            UpdateEntityLastTime();
         }
-
-        public void LastUpdateEntityTime()
-        {
-            base.LastUpdateEntity = DateTime.Now;
-        }
-
+        
         private void OrderDictionaryWorld()
         {
             base.DictionaryEntity = base.DictionaryEntity
@@ -76,7 +72,7 @@ namespace WebScrapperLib.ScrapperController
             {
                 if (counter == 0)
                 {
-                    string innerFromTag = RecoverInnerHtmlFromTag(worldParameter, ListWorldsAncorName);
+                    string innerFromTag = RecoverInnerHtmlFromTagFirst(worldParameter, ListWorldsAncorName);
                     WorldEntity = new WorldEntity(innerFromTag);
                     base.DictionaryEntity.Add(innerFromTag, WorldEntity);
                 }
@@ -92,7 +88,7 @@ namespace WebScrapperLib.ScrapperController
                     WorldEntity.PvpType = worldParameter;
                 else if (counter == 4)
                 {
-                    string attributeFromTag = RecoverAttributeFromTag(worldParameter, ListTagsBattleEyeIcon, "src", "nothing");
+                    string attributeFromTag = RecoverAttributeFromTagFirst(worldParameter, ListTagsBattleEyeIcon, "src", "nothing");
                     WorldEntity.BattleEye = attributeFromTag;
                 }
                 else if (counter == 5)
@@ -104,6 +100,10 @@ namespace WebScrapperLib.ScrapperController
 
                 counter++;
             }
+        }
+
+        public WorldScrapper() : base("https://www.tibia.com/community/?subtopic=worlds")
+        {
         }
     }
 }

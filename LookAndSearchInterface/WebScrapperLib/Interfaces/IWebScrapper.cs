@@ -10,7 +10,6 @@ namespace WebScrapperLib.Interfaces
     public interface IWebScrapper
     {
         void RecoverScrapperData();
-        void LastUpdateEntityTime();
         void BuildDictionaryData(List<string> listParameter, dynamic extraParams);
     }
 }

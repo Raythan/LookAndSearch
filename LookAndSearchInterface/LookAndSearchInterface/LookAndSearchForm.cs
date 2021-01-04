@@ -10,8 +10,9 @@ namespace LookAndSearchInterface
         List<string> comboMenuItems = new List<string>()
         {
             "Selecione..",
-            "Mundos",
+            "Bazaar",
             "HighScores",
+            "Mundos",
             "Polls"
         };
 
@@ -34,8 +35,9 @@ namespace LookAndSearchInterface
             panelForms = new Dictionary<string, Form>
             {
                 { "Selecione..", new SelectionForm() },
-                { "Mundos", new WorldsForm() },
+                { "Bazaar", new BazaarForm() },
                 { "HighScores", new HighScoreForm() },
+                { "Mundos", new WorldsForm() },
                 { "Polls", new PollsForm() },
                 { "Error", new ErrorContextForm() },
             };

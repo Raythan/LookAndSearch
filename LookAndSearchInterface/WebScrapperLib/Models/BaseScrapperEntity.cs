@@ -10,6 +10,7 @@ namespace WebScrapperLib.Models
 {
     public abstract class BaseScrapperEntity
     {
+        public readonly string BaseUrl;
         public Dictionary<string, dynamic> DictionaryEntity { get; set; }
         public DateTime LastUpdateEntity { get; set; }
 
@@ -34,7 +35,7 @@ namespace WebScrapperLib.Models
             Client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
         }
 
-        public static string RecoverAttributeFromTag(string htmlString, List<string> tagList, string attribute, string defaultAttributeValue)
+        public static string RecoverAttributeFromTagFirst(string htmlString, List<string> tagList, string attribute, string defaultAttributeValue)
         {
             HtmlDocument document = new HtmlDocument();
             List<string> tagListForward = new List<string>();
@@ -50,10 +51,29 @@ namespace WebScrapperLib.Models
             }
 
             tagListForward.RemoveAt(0);
-            return RecoverAttributeFromTag(document.Text, tagListForward, attribute, defaultAttributeValue);
+            return RecoverAttributeFromTagFirst(document.Text, tagListForward, attribute, defaultAttributeValue);
         }
 
-        public static string RecoverInnerHtmlFromTag(string htmlString, List<string> tagList)
+        public static string RecoverAttributeFromTagLast(string htmlString, List<string> tagList, string attribute, string defaultAttributeValue)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                return nodes != null && nodes.Count() > 0 ?
+                    nodes.Select(s => s.GetAttributeValue(attribute, defaultAttributeValue)).LastOrDefault() :
+                    defaultAttributeValue;
+            }
+
+            tagListForward.RemoveAt(0);
+            return RecoverAttributeFromTagLast(document.Text, tagListForward, attribute, defaultAttributeValue);
+        }
+
+        public static string RecoverInnerHtmlFromTagFirst(string htmlString, List<string> tagList)
         {
             HtmlDocument document = new HtmlDocument();
             List<string> tagListForward = new List<string>();
@@ -70,9 +90,29 @@ namespace WebScrapperLib.Models
             }
 
             tagListForward.RemoveAt(0);
-            return RecoverInnerHtmlFromTag(document.Text, tagListForward);
+            return RecoverInnerHtmlFromTagFirst(document.Text, tagListForward);
         }
 
+        public static string RecoverInnerHtmlFromTagLast(string htmlString, List<string> tagList)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                string retorno = "";
+                retorno = nodes.Select(s => s.InnerHtml).LastOrDefault();
+
+                return retorno;
+            }
+
+            tagListForward.RemoveAt(0);
+            return RecoverInnerHtmlFromTagLast(document.Text, tagListForward);
+        }
+        
         public static List<string> RecoverInnerHtmlFromTagList(string htmlString, List<string> tagList)
         {
             HtmlDocument document = new HtmlDocument();
@@ -90,6 +130,72 @@ namespace WebScrapperLib.Models
             }
             tagListForward.RemoveAt(0);
             return RecoverInnerHtmlFromTagList(document.Text, tagListForward);
+        }
+
+        public static string RecoverOuterHtmlFromTagFirst(string htmlString, List<string> tagList)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                string retorno = "";
+                retorno = nodes.Select(s => s.OuterHtml).FirstOrDefault();
+
+                return retorno;
+            }
+
+            tagListForward.RemoveAt(0);
+            return RecoverOuterHtmlFromTagFirst(document.Text, tagListForward);
+        }
+
+        public static string RecoverOuterHtmlFromTagLast(string htmlString, List<string> tagList)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                string retorno = "";
+                retorno = nodes.Select(s => s.OuterHtml).LastOrDefault();
+
+                return retorno;
+            }
+
+            tagListForward.RemoveAt(0);
+            return RecoverOuterHtmlFromTagLast(document.Text, tagListForward);
+        }
+
+        public static List<string> RecoverOuterHtmlFromTagList(string htmlString, List<string> tagList)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                List<string> retorno = new List<string>();
+                retorno = nodes.Select(s => s.OuterHtml).ToList();
+
+                return retorno;
+            }
+            tagListForward.RemoveAt(0);
+            return RecoverOuterHtmlFromTagList(document.Text, tagListForward);
+        }
+
+        public virtual void UpdateEntityLastTime() => this.LastUpdateEntity = DateTime.Now;
+
+        public BaseScrapperEntity(string paramUrl)
+        {
+            this.BaseUrl = paramUrl;
         }
     }
 }

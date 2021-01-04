@@ -47,14 +47,15 @@
     <Compile Include="Extender.cs" />
     <Compile Include="Interfaces\IWebScrapper.cs" />
     <Compile Include="Models\BaseScrapperEntity.cs" />
+    <Compile Include="Models\BazaarEntity.cs" />
     <Compile Include="Models\HighScoreEntity.cs" />
     <Compile Include="Models\KillStatisticsEntity.cs" />
     <Compile Include="Models\PollsEntity.cs" />
     <Compile Include="Models\WorldEntity.cs" />
+    <Compile Include="ScrapperController\BazaarScrapper.cs" />
     <Compile Include="ScrapperController\HighScoreScrapper.cs" />
-    <Compile Include="ScrapperController\PollsWebScrapper.cs" />
+    <Compile Include="ScrapperController\PollsScrapper.cs" />
     <Compile Include="ScrapperController\WorldScrapper.cs" />
-    <Compile Include="WebScrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

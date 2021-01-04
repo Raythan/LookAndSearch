@@ -9,7 +9,7 @@ namespace LookAndSearchInterface
 {
     public partial class PollsForm : Form
     {
-        PollsWebScrapper ScrapperService = new PollsWebScrapper();
+        PollsScrapper ScrapperService = new PollsScrapper();
         public PollsForm()
         {
             InitializeComponent();

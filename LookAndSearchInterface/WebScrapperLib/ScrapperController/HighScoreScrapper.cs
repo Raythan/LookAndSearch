@@ -28,9 +28,9 @@ namespace WebScrapperLib.ScrapperController
             string responseString = "";
             DictionaryEntity = new Dictionary<string, dynamic>();
             Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://www.tibia.com/community/?subtopic=highscores");
+            Client.BaseAddress = new Uri(base.BaseUrl);
             AddClientHeaders();
-            HttpResponseMessage response = Client.GetAsync("https://www.tibia.com/community/?subtopic=highscores")
+            HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
                 .GetAwaiter().GetResult();
 
             if (response.IsSuccessStatusCode)
@@ -41,14 +41,9 @@ namespace WebScrapperLib.ScrapperController
             listHighScore.RemoveAt(listHighScore.Count() - 1);
             DictionaryEntity.Clear();
             BuildDictionaryData(listHighScore);
-            LastUpdateEntityTime();
+            UpdateEntityLastTime();
         }
-
-        public void LastUpdateEntityTime()
-        {
-            base.LastUpdateEntity = DateTime.Now;
-        }
-
+        
         public void BuildDictionaryData(List<string> listParameter, dynamic extraParams = null)
         {
             int counter = 0;
@@ -65,7 +60,7 @@ namespace WebScrapperLib.ScrapperController
                 }
                 else if (counter == 1)
                 {
-                    string innerFromTag = RecoverInnerHtmlFromTag(parameter, ListHighScoreNameInfo);
+                    string innerFromTag = RecoverInnerHtmlFromTagFirst(parameter, ListHighScoreNameInfo);
                     HighScoreEntity.Name = innerFromTag;
                     DictionaryEntity.Add(innerFromTag, HighScoreEntity);
                 }
@@ -84,6 +79,10 @@ namespace WebScrapperLib.ScrapperController
 
                 counter++;
             }
+        }
+
+        public HighScoreScrapper() : base("https://www.tibia.com/community/?subtopic=highscores")
+        {
         }
     }
 }

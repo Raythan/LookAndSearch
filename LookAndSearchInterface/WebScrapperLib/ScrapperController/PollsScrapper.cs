@@ -9,7 +9,7 @@ using WebScrapperLib.Models;
 
 namespace WebScrapperLib.ScrapperController
 {
-    public class PollsWebScrapper : BaseScrapperEntity, IWebScrapper
+    public class PollsScrapper : BaseScrapperEntity, IWebScrapper
     {
         public static int DictionaryPollsKey { get; private set; } = 0;
 
@@ -32,9 +32,9 @@ namespace WebScrapperLib.ScrapperController
             string responseString = "";
             base.DictionaryEntity = new Dictionary<string, dynamic>();
             Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://www.tibia.com/community/?subtopic=polls");
+            Client.BaseAddress = new Uri(base.BaseUrl);
             AddClientHeaders();
-            HttpResponseMessage response = Client.GetAsync("https://www.tibia.com/community/?subtopic=polls")
+            HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
                 .GetAwaiter().GetResult();
 
             if (response.IsSuccessStatusCode)
@@ -44,12 +44,7 @@ namespace WebScrapperLib.ScrapperController
             listInfo.RemoveRange(0, 3);
             DictionaryEntity.Clear();
             BuildDictionaryData(listInfo, true);
-            LastUpdateEntityTime();
-        }
-
-        public void LastUpdateEntityTime()
-        {
-            base.LastUpdateEntity = DateTime.Now;
+            UpdateEntityLastTime();
         }
 
         public void BuildDictionaryData(List<string> listParameter, dynamic isActiveParam = null)
@@ -65,12 +60,12 @@ namespace WebScrapperLib.ScrapperController
 
                 if (counter == 0)
                 {
-                    string topicName = RecoverInnerHtmlFromTag(parameter, ListPollsTopicInfo);
+                    string topicName = RecoverInnerHtmlFromTagFirst(parameter, ListPollsTopicInfo);
                     PollsEntity = new PollsEntity()
                     {
                         Topic = topicName,
                         IsActive = isActive,
-                        Anchor = RecoverAttributeFromTag(parameter, ListPollsTopicInfo, "href", "nothing")
+                        Anchor = RecoverAttributeFromTagFirst(parameter, ListPollsTopicInfo, "href", "nothing")
                     };
                     DictionaryEntity.Add(DictionaryPollsKey.ToString(), PollsEntity);
                     DictionaryPollsKey++;
@@ -92,6 +87,10 @@ namespace WebScrapperLib.ScrapperController
                 listParameter.RemoveRange(0, listNumericIndex + 3);
                 BuildDictionaryData(listParameter);
             }
+        }
+
+        public PollsScrapper() : base("https://www.tibia.com/community/?subtopic=polls")
+        {
         }
     }
 }
