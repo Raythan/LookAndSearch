@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using WebScrapperLib.Interfaces;
 using WebScrapperLib.Models;
 
@@ -10,6 +11,8 @@ namespace WebScrapperLib.ScrapperController
     public class BazaarScrapper : BaseScrapperEntity, IWebScrapper
     {
         private static int LastPage = 0, CurrentPage = 1;
+        private readonly int TimeStampRequest = 4000;
+        private static string UrlToGetAsync = $"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades&filter_profession=0&filter_levelrangefrom=0&filter_levelrangeto=0&filter_world=&filter_worldpvptype=9&filter_worldbattleyestate=0&filter_skillid=&filter_skillrangefrom=0&filter_skillrangeto=0&order_column=101&order_direction=1&searchtype=1&currentpage=";
         private readonly List<string> ScrapListBasicInfo = new List<string>
         {
             "//div[@class='TableContainer']",
@@ -80,87 +83,78 @@ namespace WebScrapperLib.ScrapperController
             List<string> pageListInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListGetLastPage);
             string pageListInfoLastAttributes = RecoverAttributeFromTagLast(pageListInfo[0], ScrapListGetLastPageAttribute, "href", "nothing");
             LastPage = Convert.ToInt32(pageListInfoLastAttributes.Split('=').LastOrDefault());
-            List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListBasicInfo);
-            listInfo = Extender.CleanListName(listInfo);
-            //listInfo.RemoveRange(0, 7);
-            DictionaryEntity.Clear();
-            BuildDictionaryData(listInfo, "LastPage");
+
+            base.DictionaryEntity = new Dictionary<string, dynamic>();
+
+            for (; CurrentPage < 2; CurrentPage++)
+                RecoverScrapperDataOnLoop();
+
             UpdateEntityLastTime();
+        }
+
+        public void RecoverScrapperDataOnLoop()
+        {
+            string responseString = "";
+            Client = new HttpClient();
+            Client.BaseAddress = new Uri($"{UrlToGetAsync}{CurrentPage}");
+            AddClientHeaders();
+            HttpResponseMessage response = Client.GetAsync($"{UrlToGetAsync}{CurrentPage}")
+                .GetAwaiter().GetResult();
+
+            if (response.IsSuccessStatusCode)
+                responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+            List<string> pageListInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListGetLastPage);
+            string pageListInfoLastAttributes = RecoverAttributeFromTagLast(pageListInfo[0], ScrapListGetLastPageAttribute, "href", "nothing");
+            LastPage = Convert.ToInt32(pageListInfoLastAttributes.Split('=').LastOrDefault());
+            List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListBasicInfo);
+            listInfo.RemoveRange(0, 8);
+            listInfo.RemoveAt(listInfo.Count() - 1);
+            BuildDictionaryData(listInfo);
+            Thread.Sleep(TimeStampRequest);
         }
 
         public void BuildDictionaryData(List<string> listParameter, dynamic extraParams = null)
         {
-            if (!string.IsNullOrEmpty(extraParams))
+            int counter = 0;
+            BazaarEntity entity = new BazaarEntity();
+            foreach (var item in listParameter)
             {
-                if (extraParams.Equals("LastPage"))
+                if (counter == 0)
                 {
-                    listParameter.RemoveRange(0, 8);
-                    listParameter.RemoveAt(listParameter.Count() - 1);
-                    BuildDictionaryData(listParameter, "CharacterData");
-                }
-                else if (extraParams.Equals("CharacterData"))
-                {
-                    int counter = 0;
-                    BazaarEntity entity = new BazaarEntity();
-                    foreach (var item in listParameter)
+                    List<string> HeaderInfo = RecoverInnerHtmlFromTagList(item, ScrapListHeaderInfo);
+                    List<string> HeaderDetailsInfo = RecoverInnerHtmlFromTagList(HeaderInfo[0], ScrapListNodeRule);
+                    string[] LevelSexVocationInfo = HeaderDetailsInfo[6].Split('|');
+                    entity = new BazaarEntity()
                     {
-                        if (counter == 0)
-                        {
-                            List<string> HeaderInfo = RecoverInnerHtmlFromTagList(item, ScrapListHeaderInfo);
-                            List<string> HeaderDetailsInfo = RecoverInnerHtmlFromTagList(HeaderInfo[0], ScrapListNodeRule);
-                            string[] LevelSexVocationInfo = HeaderDetailsInfo[6].Split('|');
-                            entity = new BazaarEntity()
-                            {
-                                CharacterName = HeaderDetailsInfo[4],
-                                World = HeaderDetailsInfo[7],
-                                //AuctionEnd = teste2[43],
-                                //AuctionStarted = teste2[39],
-                                //IsBidded = teste2[46].Contains("Current") ? true : false,
-                                //MinimumCurrentBid = teste2[49]
-                            };
+                        CharacterName = HeaderDetailsInfo[4],
+                        World = HeaderDetailsInfo[7],
+                    };
 
-                            entity.Level = Convert.ToInt32(LevelSexVocationInfo[0].Split(':').LastOrDefault().Trim());
-                            entity.Vocation = LevelSexVocationInfo[1].Split(':').LastOrDefault().Trim();
-                            entity.Sex = LevelSexVocationInfo[2].Trim();
+                    entity.Level = Convert.ToInt32(LevelSexVocationInfo[0].Split(':').LastOrDefault().Trim());
+                    entity.Vocation = LevelSexVocationInfo[1].Split(':').LastOrDefault().Trim();
+                    entity.Sex = LevelSexVocationInfo[2].Trim();
 
-                            List<string> BodyInfo = RecoverInnerHtmlFromTagList(item, ScrapListBodyInfo);
-                            List<string> AuctionInfo = RecoverInnerHtmlFromTagList(BodyInfo[0], ScrapListAuctionStartEndInfo);
+                    List<string> BodyInfo = RecoverInnerHtmlFromTagList(item, ScrapListBodyInfo);
+                    List<string> AuctionInfo = RecoverInnerHtmlFromTagList(BodyInfo[0], ScrapListAuctionStartEndInfo);
 
-                            entity.AuctionStarted = AuctionInfo[3];
-                            entity.AuctionEnd = AuctionInfo[7];
-                            entity.IsBidded = AuctionInfo[10].Contains("Current") ? true : false;
-                            entity.MinimumCurrentBid = AuctionInfo[13];
-                            //List<string> teste2 = RecoverInnerHtmlFromTagList(item, ScrapListContainerInfo);
-                            //string[] LevelSexVocationAux = teste2[19].Split('|');
-                            //entity = new BazaarEntity()
-                            //{
-                            //    CharacterName = teste2[17],
-                            //    World = teste2[20],
-                            //    AuctionEnd = teste2[43],
-                            //    AuctionStarted = teste2[39],
-                            //    IsBidded = teste2[46].Contains("Current") ? true : false,
-                            //    MinimumCurrentBid = teste2[49]
-                            //};
-
-                            //entity.Level = Convert.ToInt32(LevelSexVocationAux[0].Split(':').LastOrDefault().Trim());
-                            //entity.Vocation = LevelSexVocationAux[1].Split(':').LastOrDefault().Trim();
-                            //entity.Sex = LevelSexVocationAux[2].Trim();
-
-                            base.DictionaryEntity.Add(entity.CharacterName, entity);
-                        }
-                        else if (counter == 1)
-                        {
-                            counter = 0;
-                            continue;
-                        }
-
-                        counter++;
-                    }
+                    entity.AuctionStarted = AuctionInfo[3];
+                    entity.AuctionEnd = AuctionInfo[7];
+                    entity.IsBidded = AuctionInfo[10].Contains("Current") ? true : false;
+                    entity.MinimumCurrentBid = AuctionInfo[13];
+                    base.DictionaryEntity.Add(entity.CharacterName, entity);
                 }
+                else if (counter == 1)
+                {
+                    counter = 0;
+                    continue;
+                }
+
+                counter++;
             }
         }
 
-        public BazaarScrapper() : base("https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades")
+        public BazaarScrapper() : base($"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades&filter_profession=0&filter_levelrangefrom=0&filter_levelrangeto=0&filter_world=&filter_worldpvptype=9&filter_worldbattleyestate=0&filter_skillid=&filter_skillrangefrom=0&filter_skillrangeto=0&order_column=101&order_direction=1&searchtype=1&currentpage={CurrentPage}")
         {
         }
     }
