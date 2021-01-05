@@ -29,11 +29,11 @@ namespace LookAndSearchInterface
         public BazaarForm()
         {
             InitializeComponent();
-            ScrapperService.RecoverScrapperData();
-            cboBoxVocationFilter.DataSource = listVocationFilter;
-            FillUpdateComboWorldNames();
-            FillUpdateTxtBoxCharacterNames();
-            lblDtaAtualizacaoBazaar.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            //ScrapperService.RecoverScrapperData();
+            //cboBoxVocationFilter.DataSource = listVocationFilter;
+            //FillUpdateComboWorldNames();
+            //FillUpdateTxtBoxCharacterNames();
+            //lblDtaAtualizacaoBazaar.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
 
         public void FillUpdateTxtBoxCharacterNames()

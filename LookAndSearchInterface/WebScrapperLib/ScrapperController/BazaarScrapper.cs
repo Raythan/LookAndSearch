@@ -12,7 +12,7 @@ namespace WebScrapperLib.ScrapperController
     {
         private static int LastPage = 0, CurrentPage = 1;
         private readonly int TimeStampRequest = 4000;
-        private static string UrlToGetAsync = $"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades&filter_profession=0&filter_levelrangefrom=0&filter_levelrangeto=0&filter_world=&filter_worldpvptype=9&filter_worldbattleyestate=0&filter_skillid=&filter_skillrangefrom=0&filter_skillrangeto=0&order_column=101&order_direction=1&searchtype=1&currentpage=";
+        private readonly string UrlToGetAsync = $"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades&filter_profession=0&filter_levelrangefrom=0&filter_levelrangeto=0&filter_world=&filter_worldpvptype=9&filter_worldbattleyestate=0&filter_skillid=&filter_skillrangefrom=0&filter_skillrangeto=0&order_column=101&order_direction=1&searchtype=1&currentpage=";
         private readonly List<string> ScrapListBasicInfo = new List<string>
         {
             "//div[@class='TableContainer']",
@@ -71,8 +71,10 @@ namespace WebScrapperLib.ScrapperController
         {
             string responseString = "";
             base.DictionaryEntity = new Dictionary<string, dynamic>();
-            Client = new HttpClient();
-            Client.BaseAddress = new Uri(base.BaseUrl);
+            Client = new HttpClient
+            {
+                BaseAddress = new Uri(base.BaseUrl)
+            };
             AddClientHeaders();
             HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
                 .GetAwaiter().GetResult();

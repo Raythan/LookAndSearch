@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using WebScrapperLib.Models;
 
 namespace WebScrapperLib
 {
@@ -15,6 +19,35 @@ namespace WebScrapperLib
     {
         public static string DateTimeFormatBrazil = "dd/MM/yyyy HH:mm:ss";
         public static string DateFormatBrazil = "dd/MM/yyyy";
+        public static HttpClient Client = new HttpClient();
+
+        public static readonly Dictionary<string, Size> DicitionaryDimensions = new Dictionary<string, Size>
+        {
+            { "FullSize1920x1448", new Size(1920, 1448) },
+            { "IconSize18x18", new Size(18, 18) },
+            { "SelectionSize536x273", new Size(536, 273) }
+        };
+
+        public static void AddClientHeaders()
+        {
+            Client.DefaultRequestHeaders.Clear();
+            Client.DefaultRequestHeaders.Add("accept", "text/html");
+            Client.DefaultRequestHeaders.Add("accept-encoding", "UTF-8");
+            Client.DefaultRequestHeaders.Add("accept-language", "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7");
+            Client.DefaultRequestHeaders.Add("cache-control", "no-cache");
+            Client.DefaultRequestHeaders.Add("cookie", "__cfduid=df4aba1030b9ada4d3ad6ac0addfeb06a1607818705; cf_clearance=0a6991fa94f7d778b0dcfc435281fca9995c516e-1608659141-0-150; SessionLastVisit=1608659186; DM_LandingPage=visited; DM_SessionID=ebf66963c897d3fdcf73c7ed5c915dab1609171284");
+            Client.DefaultRequestHeaders.Add("pragma", "no-cache");
+            Client.DefaultRequestHeaders.Add("sec-fetch-dest", "document");
+            Client.DefaultRequestHeaders.Add("sec-fetch-mode", "navigate");
+            Client.DefaultRequestHeaders.Add("sec-fetch-site", "none");
+            Client.DefaultRequestHeaders.Add("sec-fetch-user", "?1");
+            Client.DefaultRequestHeaders.Add("upgrade-insecure-requests", "1");
+            Client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
+            
+            Client.DefaultRequestHeaders.Add("x-client-data", "CI+2yQEIprbJAQjBtskBCKmdygEIrsLKAQisx8oBCPXHygEI98fKAQi0y8oBCKTNygEI3NXKAQjwl8sBCMKcywEI1ZzLAQ==");
+            Client.DefaultRequestHeaders.Add("Decoded", "message ClientVariations { repeated int32 variation_id = [3300111, 3300134, 3300161, 3313321, 3318062, 3318700, 3318773, 3318775, 3319220, 3319460, 3320540, 3329008, 3329602, 3329621];}");
+        }
+
         public static string AssemblyDirectory
         {
             get
@@ -153,6 +186,30 @@ namespace WebScrapperLib
                 obj.Equals("Oct") ? 10 :
                 obj.Equals("Nov") ? 11 :
                 obj.Equals("Dec") ? 12 : 0;
+        }
+
+        public static Image RecoverImageFromUrl(string url, string sizeKey)
+        {
+            try
+            {
+                Client = new HttpClient()
+                {
+                    BaseAddress = new Uri(url)
+                };
+                AddClientHeaders();
+
+                using (var responseTeste = Client.GetAsync(url).GetAwaiter().GetResult())
+                using (var stream = responseTeste.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+                    return Bitmap.FromStream(stream);
+            }
+            catch (Exception ex)
+            {
+                return new Bitmap(
+                    Image.FromFile($"{AssemblyDirectory}\\Images\\not_found_img_1990x1448.jpg"), DicitionaryDimensions
+                    .Where(w => w.Key.Equals(sizeKey))
+                    .Select(s => s.Value)
+                    .FirstOrDefault());
+            }
         }
 
         public static List<string> CleanListName(this List<string> paramList)

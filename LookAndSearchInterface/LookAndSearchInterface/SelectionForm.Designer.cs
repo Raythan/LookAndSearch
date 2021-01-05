@@ -35,7 +35,6 @@
             // 
             // picBoxSelectionForm
             // 
-            this.picBoxSelectionForm.Image = global::LookAndSearchInterface.Properties.Resources.magnifying_lass;
             this.picBoxSelectionForm.Location = new System.Drawing.Point(12, 25);
             this.picBoxSelectionForm.Name = "picBoxSelectionForm";
             this.picBoxSelectionForm.Size = new System.Drawing.Size(536, 273);

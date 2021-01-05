@@ -31,11 +31,10 @@ namespace LookAndSearchInterface
             txtBoxPvpType.Text = entity.PvpType;
             txtBoxAdditionalInformation.Text = entity.AdditionalInformation;
 
-            if (!string.IsNullOrEmpty(entity.BattleEye) && 
-                !entity.BattleEye.Equals("nothing"))
+            if (!string.IsNullOrEmpty(entity.BattleEye) && !entity.BattleEye.Equals("nothing"))
             {
                 picBoxBattleEye.BorderStyle = BorderStyle.None;
-                picBoxBattleEye.Load(LoadBattleEyeIcon(entity.BattleEye));
+                picBoxBattleEye.Image = Extender.RecoverImageFromUrl(entity.BattleEye, "IconSize18x18");
             }
             else
             {
