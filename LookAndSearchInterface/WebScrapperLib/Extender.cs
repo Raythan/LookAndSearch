@@ -17,15 +17,17 @@ namespace WebScrapperLib
 {
     public static class Extender
     {
-        public static string DateTimeFormatBrazil = "dd/MM/yyyy HH:mm:ss";
-        public static string DateFormatBrazil = "dd/MM/yyyy";
+        public static readonly string DateTimeFormatBrazil = "dd/MM/yyyy HH:mm:ss";
+        public static readonly string DateFormatBrazil = "dd/MM/yyyy";
+        public static readonly string DateTimeFormatEnglish = "MM/dd/yyyy HH:mm:ss";
+        public static readonly string DateFormatEnglish = "MM/dd/yyyy";
         public static HttpClient Client = new HttpClient();
 
         public static readonly Dictionary<string, Size> DicitionaryDimensions = new Dictionary<string, Size>
         {
             { "FullSize1920x1448", new Size(1920, 1448) },
             { "IconSize18x18", new Size(18, 18) },
-            { "SelectionSize536x273", new Size(536, 273) }
+            { "PanelSize536x273", new Size(536, 273) }
         };
 
         public static void AddClientHeaders()
@@ -43,9 +45,6 @@ namespace WebScrapperLib
             Client.DefaultRequestHeaders.Add("sec-fetch-user", "?1");
             Client.DefaultRequestHeaders.Add("upgrade-insecure-requests", "1");
             Client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
-            
-            Client.DefaultRequestHeaders.Add("x-client-data", "CI+2yQEIprbJAQjBtskBCKmdygEIrsLKAQisx8oBCPXHygEI98fKAQi0y8oBCKTNygEI3NXKAQjwl8sBCMKcywEI1ZzLAQ==");
-            Client.DefaultRequestHeaders.Add("Decoded", "message ClientVariations { repeated int32 variation_id = [3300111, 3300134, 3300161, 3313321, 3318062, 3318700, 3318773, 3318775, 3319220, 3319460, 3320540, 3329008, 3329602, 3329621];}");
         }
 
         public static string AssemblyDirectory
@@ -200,12 +199,16 @@ namespace WebScrapperLib
 
                 using (var responseTeste = Client.GetAsync(url).GetAwaiter().GetResult())
                 using (var stream = responseTeste.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
-                    return Bitmap.FromStream(stream);
+                    return new Bitmap(Bitmap.FromStream(stream), DicitionaryDimensions
+                    .Where(w => w.Key.Equals(sizeKey))
+                    .Select(s => s.Value)
+                    .FirstOrDefault());
             }
             catch (Exception ex)
             {
                 return new Bitmap(
-                    Image.FromFile($"{AssemblyDirectory}\\Images\\not_found_img_1990x1448.jpg"), DicitionaryDimensions
+                    Image.FromFile($"{AssemblyDirectory}\\Images\\not_found_img_1990x1448.jpg"), 
+                    DicitionaryDimensions
                     .Where(w => w.Key.Equals(sizeKey))
                     .Select(s => s.Value)
                     .FirstOrDefault());

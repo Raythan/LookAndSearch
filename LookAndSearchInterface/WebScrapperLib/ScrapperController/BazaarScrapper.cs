@@ -92,6 +92,7 @@ namespace WebScrapperLib.ScrapperController
                 RecoverScrapperDataOnLoop();
 
             UpdateEntityLastTime();
+            CurrentPage = 1;
         }
 
         public void RecoverScrapperDataOnLoop()

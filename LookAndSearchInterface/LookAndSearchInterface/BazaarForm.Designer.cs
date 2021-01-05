@@ -39,12 +39,14 @@
             this.lblLevelFilter = new System.Windows.Forms.Label();
             this.numUpDownLevelFilter = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnUpdateBazaar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownBidMaxFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownLevelFilter)).BeginInit();
             this.SuspendLayout();
             // 
             // cboBoxWorldFilter
             // 
+            this.cboBoxWorldFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBoxWorldFilter.FormattingEnabled = true;
             this.cboBoxWorldFilter.Location = new System.Drawing.Point(12, 25);
             this.cboBoxWorldFilter.Name = "cboBoxWorldFilter";
@@ -72,6 +74,7 @@
             // 
             // cboBoxVocationFilter
             // 
+            this.cboBoxVocationFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBoxVocationFilter.FormattingEnabled = true;
             this.cboBoxVocationFilter.Location = new System.Drawing.Point(12, 52);
             this.cboBoxVocationFilter.Name = "cboBoxVocationFilter";
@@ -115,9 +118,9 @@
             this.chkBoxIsBiddedFilter.AutoSize = true;
             this.chkBoxIsBiddedFilter.Location = new System.Drawing.Point(15, 118);
             this.chkBoxIsBiddedFilter.Name = "chkBoxIsBiddedFilter";
-            this.chkBoxIsBiddedFilter.Size = new System.Drawing.Size(98, 17);
+            this.chkBoxIsBiddedFilter.Size = new System.Drawing.Size(118, 17);
             this.chkBoxIsBiddedFilter.TabIndex = 9;
-            this.chkBoxIsBiddedFilter.Text = "Only Auctioned";
+            this.chkBoxIsBiddedFilter.Text = "Only Not Auctioned";
             this.chkBoxIsBiddedFilter.UseVisualStyleBackColor = true;
             this.chkBoxIsBiddedFilter.CheckedChanged += new System.EventHandler(this.chkBoxIsBiddedFilter_CheckedChanged);
             // 
@@ -152,11 +155,22 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Character names, ordered by End Auction.";
             // 
+            // btnUpdateBazaar
+            // 
+            this.btnUpdateBazaar.Location = new System.Drawing.Point(12, 180);
+            this.btnUpdateBazaar.Name = "btnUpdateBazaar";
+            this.btnUpdateBazaar.Size = new System.Drawing.Size(120, 57);
+            this.btnUpdateBazaar.TabIndex = 13;
+            this.btnUpdateBazaar.Text = "Refresh";
+            this.btnUpdateBazaar.UseVisualStyleBackColor = true;
+            this.btnUpdateBazaar.Click += new System.EventHandler(this.btnUpdateBazaar_Click);
+            // 
             // BazaarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 310);
+            this.Controls.Add(this.btnUpdateBazaar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numUpDownLevelFilter);
             this.Controls.Add(this.lblLevelFilter);
@@ -191,5 +205,6 @@
         private System.Windows.Forms.Label lblLevelFilter;
         private System.Windows.Forms.NumericUpDown numUpDownLevelFilter;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnUpdateBazaar;
     }
 }

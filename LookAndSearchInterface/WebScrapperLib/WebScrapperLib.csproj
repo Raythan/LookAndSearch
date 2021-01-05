@@ -63,6 +63,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\lupa_512x512.jpg" />
+    <Content Include="Images\lupa_512x512.png" />
     <Content Include="Images\not_found_img_1990x1448.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
