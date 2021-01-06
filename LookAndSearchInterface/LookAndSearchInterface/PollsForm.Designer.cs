@@ -34,10 +34,10 @@
             this.lblPollsStatusValue = new System.Windows.Forms.Label();
             this.cboBoxPollsTopicsData = new System.Windows.Forms.ComboBox();
             this.grpBoxPollsTopics = new System.Windows.Forms.GroupBox();
-            this.lblPollsEndDate = new System.Windows.Forms.Label();
+            this.lnkLabelPollsToRedirectClick = new System.Windows.Forms.LinkLabel();
             this.lblPollsEndDateValue = new System.Windows.Forms.Label();
             this.lnkLblPollsTopicAnchorDisabled = new System.Windows.Forms.LinkLabel();
-            this.lnkLabelPollsToRedirectClick = new System.Windows.Forms.LinkLabel();
+            this.lblPollsEndDate = new System.Windows.Forms.Label();
             this.grpBoxPollsTopics.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,7 +53,7 @@
             // lblPollsLastTimeUpdate
             // 
             this.lblPollsLastTimeUpdate.AutoSize = true;
-            this.lblPollsLastTimeUpdate.Location = new System.Drawing.Point(9, 288);
+            this.lblPollsLastTimeUpdate.Location = new System.Drawing.Point(9, 488);
             this.lblPollsLastTimeUpdate.Name = "lblPollsLastTimeUpdate";
             this.lblPollsLastTimeUpdate.Size = new System.Drawing.Size(138, 13);
             this.lblPollsLastTimeUpdate.TabIndex = 1;
@@ -98,19 +98,21 @@
             this.grpBoxPollsTopics.Controls.Add(this.lblPollsStatusValue);
             this.grpBoxPollsTopics.Location = new System.Drawing.Point(12, 28);
             this.grpBoxPollsTopics.Name = "grpBoxPollsTopics";
-            this.grpBoxPollsTopics.Size = new System.Drawing.Size(536, 257);
+            this.grpBoxPollsTopics.Size = new System.Drawing.Size(536, 457);
             this.grpBoxPollsTopics.TabIndex = 7;
             this.grpBoxPollsTopics.TabStop = false;
             this.grpBoxPollsTopics.Text = "Tópicos";
             // 
-            // lblPollsEndDate
+            // lnkLabelPollsToRedirectClick
             // 
-            this.lblPollsEndDate.AutoSize = true;
-            this.lblPollsEndDate.Location = new System.Drawing.Point(6, 56);
-            this.lblPollsEndDate.Name = "lblPollsEndDate";
-            this.lblPollsEndDate.Size = new System.Drawing.Size(55, 13);
-            this.lblPollsEndDate.TabIndex = 6;
-            this.lblPollsEndDate.Text = "End Date:";
+            this.lnkLabelPollsToRedirectClick.AutoSize = true;
+            this.lnkLabelPollsToRedirectClick.Location = new System.Drawing.Point(6, 69);
+            this.lnkLabelPollsToRedirectClick.Name = "lnkLabelPollsToRedirectClick";
+            this.lnkLabelPollsToRedirectClick.Size = new System.Drawing.Size(269, 13);
+            this.lnkLabelPollsToRedirectClick.TabIndex = 9;
+            this.lnkLabelPollsToRedirectClick.TabStop = true;
+            this.lnkLabelPollsToRedirectClick.Text = "Duplo clique aqui para conferir a enquete no site oficial!";
+            this.lnkLabelPollsToRedirectClick.DoubleClick += new System.EventHandler(this.lnkLabelPollsToRedirectClick_DoubleClick);
             // 
             // lblPollsEndDateValue
             // 
@@ -133,22 +135,20 @@
             this.lnkLblPollsTopicAnchorDisabled.Text = "Anchor Disabled";
             this.lnkLblPollsTopicAnchorDisabled.Visible = false;
             // 
-            // lnkLabelPollsToRedirectClick
+            // lblPollsEndDate
             // 
-            this.lnkLabelPollsToRedirectClick.AutoSize = true;
-            this.lnkLabelPollsToRedirectClick.Location = new System.Drawing.Point(6, 69);
-            this.lnkLabelPollsToRedirectClick.Name = "lnkLabelPollsToRedirectClick";
-            this.lnkLabelPollsToRedirectClick.Size = new System.Drawing.Size(269, 13);
-            this.lnkLabelPollsToRedirectClick.TabIndex = 9;
-            this.lnkLabelPollsToRedirectClick.TabStop = true;
-            this.lnkLabelPollsToRedirectClick.Text = "Duplo clique aqui para conferir a enquete no site oficial!";
-            this.lnkLabelPollsToRedirectClick.DoubleClick += new System.EventHandler(this.lnkLabelPollsToRedirectClick_DoubleClick);
+            this.lblPollsEndDate.AutoSize = true;
+            this.lblPollsEndDate.Location = new System.Drawing.Point(6, 56);
+            this.lblPollsEndDate.Name = "lblPollsEndDate";
+            this.lblPollsEndDate.Size = new System.Drawing.Size(55, 13);
+            this.lblPollsEndDate.TabIndex = 6;
+            this.lblPollsEndDate.Text = "End Date:";
             // 
             // PollsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 310);
+            this.ClientSize = new System.Drawing.Size(560, 510);
             this.Controls.Add(this.grpBoxPollsTopics);
             this.Controls.Add(this.lblPollsLastTimeUpdate);
             this.Controls.Add(this.lblPollsTitle);

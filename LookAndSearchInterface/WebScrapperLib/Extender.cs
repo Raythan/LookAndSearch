@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -27,8 +28,14 @@ namespace WebScrapperLib
         {
             { "FullSize1920x1448", new Size(1920, 1448) },
             { "IconSize18x18", new Size(18, 18) },
+            { "SelectionSize250x250", new Size(250, 250) },
             { "PanelSize536x273", new Size(536, 273) }
         };
+
+        public static string GetLibVersionFromAssembly()
+        {
+            return FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+        }
 
         public static void AddClientHeaders()
         {

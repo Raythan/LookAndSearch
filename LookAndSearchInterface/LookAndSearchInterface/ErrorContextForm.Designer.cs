@@ -38,7 +38,7 @@
             this.txtBoxErrorForm.Multiline = true;
             this.txtBoxErrorForm.Name = "txtBoxErrorForm";
             this.txtBoxErrorForm.ReadOnly = true;
-            this.txtBoxErrorForm.Size = new System.Drawing.Size(536, 286);
+            this.txtBoxErrorForm.Size = new System.Drawing.Size(536, 486);
             this.txtBoxErrorForm.TabIndex = 0;
             this.txtBoxErrorForm.Text = "Erro no momento da consulta, por favor tente mais tarde.";
             // 
@@ -46,7 +46,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 310);
+            this.ClientSize = new System.Drawing.Size(560, 510);
             this.Controls.Add(this.txtBoxErrorForm);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ErrorContextForm";

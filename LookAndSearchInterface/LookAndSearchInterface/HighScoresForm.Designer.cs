@@ -54,13 +54,13 @@
             this.dtGridViewHighScores.Name = "dtGridViewHighScores";
             this.dtGridViewHighScores.ReadOnly = true;
             this.dtGridViewHighScores.RowHeadersVisible = false;
-            this.dtGridViewHighScores.Size = new System.Drawing.Size(536, 215);
+            this.dtGridViewHighScores.Size = new System.Drawing.Size(536, 415);
             this.dtGridViewHighScores.TabIndex = 1;
             // 
             // lblHighScoreLastTimeUpdate
             // 
             this.lblHighScoreLastTimeUpdate.AutoSize = true;
-            this.lblHighScoreLastTimeUpdate.Location = new System.Drawing.Point(201, 285);
+            this.lblHighScoreLastTimeUpdate.Location = new System.Drawing.Point(201, 485);
             this.lblHighScoreLastTimeUpdate.Name = "lblHighScoreLastTimeUpdate";
             this.lblHighScoreLastTimeUpdate.Size = new System.Drawing.Size(138, 13);
             this.lblHighScoreLastTimeUpdate.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             // btnHighScoreRefresh
             // 
-            this.btnHighScoreRefresh.Location = new System.Drawing.Point(12, 246);
+            this.btnHighScoreRefresh.Location = new System.Drawing.Point(12, 446);
             this.btnHighScoreRefresh.Name = "btnHighScoreRefresh";
             this.btnHighScoreRefresh.Size = new System.Drawing.Size(183, 52);
             this.btnHighScoreRefresh.TabIndex = 3;
@@ -80,7 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 310);
+            this.ClientSize = new System.Drawing.Size(560, 510);
             this.Controls.Add(this.btnHighScoreRefresh);
             this.Controls.Add(this.lblHighScoreLastTimeUpdate);
             this.Controls.Add(this.dtGridViewHighScores);

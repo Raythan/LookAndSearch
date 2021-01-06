@@ -154,7 +154,7 @@
             // lblHoraUltimaAtualizacao
             // 
             this.lblHoraUltimaAtualizacao.AutoSize = true;
-            this.lblHoraUltimaAtualizacao.Location = new System.Drawing.Point(9, 288);
+            this.lblHoraUltimaAtualizacao.Location = new System.Drawing.Point(12, 488);
             this.lblHoraUltimaAtualizacao.Name = "lblHoraUltimaAtualizacao";
             this.lblHoraUltimaAtualizacao.Size = new System.Drawing.Size(138, 13);
             this.lblHoraUltimaAtualizacao.TabIndex = 14;
@@ -174,7 +174,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 310);
+            this.ClientSize = new System.Drawing.Size(560, 510);
             this.ControlBox = false;
             this.Controls.Add(this.btnRefreshWorldDictionary);
             this.Controls.Add(this.lblHoraUltimaAtualizacao);

@@ -19,13 +19,12 @@ namespace LookAndSearchInterface
             try
             {
                 picBoxSelectionForm.Image = Extender.RecoverImageFromUrl("https://github.com/Raythan/LookAndSearch/blob/main/LookAndSearchInterface/WebScrapperLib/Images/lupa_512x512.png?raw=true",
-                    "PanelSize536x273");
+                    "SelectionSize250x250");
             }
             catch (Exception ex)
             {
                 picBoxSelectionForm.Image = null;
-            }
-            
+            }   
         }
     }
 }

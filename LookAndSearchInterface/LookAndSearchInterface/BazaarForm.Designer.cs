@@ -66,7 +66,7 @@
             // lblDtaAtualizacaoBazaar
             // 
             this.lblDtaAtualizacaoBazaar.AutoSize = true;
-            this.lblDtaAtualizacaoBazaar.Location = new System.Drawing.Point(12, 288);
+            this.lblDtaAtualizacaoBazaar.Location = new System.Drawing.Point(9, 488);
             this.lblDtaAtualizacaoBazaar.Name = "lblDtaAtualizacaoBazaar";
             this.lblDtaAtualizacaoBazaar.Size = new System.Drawing.Size(138, 13);
             this.lblDtaAtualizacaoBazaar.TabIndex = 2;
@@ -169,7 +169,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 310);
+            this.ClientSize = new System.Drawing.Size(560, 510);
             this.Controls.Add(this.btnUpdateBazaar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numUpDownLevelFilter);

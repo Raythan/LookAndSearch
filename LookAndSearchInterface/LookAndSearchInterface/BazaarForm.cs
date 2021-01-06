@@ -108,8 +108,6 @@ namespace LookAndSearchInterface
         private void btnUpdateBazaar_Click(object sender, EventArgs e)
         {
             Task.Run(() => FillUpdateBazaarData());
-            //Task.WhenAll(FillUpdateBazaarData());
-            //FillUpdateBazaarData();
         }
 
         private async Task FillUpdateBazaarData()

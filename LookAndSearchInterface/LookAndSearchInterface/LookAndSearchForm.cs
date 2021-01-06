@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using WebScrapperLib;
 
 namespace LookAndSearchInterface
 {
@@ -23,12 +26,17 @@ namespace LookAndSearchInterface
             InitializeComponent();
             LoadPanelForms();
             LoadComboMenuItems();
+            FillUpdateAssemblyVersion();
         }
 
-        private void LoadComboMenuItems()
+        private void FillUpdateAssemblyVersion()
         {
-            cboBoxMenuSelector.DataSource = comboMenuItems;
+            string InterfaceVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
+            string LibVersion = Extender.GetLibVersionFromAssembly();
+            this.Text = $"Look and search! v{InterfaceVersion} lib{LibVersion}";
         }
+
+        private void LoadComboMenuItems() => cboBoxMenuSelector.DataSource = comboMenuItems;
 
         private void LoadPanelForms()
         {
