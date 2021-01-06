@@ -28,20 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.picBoxSelectionForm = new System.Windows.Forms.PictureBox();
+            this.picBoxSelectionFace = new System.Windows.Forms.PictureBox();
             this.lblStartSelectForm = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionForm)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.picBoxSelectionAdSense = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionFace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionAdSense)).BeginInit();
             this.SuspendLayout();
             // 
-            // picBoxSelectionForm
+            // picBoxSelectionFace
             // 
-            this.picBoxSelectionForm.Location = new System.Drawing.Point(12, 25);
-            this.picBoxSelectionForm.Name = "picBoxSelectionForm";
-            this.picBoxSelectionForm.Size = new System.Drawing.Size(250, 250);
-            this.picBoxSelectionForm.TabIndex = 0;
-            this.picBoxSelectionForm.TabStop = false;
+            this.picBoxSelectionFace.Location = new System.Drawing.Point(12, 25);
+            this.picBoxSelectionFace.Name = "picBoxSelectionFace";
+            this.picBoxSelectionFace.Size = new System.Drawing.Size(250, 250);
+            this.picBoxSelectionFace.TabIndex = 0;
+            this.picBoxSelectionFace.TabStop = false;
             // 
             // lblStartSelectForm
             // 
@@ -52,27 +53,37 @@
             this.lblStartSelectForm.TabIndex = 1;
             this.lblStartSelectForm.Text = "Selecione uma opção para iniciar!";
             // 
-            // pictureBox1
+            // picBoxSelectionAdSense
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(268, 25);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 250);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.picBoxSelectionAdSense.Location = new System.Drawing.Point(268, 25);
+            this.picBoxSelectionAdSense.Name = "picBoxSelectionAdSense";
+            this.picBoxSelectionAdSense.Size = new System.Drawing.Size(250, 250);
+            this.picBoxSelectionAdSense.TabIndex = 2;
+            this.picBoxSelectionAdSense.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(265, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(166, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Esta aplicação é patrocinada por:";
             // 
             // SelectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 510);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.picBoxSelectionAdSense);
             this.Controls.Add(this.lblStartSelectForm);
-            this.Controls.Add(this.picBoxSelectionForm);
+            this.Controls.Add(this.picBoxSelectionFace);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "SelectionForm";
             this.Text = "SelectionForm";
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionForm)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionFace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxSelectionAdSense)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -80,8 +91,9 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox picBoxSelectionForm;
+        private System.Windows.Forms.PictureBox picBoxSelectionFace;
         private System.Windows.Forms.Label lblStartSelectForm;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picBoxSelectionAdSense;
+        private System.Windows.Forms.Label label1;
     }
 }
