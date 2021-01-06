@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -6,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -22,14 +24,24 @@ namespace WebScrapperLib
         public static readonly string DateFormatBrazil = "dd/MM/yyyy";
         public static readonly string DateTimeFormatEnglish = "MM/dd/yyyy HH:mm:ss";
         public static readonly string DateFormatEnglish = "MM/dd/yyyy";
-        public static HttpClient Client = new HttpClient();
+        private static readonly string GitHubUrlApiBaseProject = "https://api.github.com/repos/Raythan/LookAndSearch/contents/";
+        private static HttpClient Client = new HttpClient();
 
-        public static readonly Dictionary<string, Size> DicitionaryDimensions = new Dictionary<string, Size>
+        private static readonly Dictionary<string, Size> DictionaryDimensions = new Dictionary<string, Size>
         {
             { "FullSize1920x1448", new Size(1920, 1448) },
             { "IconSize18x18", new Size(18, 18) },
+            { "IconSize16x16", new Size(16, 16) },
             { "SelectionSize250x250", new Size(250, 250) },
+            { "IconSize170x175", new Size(170, 175) },
             { "PanelSize536x273", new Size(536, 273) }
+        };
+
+        private static readonly Dictionary<string, Action> DictionaryMethods = 
+            new Dictionary<string, Action>
+        {
+            { "CipSoftHeaders", AddCipsoftHeaders },
+            { "GitHubHeaders", AddGitHubHeaders }
         };
 
         public static string GetLibVersionFromAssembly()
@@ -37,7 +49,24 @@ namespace WebScrapperLib
             return FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
         }
 
-        public static void AddClientHeaders()
+        private static void AddGitHubHeaders()
+        {
+            Client.DefaultRequestHeaders.Clear();
+            Client.DefaultRequestHeaders.Add("accept", "*/*");
+            Client.DefaultRequestHeaders.Add("accept-encoding", "UTF-8");
+            Client.DefaultRequestHeaders.Add("accept-language", "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7");
+            Client.DefaultRequestHeaders.Add("cache-control", "no-cache");
+            Client.DefaultRequestHeaders.Add("cookie", "__cfduid=df4aba1030b9ada4d3ad6ac0addfeb06a1607818705; cf_clearance=0a6991fa94f7d778b0dcfc435281fca9995c516e-1608659141-0-150; SessionLastVisit=1608659186; DM_LandingPage=visited; DM_SessionID=ebf66963c897d3fdcf73c7ed5c915dab1609171284");
+            Client.DefaultRequestHeaders.Add("pragma", "no-cache");
+            Client.DefaultRequestHeaders.Add("sec-fetch-dest", "document");
+            Client.DefaultRequestHeaders.Add("sec-fetch-mode", "navigate");
+            Client.DefaultRequestHeaders.Add("sec-fetch-site", "none");
+            Client.DefaultRequestHeaders.Add("sec-fetch-user", "?1");
+            Client.DefaultRequestHeaders.Add("upgrade-insecure-requests", "1");
+            Client.DefaultRequestHeaders.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36");
+        }
+
+        private static void AddCipsoftHeaders()
         {
             Client.DefaultRequestHeaders.Clear();
             Client.DefaultRequestHeaders.Add("accept", "text/html");
@@ -193,8 +222,8 @@ namespace WebScrapperLib
                 obj.Equals("Nov") ? 11 :
                 obj.Equals("Dec") ? 12 : 0;
         }
-
-        public static Image RecoverImageFromUrl(string url, string sizeKey)
+        
+        public static Image RecoverImageFromUrl(string url, string sizeKey, string methodKey)
         {
             try
             {
@@ -202,11 +231,11 @@ namespace WebScrapperLib
                 {
                     BaseAddress = new Uri(url)
                 };
-                AddClientHeaders();
+                DictionaryMethods[methodKey]();
 
                 using (var responseTeste = Client.GetAsync(url).GetAwaiter().GetResult())
                 using (var stream = responseTeste.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
-                    return new Bitmap(Bitmap.FromStream(stream), DicitionaryDimensions
+                    return new Bitmap(Bitmap.FromStream(stream), DictionaryDimensions
                     .Where(w => w.Key.Equals(sizeKey))
                     .Select(s => s.Value)
                     .FirstOrDefault());
@@ -214,11 +243,33 @@ namespace WebScrapperLib
             catch (Exception ex)
             {
                 return new Bitmap(
-                    Image.FromFile($"{AssemblyDirectory}\\Images\\not_found_img_1990x1448.jpg"), 
-                    DicitionaryDimensions
+                    Image.FromFile($"{AssemblyDirectory}\\Images\\not_found_img_1990x1448.jpg"),
+                    DictionaryDimensions
                     .Where(w => w.Key.Equals(sizeKey))
                     .Select(s => s.Value)
                     .FirstOrDefault());
+            }
+        }
+        
+        public static List<string> RecoverAdSenseUrlListFromGitHub(string pathParam)
+        {
+            try
+            {
+                Client = new HttpClient()
+                {
+                    BaseAddress = new Uri($"{GitHubUrlApiBaseProject}{pathParam}")
+                };
+                AddGitHubHeaders();
+
+                var ResponseStringJson = Client.GetStringAsync($"{GitHubUrlApiBaseProject}{pathParam}").GetAwaiter().GetResult();
+                var GitHubObjectDeserialized = JsonConvert.DeserializeObject<GitHubFileBase64>(ResponseStringJson);
+                byte[] ContentFromBase64 = Convert.FromBase64String(GitHubObjectDeserialized.content);
+                string DecodedContent = Encoding.UTF8.GetString(ContentFromBase64);
+                return DecodedContent.Split(';').ToList();
+            }
+            catch (Exception ex)
+            {
+                return null;
             }
         }
 

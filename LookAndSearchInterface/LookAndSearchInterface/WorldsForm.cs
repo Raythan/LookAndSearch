@@ -34,7 +34,9 @@ namespace LookAndSearchInterface
             if (!string.IsNullOrEmpty(entity.BattleEye) && !entity.BattleEye.Equals("nothing"))
             {
                 picBoxBattleEye.BorderStyle = BorderStyle.None;
-                picBoxBattleEye.Image = Extender.RecoverImageFromUrl(entity.BattleEye, "IconSize18x18");
+                picBoxBattleEye.Image = Extender.RecoverImageFromUrl(entity.BattleEye, 
+                    "IconSize18x18",
+                    "CipSoftHeaders");
             }
             else
             {
