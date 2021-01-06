@@ -1,2 +1,2 @@
-﻿https://github.com/Raythan/LookAndSearch/blob/main/LookAndSearchInterface/WebScrapperLib/Images/adsense1.png?raw=true;
-https://github.com/Raythan/LookAndSearch/blob/main/LookAndSearchInterface/WebScrapperLib/Images/adsense2.jpg?raw=true
+﻿https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/adsense1.png;
+https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/adsense2.png
