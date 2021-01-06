@@ -24,9 +24,9 @@ namespace LookAndSearchInterface
             "Paladin",
             "Sorcerer"
         };
-        
+
         BazaarScrapper ScrapperService = new BazaarScrapper();
-        
+
         public BazaarForm()
         {
             InitializeComponent();
@@ -52,14 +52,17 @@ namespace LookAndSearchInterface
             if (numUpDownBidMaxFilter.Value > 0)
                 dicAux = dicAux.Where(w => Convert.ToInt64(((BazaarEntity)w.Value).MinimumCurrentBid.Replace(",", "")) <= numUpDownBidMaxFilter.Value)
                     .ToDictionary(p => p.Key, p => p.Value);
-            
-            if(chkBoxIsBiddedFilter.Checked)
+
+            if (chkBoxIsBiddedFilter.Checked)
                 dicAux = dicAux.Where(w => !((BazaarEntity)w.Value).IsBidded)
                     .ToDictionary(p => p.Key, p => p.Value);
 
-            if(numUpDownLevelFilter.Value > 0)
+            if (numUpDownLevelFilter.Value > 0)
                 dicAux = dicAux.Where(w => Convert.ToInt64(((BazaarEntity)w.Value).Level) >= numUpDownLevelFilter.Value)
                     .ToDictionary(p => p.Key, p => p.Value);
+
+            if (dicAux == null || dicAux.Count() == 0)
+                grpBoxBazaarEntityStatus.Visible = false;
 
             lstBoxCharacterNamesValues.DataSource = dicAux.Keys.ToList();
         }
@@ -80,35 +83,17 @@ namespace LookAndSearchInterface
             cboBoxWorldFilter.SelectedIndex = 0;
         }
 
-        private void cboBoxWorldFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FillUpdateTxtBoxCharacterNames();
-        }
+        private void cboBoxWorldFilter_SelectedIndexChanged(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames(); 
+        
+        private void cboBoxVocationFilter_SelectedIndexChanged(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames();
 
-        private void cboBoxVocationFilter_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            FillUpdateTxtBoxCharacterNames();
-        }
+        private void numUpDownBidMaxFilter_ValueChanged(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames();
 
-        private void numUpDownBidMaxFilter_ValueChanged(object sender, EventArgs e)
-        {
-            FillUpdateTxtBoxCharacterNames();
-        }
+        private void chkBoxIsBiddedFilter_CheckedChanged(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames();
 
-        private void chkBoxIsBiddedFilter_CheckedChanged(object sender, EventArgs e)
-        {
-            FillUpdateTxtBoxCharacterNames();
-        }
+        private void numUpDownLevelFilter_ValueChanged(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames();
 
-        private void numUpDownLevelFilter_ValueChanged(object sender, EventArgs e)
-        {
-            FillUpdateTxtBoxCharacterNames();
-        }
-
-        private void btnUpdateBazaar_Click(object sender, EventArgs e)
-        {
-            Task.Run(() => FillUpdateBazaarData());
-        }
+        private void btnUpdateBazaar_Click(object sender, EventArgs e) => Task.Run(() => FillUpdateBazaarData());
 
         private async Task FillUpdateBazaarData()
         {
@@ -145,6 +130,42 @@ namespace LookAndSearchInterface
             {
                 lstBoxCharacterNamesValues.DataSource = ScrapperService.DictionaryEntity.Keys.ToList();
             });
+        }
+
+        private void lblBazaarEntityUrlAuctionTag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => System.Diagnostics.Process.Start(lblStoreUrlAuctionValueDisabled.Text);
+
+        private void lstBoxCharacterNamesValues_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ScrapperService.DictionaryEntity == null || ScrapperService.DictionaryEntity.Count() == 0)
+            {
+                lblBazaarEntityLevelValue.Text = "";
+                lblBazaarEntityGenderValue.Text = "";
+                lblBazaarEntityCurrMinBidValue.Text = "";
+                lblStoreUrlAuctionValueDisabled.Text = "";
+                lblBazaarEntityStartedAuctionValue.Text = "";
+                lblBazaarEntityEndAuctionValue.Text = "";
+                grpBoxBazaarEntityStatus.Visible = false;
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(lstBoxCharacterNamesValues.Text))
+            {
+                grpBoxBazaarEntityStatus.Visible = true;
+                BazaarEntity entity = ScrapperService.DictionaryEntity
+                .Where(w => w.Key.Equals(lstBoxCharacterNamesValues.Text))
+                .Select(s => s.Value)
+                .FirstOrDefault();
+
+                lblBazaarEntityLevelValue.Text = entity.Level.ToString();
+                lblBazaarEntityGenderValue.Text = entity.Sex;
+                lblBazaarEntityCurrMinBidValue.Text = entity.MinimumCurrentBid;
+                lblStoreUrlAuctionValueDisabled.Text = entity.UrlEntityInfo;
+                lblBazaarEntityStartedAuctionValue.Text = Extender.FormatAuctionDateFromEntity(entity.AuctionStarted, Extender.DateTimeFormatBrazil);
+                lblBazaarEntityEndAuctionValue.Text = Extender.FormatAuctionDateFromEntity(entity.AuctionEnd, Extender.DateTimeFormatBrazil);
+                return;
+            }
+
+            grpBoxBazaarEntityStatus.Visible = false;
         }
     }
 }

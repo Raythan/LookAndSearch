@@ -3,15 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 using WebScrapperLib.Models;
@@ -285,6 +282,27 @@ namespace WebScrapperLib
                 paramList[i] = paramList[i].Replace("tibia", "KNOXVILLE");
 
             return paramList;
+        }
+        
+        public static string FormatAuctionDateFromEntity(string entityAuctionDate, string format)
+        {
+            try
+            {
+                entityAuctionDate = entityAuctionDate.Replace("&#160;", " ");
+                string[] formats = new[]
+                {
+                    "MMM dd yyyy, HH:mm CET"
+                };
+
+                return DateTime.ParseExact(entityAuctionDate,
+                                                    formats,
+                                                    CultureInfo.InvariantCulture,
+                                                    DateTimeStyles.None).AddHours(-4).ToString(format);
+            }
+            catch (Exception ex)
+            {
+                return AnalyseException(ex);
+            }
         }
     }
 }

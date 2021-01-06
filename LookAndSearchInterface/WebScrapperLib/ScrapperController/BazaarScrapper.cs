@@ -62,6 +62,11 @@ namespace WebScrapperLib.ScrapperController
             "//a"
         };
 
+        private readonly List<string> ScrapListGetUrlStatusInfoAttribute = new List<string>
+        {
+            "//a"
+        };
+
         private readonly List<string> ScrapListNameWorldInfo = new List<string>
         {
             "//div[@class='AuctionHeader']//a",
@@ -132,6 +137,8 @@ namespace WebScrapperLib.ScrapperController
                     {
                         CharacterName = HeaderDetailsInfo[4],
                         World = HeaderDetailsInfo[7],
+                        UrlEntityInfo = RecoverAttributeFromTagFirst(HeaderDetailsInfo[3], ScrapListGetUrlStatusInfoAttribute,
+                        "href", "nothing")
                     };
 
                     entity.Level = Convert.ToInt32(LevelSexVocationInfo[0].Split(':').LastOrDefault().Trim());

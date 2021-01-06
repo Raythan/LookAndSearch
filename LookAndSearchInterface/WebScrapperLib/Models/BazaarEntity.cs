@@ -17,5 +17,11 @@ namespace WebScrapperLib.Models
         public string AuctionEnd { get; set; }
         public string MinimumCurrentBid { get; set; }
         public bool IsBidded { get; set; }
+        public string UrlEntityInfo { get; set; }
+        public BazaarEntityStatus EntityStatus { get; set; }
+
+        public class BazaarEntityStatus
+        {
+        }
     }
 }
