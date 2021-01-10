@@ -156,9 +156,9 @@
             this.lblHoraUltimaAtualizacao.AutoSize = true;
             this.lblHoraUltimaAtualizacao.Location = new System.Drawing.Point(12, 488);
             this.lblHoraUltimaAtualizacao.Name = "lblHoraUltimaAtualizacao";
-            this.lblHoraUltimaAtualizacao.Size = new System.Drawing.Size(138, 13);
+            this.lblHoraUltimaAtualizacao.Size = new System.Drawing.Size(176, 13);
             this.lblHoraUltimaAtualizacao.TabIndex = 14;
-            this.lblHoraUltimaAtualizacao.Text = "Data da última atualização: ";
+            this.lblHoraUltimaAtualizacao.Text = "Last time updated: Not updated yet!";
             // 
             // btnRefreshWorldDictionary
             // 

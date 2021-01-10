@@ -19,12 +19,11 @@ namespace LookAndSearchInterface
         public HighScoreForm()
         {
             InitializeComponent();
-            Scrapper.RecoverScrapperData();
-            BuildGridViewData();
         }
 
         private void BuildGridViewData()
         {
+            Scrapper.RecoverScrapperData();
             this.dtGridViewHighScores.DataSource = null;
 
             List<HighScoreEntity> entities = new List<HighScoreEntity>();
@@ -33,13 +32,9 @@ namespace LookAndSearchInterface
                 entities.Add(item.Value);
 
             this.dtGridViewHighScores.DataSource = new BindingList<HighScoreEntity>(entities);
-            lblHighScoreLastTimeUpdate.Text = $"Data da última atualização: {Scrapper.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            lblHighScoreLastTimeUpdate.Text = $"Last time updated: {Scrapper.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
 
-        private void btnHighScoreRefresh_Click(object sender, EventArgs e)
-        {
-            Scrapper.RecoverScrapperData();
-            BuildGridViewData();
-        }
+        private void btnHighScoreRefresh_Click(object sender, EventArgs e) => BuildGridViewData();
     }
 }

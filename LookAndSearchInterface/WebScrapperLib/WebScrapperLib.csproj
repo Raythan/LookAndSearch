@@ -40,6 +40,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,12 +53,14 @@
     <Compile Include="Interfaces\IWebScrapper.cs" />
     <Compile Include="Models\BaseScrapperEntity.cs" />
     <Compile Include="Models\BazaarEntity.cs" />
+    <Compile Include="Models\CharacterSpecificInformationEntity.cs" />
     <Compile Include="Models\GitHubFileBase64.cs" />
     <Compile Include="Models\HighScoreEntity.cs" />
     <Compile Include="Models\KillStatisticsEntity.cs" />
     <Compile Include="Models\PollsEntity.cs" />
     <Compile Include="Models\WorldEntity.cs" />
     <Compile Include="ScrapperController\BazaarScrapper.cs" />
+    <Compile Include="ScrapperController\CharacterSpecificInfoScrapper.cs" />
     <Compile Include="ScrapperController\HighScoreScrapper.cs" />
     <Compile Include="ScrapperController\PollsScrapper.cs" />
     <Compile Include="ScrapperController\WorldScrapper.cs" />
@@ -68,12 +71,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\adsense1.png" />
-    <Content Include="Images\adsense2.jpg" />
-    <Content Include="Images\lupa_512x512.jpg" />
-    <Content Include="Images\lupa_512x512.png" />
+    <Content Include="Images\adsense2.png" />
+    <Content Include="Images\adsense3.png" />
+    <Content Include="Images\loupe.png" />
     <Content Include="Images\not_found_img_1990x1448.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\robot.ico" />
+    <Content Include="Images\robot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

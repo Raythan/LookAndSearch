@@ -29,6 +29,7 @@ namespace WebScrapperLib
             { "FullSize1920x1448", new Size(1920, 1448) },
             { "IconSize18x18", new Size(18, 18) },
             { "IconSize16x16", new Size(16, 16) },
+            { "IconSize64x64", new Size(64, 64) },
             { "SelectionSize250x250", new Size(250, 250) },
             { "IconSize170x175", new Size(170, 175) },
             { "PanelSize536x273", new Size(536, 273) }
@@ -247,6 +248,29 @@ namespace WebScrapperLib
                     .FirstOrDefault());
             }
         }
+
+        public static Icon RecoverIconFromUrl(string url, string sizeKey, string methodKey)
+        {
+            try
+            {
+                Client = new HttpClient()
+                {
+                    BaseAddress = new Uri(url)
+                };
+                DictionaryMethods[methodKey]();
+
+                using (var responseTeste = Client.GetAsync(url).GetAwaiter().GetResult())
+                using (var stream = responseTeste.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+                    return new Icon(stream, DictionaryDimensions
+                    .Where(w => w.Key.Equals(sizeKey))
+                    .Select(s => s.Value)
+                    .FirstOrDefault());
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
         
         public static List<string> RecoverAdSenseUrlListFromGitHub(string pathParam)
         {
@@ -291,7 +315,9 @@ namespace WebScrapperLib
                 entityAuctionDate = entityAuctionDate.Replace("&#160;", " ");
                 string[] formats = new[]
                 {
-                    "MMM dd yyyy, HH:mm CET"
+                    "MMM dd yyyy, HH:mm CET",
+                    "MMM dd yyyy, HH:mm:ss CEST",
+                    "MMM dd yyyy, HH:mm:ss CET"
                 };
 
                 return DateTime.ParseExact(entityAuctionDate,

@@ -10,13 +10,8 @@ namespace LookAndSearchInterface
     public partial class PollsForm : Form
     {
         PollsScrapper ScrapperService = new PollsScrapper();
-        public PollsForm()
-        {
-            InitializeComponent();
-            ScrapperService.RecoverScrapperData();
-            FillUpdateComboTopicNames();
-            lblPollsLastTimeUpdate.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
-        }
+        private readonly string AlertMessageEmptyFields = "Before click you need refresh informations.";
+        public PollsForm() => InitializeComponent();
 
         private void FillUpdateComboTopicNames()
         {
@@ -45,7 +40,19 @@ namespace LookAndSearchInterface
 
         private void lnkLabelPollsToRedirectClick_DoubleClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(lnkLblPollsTopicAnchorDisabled.Text);
+            if (!string.IsNullOrEmpty(lnkLblPollsTopicAnchorDisabled.Text) &&
+                !lnkLblPollsTopicAnchorDisabled.Text.Contains("Disabled"))
+                System.Diagnostics.Process.Start(lnkLblPollsTopicAnchorDisabled.Text);
+            else
+                MessageBox.Show(AlertMessageEmptyFields, "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+        }
+
+        private void btnRefreshPollsInfo_Click(object sender, EventArgs e)
+        {
+            lblPollsLastTimeUpdate.Text = $"Last time updated: || Refreshing... ||";
+            ScrapperService.RecoverScrapperData();
+            FillUpdateComboTopicNames();
+            lblPollsLastTimeUpdate.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
     }
 }

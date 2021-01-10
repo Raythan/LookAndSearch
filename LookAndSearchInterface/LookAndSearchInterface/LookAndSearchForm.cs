@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace LookAndSearchInterface
 {
     public partial class MainForm : Form
     {
+        private readonly string IconUrl = "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/robot.ico";
         List<string> comboMenuItems = new List<string>()
         {
             "Selecione..",
@@ -24,6 +26,7 @@ namespace LookAndSearchInterface
         public MainForm()
         {
             InitializeComponent();
+            this.Icon = Extender.RecoverIconFromUrl(IconUrl, "IconSize18x18", "GitHubHeaders");
             LoadPanelForms();
             LoadComboMenuItems();
             FillUpdateAssemblyVersion();
@@ -33,7 +36,7 @@ namespace LookAndSearchInterface
         {
             string InterfaceVersion = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
             string LibVersion = Extender.GetLibVersionFromAssembly();
-            this.Text = $"Look and search! v{InterfaceVersion} lib{LibVersion}";
+            this.Text = $"Watch Info! v{InterfaceVersion} lib{LibVersion}";
         }
 
         private void LoadComboMenuItems() => cboBoxMenuSelector.DataSource = comboMenuItems;

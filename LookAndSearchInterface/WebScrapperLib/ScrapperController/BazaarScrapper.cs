@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 using WebScrapperLib.Interfaces;
 using WebScrapperLib.Models;
 
@@ -11,7 +13,6 @@ namespace WebScrapperLib.ScrapperController
     public class BazaarScrapper : BaseScrapperEntity, IWebScrapper
     {
         private static int LastPage = 0, CurrentPage = 1;
-        private readonly int TimeStampRequest = 4000;
         private readonly string UrlToGetAsync = $"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades&filter_profession=0&filter_levelrangefrom=0&filter_levelrangeto=0&filter_world=&filter_worldpvptype=9&filter_worldbattleyestate=0&filter_skillid=&filter_skillrangefrom=0&filter_skillrangeto=0&order_column=101&order_direction=1&searchtype=1&currentpage=";
         private readonly List<string> ScrapListBasicInfo = new List<string>
         {
@@ -93,9 +94,68 @@ namespace WebScrapperLib.ScrapperController
 
             base.DictionaryEntity = new Dictionary<string, dynamic>();
 
-            for (; CurrentPage < 2; CurrentPage++)
+            for (; CurrentPage <= 3 && CurrentPage <= LastPage; CurrentPage++)
                 RecoverScrapperDataOnLoop();
 
+            UpdateEntityLastTime();
+            CurrentPage = 1;
+        }
+
+        public async Task RecoverScrapperDataAsyncPercentage(ProgressBar prgBar)
+        {
+            prgBar.Invoke((MethodInvoker)delegate
+            {
+                prgBar.Value = 10;
+            });
+
+            string responseString = "";
+            base.DictionaryEntity = new Dictionary<string, dynamic>();
+            Client = new HttpClient
+            {
+                BaseAddress = new Uri(base.BaseUrl)
+            };
+            AddClientHeaders();
+
+            prgBar.Invoke((MethodInvoker)delegate
+            {
+                prgBar.Value = 20;
+            });
+
+            HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
+                .GetAwaiter().GetResult();
+
+            prgBar.Invoke((MethodInvoker)delegate
+            {
+                prgBar.Value = 30;
+            });
+
+            if (response.IsSuccessStatusCode)
+                responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+            List<string> pageListInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListGetLastPage);
+            string pageListInfoLastAttributes = RecoverAttributeFromTagLast(pageListInfo[0], ScrapListGetLastPageAttribute, "href", "nothing");
+            LastPage = Convert.ToInt32(pageListInfoLastAttributes.Split('=').LastOrDefault());
+
+            prgBar.Invoke((MethodInvoker)delegate
+            {
+                prgBar.Value = 40;
+            });
+
+            base.DictionaryEntity = new Dictionary<string, dynamic>();
+
+            int progressPercentage = 50;
+            for (; CurrentPage <= 3 && CurrentPage <= LastPage; CurrentPage++)
+            {
+                RecoverScrapperDataOnLoop();
+                prgBar.Invoke((MethodInvoker)delegate
+                {
+                    prgBar.Value = progressPercentage;
+                });
+
+                if(progressPercentage < 85)
+                    progressPercentage += 15;
+            }
+            
             UpdateEntityLastTime();
             CurrentPage = 1;
         }

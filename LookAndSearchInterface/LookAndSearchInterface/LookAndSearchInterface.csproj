@@ -84,6 +84,12 @@
     <Compile Include="BazaarForm.Designer.cs">
       <DependentUpon>BazaarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CharacterSpecificInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CharacterSpecificInfoForm.Designer.cs">
+      <DependentUpon>CharacterSpecificInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ErrorContextForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,6 +136,9 @@
     </Compile>
     <EmbeddedResource Include="BazaarForm.resx">
       <DependentUpon>BazaarForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CharacterSpecificInfoForm.resx">
+      <DependentUpon>CharacterSpecificInfoForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorContextForm.resx">
       <DependentUpon>ErrorContextForm.cs</DependentUpon>
@@ -183,9 +192,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\magnifying_lass.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.6.1 %28x86 and x64%29</ProductName>
@@ -198,6 +204,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ImagesReferences.txt" />
     <Content Include="UrlListAdSense.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

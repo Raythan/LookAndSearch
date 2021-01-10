@@ -56,10 +56,11 @@
             this.ClientSize = new System.Drawing.Size(584, 561);
             this.Controls.Add(this.panelLookAndSearch);
             this.Controls.Add(this.cboBoxMenuSelector);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
-            this.Text = "Look and Search!";
+            this.Text = "Watch Info!";
             this.ResumeLayout(false);
 
         }

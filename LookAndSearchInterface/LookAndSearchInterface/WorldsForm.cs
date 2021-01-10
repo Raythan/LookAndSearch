@@ -11,9 +11,6 @@ namespace LookAndSearchInterface
         public WorldsForm()
         {
             InitializeComponent();
-            ScrapperService.RecoverScrapperData();
-            lblHoraUltimaAtualizacao.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
-            LoadComponentsData();
         }
 
         public void LoadComponentsData()
@@ -24,37 +21,34 @@ namespace LookAndSearchInterface
 
         private void cboBoxWorldNames_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-            dynamic entity = new WebScrapperLib.Models.WorldEntity();
-            ScrapperService.DictionaryEntity.TryGetValue(cboBoxWorldNames.Text, out entity);
-            txtBoxOnline.Text = entity.Online.ToString();
-            txtBoxLocation.Text = entity.Location;
-            txtBoxPvpType.Text = entity.PvpType;
-            txtBoxAdditionalInformation.Text = entity.AdditionalInformation;
+            if (!string.IsNullOrEmpty(cboBoxWorldNames.Text))
+            {
+                dynamic entity = new WebScrapperLib.Models.WorldEntity();
+                ScrapperService.DictionaryEntity.TryGetValue(cboBoxWorldNames.Text, out entity);
+                txtBoxOnline.Text = entity.Online.ToString();
+                txtBoxLocation.Text = entity.Location;
+                txtBoxPvpType.Text = entity.PvpType;
+                txtBoxAdditionalInformation.Text = entity.AdditionalInformation;
 
-            if (!string.IsNullOrEmpty(entity.BattleEye) && !entity.BattleEye.Equals("nothing"))
-            {
-                picBoxBattleEye.BorderStyle = BorderStyle.None;
-                picBoxBattleEye.Image = Extender.RecoverImageFromUrl(entity.BattleEye, 
-                    "IconSize18x18",
-                    "CipSoftHeaders");
-            }
-            else
-            {
-                picBoxBattleEye.BorderStyle = BorderStyle.FixedSingle;
-                picBoxBattleEye.Image = null;
+                if (!string.IsNullOrEmpty(entity.BattleEye) && !entity.BattleEye.Equals("nothing"))
+                {
+                    picBoxBattleEye.BorderStyle = BorderStyle.None;
+                    picBoxBattleEye.Image = Extender.RecoverImageFromUrl(entity.BattleEye, "IconSize18x18", "CipSoftHeaders");
+                }
+                else
+                {
+                    picBoxBattleEye.BorderStyle = BorderStyle.FixedSingle;
+                    picBoxBattleEye.Image = null;
+                }
             }
         }
-
-        private string LoadBattleEyeIcon(string pathUrl)
-        {
-            return $"{Extender.AssemblyDirectory}\\Images\\{pathUrl.Split('/').Last()}";
-        }
-
+        
         private void btnRefreshWorldDictionary_Click(object sender, System.EventArgs e)
         {
+            lblHoraUltimaAtualizacao.Text = $"Last time updated: || Refreshing... ||";
             ScrapperService.RecoverScrapperData();
-            lblHoraUltimaAtualizacao.Text = $"Data da última atualização: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
             LoadComponentsData();
+            lblHoraUltimaAtualizacao.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
     }
 }

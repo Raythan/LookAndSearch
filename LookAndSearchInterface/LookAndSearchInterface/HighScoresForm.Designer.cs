@@ -62,9 +62,9 @@
             this.lblHighScoreLastTimeUpdate.AutoSize = true;
             this.lblHighScoreLastTimeUpdate.Location = new System.Drawing.Point(201, 485);
             this.lblHighScoreLastTimeUpdate.Name = "lblHighScoreLastTimeUpdate";
-            this.lblHighScoreLastTimeUpdate.Size = new System.Drawing.Size(138, 13);
+            this.lblHighScoreLastTimeUpdate.Size = new System.Drawing.Size(176, 13);
             this.lblHighScoreLastTimeUpdate.TabIndex = 2;
-            this.lblHighScoreLastTimeUpdate.Text = "Data da última atualização: ";
+            this.lblHighScoreLastTimeUpdate.Text = "Last time updated: Not updated yet!";
             // 
             // btnHighScoreRefresh
             // 
@@ -72,7 +72,7 @@
             this.btnHighScoreRefresh.Name = "btnHighScoreRefresh";
             this.btnHighScoreRefresh.Size = new System.Drawing.Size(183, 52);
             this.btnHighScoreRefresh.TabIndex = 3;
-            this.btnHighScoreRefresh.Text = "Atualizar!";
+            this.btnHighScoreRefresh.Text = "Refresh!";
             this.btnHighScoreRefresh.UseVisualStyleBackColor = true;
             this.btnHighScoreRefresh.Click += new System.EventHandler(this.btnHighScoreRefresh_Click);
             // 

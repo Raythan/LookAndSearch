@@ -11,6 +11,7 @@ namespace WebScrapperLib.Models
     public abstract class BaseScrapperEntity
     {
         public readonly string BaseUrl;
+        public readonly int TimeStampRequest = 4000;
         public Dictionary<string, dynamic> DictionaryEntity { get; set; }
         public DateTime LastUpdateEntity { get; set; }
 
@@ -19,9 +20,7 @@ namespace WebScrapperLib.Models
         public static void AddClientHeaders()
         {
             Client.DefaultRequestHeaders.Clear();
-            //Client.DefaultRequestHeaders.Add("accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9");
             Client.DefaultRequestHeaders.Add("accept", "text/html");
-            //Client.DefaultRequestHeaders.Add("accept-encoding", "gzip, deflate, br");
             Client.DefaultRequestHeaders.Add("accept-encoding", "UTF-8");
             Client.DefaultRequestHeaders.Add("accept-language", "pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7");
             Client.DefaultRequestHeaders.Add("cache-control", "no-cache");
@@ -73,6 +72,25 @@ namespace WebScrapperLib.Models
             return RecoverAttributeFromTagLast(document.Text, tagListForward, attribute, defaultAttributeValue);
         }
 
+        public static List<string> RecoverAttributeFromTagList(string htmlString, List<string> tagList, string attribute, string defaultAttributeValue)
+        {
+            HtmlDocument document = new HtmlDocument();
+            List<string> tagListForward = new List<string>();
+            tagListForward.AddRange(tagList);
+            document.LoadHtml(htmlString);
+
+            if (tagList.Count == 1)
+            {
+                var nodes = document.DocumentNode.SelectNodes(tagList[0]);
+                return nodes != null && nodes.Count() > 0 ?
+                    nodes.Select(s => s.GetAttributeValue(attribute, defaultAttributeValue)).ToList() : null;
+            }
+
+            tagListForward.RemoveAt(0);
+            return RecoverAttributeFromTagList(document.Text, tagListForward, attribute, defaultAttributeValue);
+        }
+
+
         public static string RecoverInnerHtmlFromTagFirst(string htmlString, List<string> tagList)
         {
             HtmlDocument document = new HtmlDocument();
@@ -112,7 +130,7 @@ namespace WebScrapperLib.Models
             tagListForward.RemoveAt(0);
             return RecoverInnerHtmlFromTagLast(document.Text, tagListForward);
         }
-        
+
         public static List<string> RecoverInnerHtmlFromTagList(string htmlString, List<string> tagList)
         {
             HtmlDocument document = new HtmlDocument();
@@ -189,6 +207,13 @@ namespace WebScrapperLib.Models
             }
             tagListForward.RemoveAt(0);
             return RecoverOuterHtmlFromTagList(document.Text, tagListForward);
+        }
+
+        public static string RecoverDocumentNodeInnerTextValue(string htmlString)
+        {
+            HtmlDocument document = new HtmlDocument();
+            document.LoadHtml(htmlString);
+            return document.DocumentNode.InnerText;
         }
 
         public virtual void UpdateEntityLastTime() => this.LastUpdateEntity = DateTime.Now;
