@@ -70,7 +70,7 @@
             this.cboBoxSkillsFilter = new System.Windows.Forms.ComboBox();
             this.dtaGridSkillsPart2Info = new System.Windows.Forms.DataGridView();
             this.grpBoxBazaarEntitySkills = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnResetFields = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownBidMaxFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinLevelFilter)).BeginInit();
             this.grpBoxBazaarEntityStatus.SuspendLayout();
@@ -183,6 +183,7 @@
             this.btnUpdateBazaar.Size = new System.Drawing.Size(119, 75);
             this.btnUpdateBazaar.TabIndex = 13;
             this.btnUpdateBazaar.Text = "Refresh Data!";
+            this.btnUpdateBazaar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUpdateBazaar.UseVisualStyleBackColor = true;
             this.btnUpdateBazaar.Click += new System.EventHandler(this.btnUpdateBazaar_Click);
             // 
@@ -408,6 +409,7 @@
             this.btnBazaarApplyFilter.Size = new System.Drawing.Size(119, 93);
             this.btnBazaarApplyFilter.TabIndex = 18;
             this.btnBazaarApplyFilter.Text = "Apply Filter!";
+            this.btnBazaarApplyFilter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBazaarApplyFilter.UseVisualStyleBackColor = true;
             this.btnBazaarApplyFilter.Click += new System.EventHandler(this.btnBazaarAppleFilter_Click);
             // 
@@ -539,23 +541,25 @@
             this.grpBoxBazaarEntitySkills.Text = "Skills";
             this.grpBoxBazaarEntitySkills.Visible = false;
             // 
-            // button1
+            // btnResetFields
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.DarkOrchid;
-            this.button1.Location = new System.Drawing.Point(266, 361);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 102);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Reset Fields!";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnResetFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnResetFields.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.btnResetFields.Location = new System.Drawing.Point(266, 361);
+            this.btnResetFields.Name = "btnResetFields";
+            this.btnResetFields.Size = new System.Drawing.Size(75, 102);
+            this.btnResetFields.TabIndex = 29;
+            this.btnResetFields.Text = "Reset Fields!";
+            this.btnResetFields.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnResetFields.UseVisualStyleBackColor = true;
+            this.btnResetFields.Click += new System.EventHandler(this.btnResetFields_Click);
             // 
             // BazaarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 510);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnResetFields);
             this.Controls.Add(this.grpBoxBazaarEntitySkills);
             this.Controls.Add(this.cboBoxSkillsFilter);
             this.Controls.Add(this.numMaxSkillFilter);
@@ -642,6 +646,6 @@
         private System.Windows.Forms.Label lblBazaarEntityVocationTag;
         private System.Windows.Forms.DataGridView dtaGridSkillsPart2Info;
         private System.Windows.Forms.GroupBox grpBoxBazaarEntitySkills;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnResetFields;
     }
 }

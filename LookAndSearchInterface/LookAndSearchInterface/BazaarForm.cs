@@ -12,6 +12,9 @@ namespace LookAndSearchInterface
 {
     public partial class BazaarForm : Form
     {
+        private readonly string FilterIconUrl = "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/funnel.png",
+            RefreshIconUrl = "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/reset.png",
+            EraserIconUrl = "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/eraser.png";
         List<string> listVocationFilter = new List<string>
         {
             "None",
@@ -255,6 +258,17 @@ namespace LookAndSearchInterface
             FillUpdateComboWorldNames();
             FillUpdateComboWorldPvpType();
             FillUpdateComboSkillsFilterById();
+            Task.Run(() => FillUpdateImagesButton());
+        }
+
+        private async Task FillUpdateImagesButton()
+        {
+            btnBazaarApplyFilter.Image = Extender.RecoverImageFromUrl(FilterIconUrl, "IconSize32x32", "GitHubHeaders");
+            btnResetFields.Image = Extender.RecoverImageFromUrl(EraserIconUrl, "IconSize32x32", "GitHubHeaders");
+            btnUpdateBazaar.Image = Extender.RecoverImageFromUrl(RefreshIconUrl, "IconSize32x32", "GitHubHeaders");
+            //Extender.UpdateComponentImage(btnBazaarApplyFilter.Image, Extender.RecoverImageFromUrl(FilterIconUrl, "IconSize18x18", "GitHubHeaders"));
+            //Extender.UpdateComponentImage(btnResetFields.Image, Extender.RecoverImageFromUrl(EraserIconUrl, "IconSize18x18", "GitHubHeaders"));
+            //Extender.UpdateComponentImage(btnUpdateBazaar.Image, Extender.RecoverImageFromUrl(RefreshIconUrl, "IconSize18x18", "GitHubHeaders"));
         }
 
         private void lblBazaarEntityUrlStatusTag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -368,6 +382,42 @@ namespace LookAndSearchInterface
         private void btnUpdateBazaar_Click(object sender, EventArgs e) => Task.Run(() => FillUpdateBazaarData());
 
         private void lblBazaarEntityUrlAuctionTag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) => System.Diagnostics.Process.Start(lblStoreUrlAuctionValueDisabled.Text);
+
+        private void btnResetFields_Click(object sender, EventArgs e)
+        {
+            lstBoxCharacterNamesValues.DataSource = null;
+            lstBoxCharacterNamesValues.Items.Clear();
+            grpBoxBazaarEntityStatus.Visible = false;
+            grpBoxBazaarEntitySkills.Visible = false;
+            chkBoxIsBiddedFilter.CheckState = CheckState.Unchecked;
+            numUpDownBidMaxFilter.Value = 0;
+            numMinLevelFilter.Value = 0;
+            numMaxLevelFilter.Value = 10000;
+            numMinSkillFilter.Value = 0;
+            numMaxSkillFilter.Value = 500;
+            btnBazaarApplyFilter.Enabled = false;
+            btnUpdateBazaar.Enabled = true;
+            numMinLevelFilter.Enabled = true;
+            numMaxLevelFilter.Enabled = true;
+            numMinSkillFilter.Enabled = true;
+            numMaxSkillFilter.Enabled = true;
+            cboBoxSkillsFilter.Enabled = true;
+            cboBoxSkillsFilter.SelectedIndex = 0;
+            chkLstBoxWorldFilter.Items.Clear();
+            chkBoxIsBiddedFilter.Enabled = false;
+
+            for (int i = 0; i < chkLstBoxPvpTypeFilter.Items.Count; i++)
+                chkLstBoxPvpTypeFilter.SetItemCheckState(i, CheckState.Unchecked);
+
+            for (int i = 0; i < chkLstBoxWorldFilter.Items.Count; i++)
+                chkLstBoxWorldFilter.SetItemCheckState(i, CheckState.Unchecked);
+
+            for (int i = 0; i < chkLstBoxVocationFilter.Items.Count; i++)
+                chkLstBoxVocationFilter.SetItemCheckState(i, CheckState.Unchecked);
+            
+            foreach (var item in WorldScrapperService.DictionaryEntity)
+                chkLstBoxWorldFilter.Items.Add(item.Key);
+        }
 
         private void btnBazaarAppleFilter_Click(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames();
 

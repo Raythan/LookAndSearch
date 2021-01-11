@@ -29,8 +29,9 @@ namespace WebScrapperLib
         private static readonly Dictionary<string, Size> DictionaryDimensions = new Dictionary<string, Size>
         {
             { "FullSize1920x1448", new Size(1920, 1448) },
-            { "IconSize18x18", new Size(18, 18) },
             { "IconSize16x16", new Size(16, 16) },
+            { "IconSize18x18", new Size(18, 18) },
+            { "IconSize32x32", new Size(32, 32) },
             { "IconSize64x64", new Size(64, 64) },
             { "SelectionSize250x250", new Size(250, 250) },
             { "IconSize170x175", new Size(170, 175) },
@@ -358,6 +359,14 @@ namespace WebScrapperLib
             component.Invoke((MethodInvoker)delegate
             {
                 component.DataSource = dataSource;
+            });
+        }
+
+        public static void UpdateComponentImage(dynamic component, dynamic image)
+        {
+            component.Invoke((MethodInvoker)delegate
+            {
+                component.Image = image;
             });
         }
 
