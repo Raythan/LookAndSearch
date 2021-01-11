@@ -216,18 +216,22 @@
             // lblBazaarEntityVocationValue
             // 
             this.lblBazaarEntityVocationValue.AutoSize = true;
-            this.lblBazaarEntityVocationValue.Location = new System.Drawing.Point(77, 133);
+            this.lblBazaarEntityVocationValue.BackColor = System.Drawing.SystemColors.Control;
+            this.lblBazaarEntityVocationValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBazaarEntityVocationValue.ForeColor = System.Drawing.Color.Maroon;
+            this.lblBazaarEntityVocationValue.Location = new System.Drawing.Point(95, 133);
             this.lblBazaarEntityVocationValue.Name = "lblBazaarEntityVocationValue";
-            this.lblBazaarEntityVocationValue.Size = new System.Drawing.Size(76, 13);
+            this.lblBazaarEntityVocationValue.Size = new System.Drawing.Size(89, 13);
             this.lblBazaarEntityVocationValue.TabIndex = 16;
             this.lblBazaarEntityVocationValue.Text = "VocationValue";
             // 
             // lblBazaarEntityVocationTag
             // 
             this.lblBazaarEntityVocationTag.AutoSize = true;
+            this.lblBazaarEntityVocationTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBazaarEntityVocationTag.Location = new System.Drawing.Point(6, 133);
             this.lblBazaarEntityVocationTag.Name = "lblBazaarEntityVocationTag";
-            this.lblBazaarEntityVocationTag.Size = new System.Drawing.Size(52, 13);
+            this.lblBazaarEntityVocationTag.Size = new System.Drawing.Size(61, 13);
             this.lblBazaarEntityVocationTag.TabIndex = 15;
             this.lblBazaarEntityVocationTag.Text = "Vocation:";
             // 
@@ -247,54 +251,66 @@
             // lblBazaarEntityWorldValue
             // 
             this.lblBazaarEntityWorldValue.AutoSize = true;
-            this.lblBazaarEntityWorldValue.Location = new System.Drawing.Point(77, 120);
+            this.lblBazaarEntityWorldValue.BackColor = System.Drawing.SystemColors.Control;
+            this.lblBazaarEntityWorldValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBazaarEntityWorldValue.ForeColor = System.Drawing.Color.Maroon;
+            this.lblBazaarEntityWorldValue.Location = new System.Drawing.Point(95, 120);
             this.lblBazaarEntityWorldValue.Name = "lblBazaarEntityWorldValue";
-            this.lblBazaarEntityWorldValue.Size = new System.Drawing.Size(62, 13);
+            this.lblBazaarEntityWorldValue.Size = new System.Drawing.Size(72, 13);
             this.lblBazaarEntityWorldValue.TabIndex = 13;
             this.lblBazaarEntityWorldValue.Text = "WorldValue";
             // 
             // lblBazaarEntityWorldTag
             // 
             this.lblBazaarEntityWorldTag.AutoSize = true;
+            this.lblBazaarEntityWorldTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBazaarEntityWorldTag.Location = new System.Drawing.Point(6, 120);
             this.lblBazaarEntityWorldTag.Name = "lblBazaarEntityWorldTag";
-            this.lblBazaarEntityWorldTag.Size = new System.Drawing.Size(38, 13);
+            this.lblBazaarEntityWorldTag.Size = new System.Drawing.Size(44, 13);
             this.lblBazaarEntityWorldTag.TabIndex = 12;
             this.lblBazaarEntityWorldTag.Text = "World:";
             // 
             // lblBazaarEntityEndAuctionValue
             // 
             this.lblBazaarEntityEndAuctionValue.AutoSize = true;
-            this.lblBazaarEntityEndAuctionValue.Location = new System.Drawing.Point(41, 107);
+            this.lblBazaarEntityEndAuctionValue.BackColor = System.Drawing.SystemColors.Control;
+            this.lblBazaarEntityEndAuctionValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBazaarEntityEndAuctionValue.ForeColor = System.Drawing.Color.Maroon;
+            this.lblBazaarEntityEndAuctionValue.Location = new System.Drawing.Point(59, 107);
             this.lblBazaarEntityEndAuctionValue.Name = "lblBazaarEntityEndAuctionValue";
-            this.lblBazaarEntityEndAuctionValue.Size = new System.Drawing.Size(89, 13);
+            this.lblBazaarEntityEndAuctionValue.Size = new System.Drawing.Size(104, 13);
             this.lblBazaarEntityEndAuctionValue.TabIndex = 11;
             this.lblBazaarEntityEndAuctionValue.Text = "EndAuctionValue";
             // 
             // lblBazaarEntityEndAuctionTag
             // 
             this.lblBazaarEntityEndAuctionTag.AutoSize = true;
+            this.lblBazaarEntityEndAuctionTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBazaarEntityEndAuctionTag.Location = new System.Drawing.Point(6, 94);
             this.lblBazaarEntityEndAuctionTag.Name = "lblBazaarEntityEndAuctionTag";
-            this.lblBazaarEntityEndAuctionTag.Size = new System.Drawing.Size(68, 13);
+            this.lblBazaarEntityEndAuctionTag.Size = new System.Drawing.Size(80, 13);
             this.lblBazaarEntityEndAuctionTag.TabIndex = 10;
             this.lblBazaarEntityEndAuctionTag.Text = "End Auction:";
             // 
             // lblBazaarEntityStartedAuctionValue
             // 
             this.lblBazaarEntityStartedAuctionValue.AutoSize = true;
-            this.lblBazaarEntityStartedAuctionValue.Location = new System.Drawing.Point(41, 81);
+            this.lblBazaarEntityStartedAuctionValue.BackColor = System.Drawing.SystemColors.Control;
+            this.lblBazaarEntityStartedAuctionValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBazaarEntityStartedAuctionValue.ForeColor = System.Drawing.Color.Maroon;
+            this.lblBazaarEntityStartedAuctionValue.Location = new System.Drawing.Point(59, 81);
             this.lblBazaarEntityStartedAuctionValue.Name = "lblBazaarEntityStartedAuctionValue";
-            this.lblBazaarEntityStartedAuctionValue.Size = new System.Drawing.Size(104, 13);
+            this.lblBazaarEntityStartedAuctionValue.Size = new System.Drawing.Size(123, 13);
             this.lblBazaarEntityStartedAuctionValue.TabIndex = 9;
             this.lblBazaarEntityStartedAuctionValue.Text = "StartedAuctionValue";
             // 
             // lblBazaarEntityStartedAuctionTag
             // 
             this.lblBazaarEntityStartedAuctionTag.AutoSize = true;
+            this.lblBazaarEntityStartedAuctionTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBazaarEntityStartedAuctionTag.Location = new System.Drawing.Point(6, 64);
             this.lblBazaarEntityStartedAuctionTag.Name = "lblBazaarEntityStartedAuctionTag";
-            this.lblBazaarEntityStartedAuctionTag.Size = new System.Drawing.Size(83, 13);
+            this.lblBazaarEntityStartedAuctionTag.Size = new System.Drawing.Size(99, 13);
             this.lblBazaarEntityStartedAuctionTag.TabIndex = 8;
             this.lblBazaarEntityStartedAuctionTag.Text = "Started Auction:";
             // 
@@ -313,54 +329,66 @@
             // lblBazaarEntityCurrMinBidValue
             // 
             this.lblBazaarEntityCurrMinBidValue.AutoSize = true;
-            this.lblBazaarEntityCurrMinBidValue.Location = new System.Drawing.Point(77, 48);
+            this.lblBazaarEntityCurrMinBidValue.BackColor = System.Drawing.SystemColors.Control;
+            this.lblBazaarEntityCurrMinBidValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBazaarEntityCurrMinBidValue.ForeColor = System.Drawing.Color.Maroon;
+            this.lblBazaarEntityCurrMinBidValue.Location = new System.Drawing.Point(95, 48);
             this.lblBazaarEntityCurrMinBidValue.Name = "lblBazaarEntityCurrMinBidValue";
-            this.lblBazaarEntityCurrMinBidValue.Size = new System.Drawing.Size(85, 13);
+            this.lblBazaarEntityCurrMinBidValue.Size = new System.Drawing.Size(100, 13);
             this.lblBazaarEntityCurrMinBidValue.TabIndex = 5;
             this.lblBazaarEntityCurrMinBidValue.Text = "CurrMinBidValue";
             // 
             // lblBazaarEntityCurrMinBidTag
             // 
             this.lblBazaarEntityCurrMinBidTag.AutoSize = true;
+            this.lblBazaarEntityCurrMinBidTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBazaarEntityCurrMinBidTag.Location = new System.Drawing.Point(6, 48);
             this.lblBazaarEntityCurrMinBidTag.Name = "lblBazaarEntityCurrMinBidTag";
-            this.lblBazaarEntityCurrMinBidTag.Size = new System.Drawing.Size(69, 13);
+            this.lblBazaarEntityCurrMinBidTag.Size = new System.Drawing.Size(82, 13);
             this.lblBazaarEntityCurrMinBidTag.TabIndex = 4;
             this.lblBazaarEntityCurrMinBidTag.Text = "Curr/Min Bid:";
             // 
             // lblBazaarEntityGenderValue
             // 
             this.lblBazaarEntityGenderValue.AutoSize = true;
-            this.lblBazaarEntityGenderValue.Location = new System.Drawing.Point(77, 34);
+            this.lblBazaarEntityGenderValue.BackColor = System.Drawing.SystemColors.Control;
+            this.lblBazaarEntityGenderValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBazaarEntityGenderValue.ForeColor = System.Drawing.Color.Maroon;
+            this.lblBazaarEntityGenderValue.Location = new System.Drawing.Point(95, 34);
             this.lblBazaarEntityGenderValue.Name = "lblBazaarEntityGenderValue";
-            this.lblBazaarEntityGenderValue.Size = new System.Drawing.Size(99, 13);
+            this.lblBazaarEntityGenderValue.Size = new System.Drawing.Size(116, 13);
             this.lblBazaarEntityGenderValue.TabIndex = 3;
             this.lblBazaarEntityGenderValue.Text = "GenderStatusValue";
             // 
             // lblBazaarEntityGenderTag
             // 
             this.lblBazaarEntityGenderTag.AutoSize = true;
+            this.lblBazaarEntityGenderTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBazaarEntityGenderTag.Location = new System.Drawing.Point(6, 34);
             this.lblBazaarEntityGenderTag.Name = "lblBazaarEntityGenderTag";
-            this.lblBazaarEntityGenderTag.Size = new System.Drawing.Size(45, 13);
+            this.lblBazaarEntityGenderTag.Size = new System.Drawing.Size(52, 13);
             this.lblBazaarEntityGenderTag.TabIndex = 2;
             this.lblBazaarEntityGenderTag.Text = "Gender:";
             // 
             // lblBazaarEntityLevelTag
             // 
             this.lblBazaarEntityLevelTag.AutoSize = true;
+            this.lblBazaarEntityLevelTag.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBazaarEntityLevelTag.Location = new System.Drawing.Point(6, 21);
             this.lblBazaarEntityLevelTag.Name = "lblBazaarEntityLevelTag";
-            this.lblBazaarEntityLevelTag.Size = new System.Drawing.Size(36, 13);
+            this.lblBazaarEntityLevelTag.Size = new System.Drawing.Size(42, 13);
             this.lblBazaarEntityLevelTag.TabIndex = 1;
             this.lblBazaarEntityLevelTag.Text = "Level:";
             // 
             // lblBazaarEntityLevelValue
             // 
             this.lblBazaarEntityLevelValue.AutoSize = true;
-            this.lblBazaarEntityLevelValue.Location = new System.Drawing.Point(77, 21);
+            this.lblBazaarEntityLevelValue.BackColor = System.Drawing.SystemColors.Control;
+            this.lblBazaarEntityLevelValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBazaarEntityLevelValue.ForeColor = System.Drawing.Color.Maroon;
+            this.lblBazaarEntityLevelValue.Location = new System.Drawing.Point(95, 21);
             this.lblBazaarEntityLevelValue.Name = "lblBazaarEntityLevelValue";
-            this.lblBazaarEntityLevelValue.Size = new System.Drawing.Size(90, 13);
+            this.lblBazaarEntityLevelValue.Size = new System.Drawing.Size(106, 13);
             this.lblBazaarEntityLevelValue.TabIndex = 0;
             this.lblBazaarEntityLevelValue.Text = "LevelStatusValue";
             // 
@@ -452,7 +480,7 @@
             // 
             // numMaxSkillFilter
             // 
-            this.numMaxSkillFilter.Location = new System.Drawing.Point(204, 335);
+            this.numMaxSkillFilter.Location = new System.Drawing.Point(205, 364);
             this.numMaxSkillFilter.Maximum = new decimal(new int[] {
             500,
             0,
@@ -471,7 +499,7 @@
             // lblMaxSkillFilter
             // 
             this.lblMaxSkillFilter.AutoSize = true;
-            this.lblMaxSkillFilter.Location = new System.Drawing.Point(203, 319);
+            this.lblMaxSkillFilter.Location = new System.Drawing.Point(204, 348);
             this.lblMaxSkillFilter.Name = "lblMaxSkillFilter";
             this.lblMaxSkillFilter.Size = new System.Drawing.Size(52, 13);
             this.lblMaxSkillFilter.TabIndex = 24;
@@ -479,7 +507,7 @@
             // 
             // numMinSkillFilter
             // 
-            this.numMinSkillFilter.Location = new System.Drawing.Point(139, 335);
+            this.numMinSkillFilter.Location = new System.Drawing.Point(140, 364);
             this.numMinSkillFilter.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -493,7 +521,7 @@
             // lblMinSkillFilter
             // 
             this.lblMinSkillFilter.AutoSize = true;
-            this.lblMinSkillFilter.Location = new System.Drawing.Point(138, 319);
+            this.lblMinSkillFilter.Location = new System.Drawing.Point(139, 348);
             this.lblMinSkillFilter.Name = "lblMinSkillFilter";
             this.lblMinSkillFilter.Size = new System.Drawing.Size(49, 13);
             this.lblMinSkillFilter.TabIndex = 22;
@@ -503,7 +531,7 @@
             // 
             this.cboBoxSkillsFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBoxSkillsFilter.FormattingEnabled = true;
-            this.cboBoxSkillsFilter.Location = new System.Drawing.Point(139, 361);
+            this.cboBoxSkillsFilter.Location = new System.Drawing.Point(139, 324);
             this.cboBoxSkillsFilter.Name = "cboBoxSkillsFilter";
             this.cboBoxSkillsFilter.Size = new System.Drawing.Size(120, 21);
             this.cboBoxSkillsFilter.TabIndex = 26;

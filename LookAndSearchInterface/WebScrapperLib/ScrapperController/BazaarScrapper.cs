@@ -15,6 +15,7 @@ namespace WebScrapperLib.ScrapperController
         private static int LastPage = 0, CurrentPage = 1;
         private readonly string UrlToGetAsync = $"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades";
         public readonly string QueryParameters;
+        private CharacterSpecificInfoScrapper SpecificInfoScrapper;
         private readonly List<string> ScrapListBasicInfo = new List<string>
         {
             "//div[@class='TableContainer']",
@@ -102,12 +103,9 @@ namespace WebScrapperLib.ScrapperController
             CurrentPage = 1;
         }
 
-        public async Task RecoverScrapperDataAsyncPercentage(ProgressBar prgBar)
+        public async Task RecoverScrapperDataAsyncPercentage(dynamic formParameter)
         {
-            prgBar.Invoke((MethodInvoker)delegate
-            {
-                prgBar.Value = 10;
-            });
+            Extender.UpdateComponentValue(Extender.GetControlByName(formParameter.Controls, "prgBarBazaarLoadingInfo"), 10);
 
             string responseString = "";
             base.DictionaryEntity = new Dictionary<string, dynamic>();
@@ -117,18 +115,12 @@ namespace WebScrapperLib.ScrapperController
             };
             AddClientHeaders();
 
-            prgBar.Invoke((MethodInvoker)delegate
-            {
-                prgBar.Value = 20;
-            });
+            Extender.UpdateComponentValue(Extender.GetControlByName(formParameter.Controls, "prgBarBazaarLoadingInfo"), 20);
 
             HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
                 .GetAwaiter().GetResult();
 
-            prgBar.Invoke((MethodInvoker)delegate
-            {
-                prgBar.Value = 30;
-            });
+            Extender.UpdateComponentValue(Extender.GetControlByName(formParameter.Controls, "prgBarBazaarLoadingInfo"), 30);
 
             if (response.IsSuccessStatusCode)
                 responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -137,23 +129,17 @@ namespace WebScrapperLib.ScrapperController
             string pageListInfoLastAttributes = RecoverAttributeFromTagLast(pageListInfo[0], ScrapListGetLastPageAttribute, "href", "nothing");
             LastPage = Convert.ToInt32(pageListInfoLastAttributes.Split('=').LastOrDefault());
 
-            prgBar.Invoke((MethodInvoker)delegate
-            {
-                prgBar.Value = 40;
-            });
+            Extender.UpdateComponentValue(Extender.GetControlByName(formParameter.Controls, "prgBarBazaarLoadingInfo"), 40);
 
             base.DictionaryEntity = new Dictionary<string, dynamic>();
 
             int progressPercentage = 50;
-            for (; CurrentPage <= 3 && CurrentPage <= LastPage; CurrentPage++)
+            for (; CurrentPage <= 1 && CurrentPage <= LastPage; CurrentPage++)
             {
-                RecoverScrapperDataOnLoop();
-                prgBar.Invoke((MethodInvoker)delegate
-                {
-                    prgBar.Value = progressPercentage;
-                });
+                RecoverScrapperDataOnLoop(formParameter);
+                Extender.UpdateComponentValue(Extender.GetControlByName(formParameter.Controls, "prgBarBazaarLoadingInfo"), progressPercentage);
 
-                if(progressPercentage < 85)
+                if (progressPercentage < 85)
                     progressPercentage += 15;
             }
             
@@ -161,15 +147,14 @@ namespace WebScrapperLib.ScrapperController
             CurrentPage = 1;
         }
 
-        public void RecoverScrapperDataOnLoop()
+        public void RecoverScrapperDataOnLoop(dynamic formParameter = null)
         {
             string responseString = "";
             Client = new HttpClient();
             Client.BaseAddress = new Uri($"{base.BaseUrl}{QueryParameters}&currentpage={CurrentPage}");
             AddClientHeaders();
-            //HttpResponseMessage response = Client.GetAsync($"{base.BaseUrl}{QueryParameters}&current_page={CurrentPage}")
-            StringContent content = new StringContent("");
-            HttpResponseMessage response = Client.PostAsync($"{base.BaseUrl}{QueryParameters}&currentpage={CurrentPage}", content)
+            
+            HttpResponseMessage response = Client.PostAsync($"{base.BaseUrl}{QueryParameters}&currentpage={CurrentPage}", new StringContent(""))
                 .GetAwaiter().GetResult();
 
             if (response.IsSuccessStatusCode)
@@ -181,7 +166,12 @@ namespace WebScrapperLib.ScrapperController
             List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListBasicInfo);
             listInfo.RemoveRange(0, 8);
             listInfo.RemoveAt(listInfo.Count() - 1);
-            BuildDictionaryData(listInfo);
+            
+            if (formParameter == null)
+                BuildDictionaryData(listInfo);
+            else
+                BuildDictionaryData(listInfo, formParameter);
+
             Thread.Sleep(TimeStampRequest);
         }
 
@@ -215,6 +205,14 @@ namespace WebScrapperLib.ScrapperController
                     entity.AuctionEnd = AuctionInfo[7];
                     entity.IsBidded = AuctionInfo[10].Contains("Current") ? true : false;
                     entity.MinimumCurrentBid = AuctionInfo[13];
+                    
+                    if(extraParams != null)
+                    {
+                        SpecificInfoScrapper = new CharacterSpecificInfoScrapper(entity.UrlEntityInfo);
+                        SpecificInfoScrapper.RecoverScrapperSkillsAndName(HeaderDetailsInfo[4], extraParams);
+                        entity.SpecifcInformationEntity = SpecificInfoScrapper.Entity;
+                    }
+                    
                     base.DictionaryEntity.Add(entity.CharacterName, entity);
                 }
                 else if (counter == 1)

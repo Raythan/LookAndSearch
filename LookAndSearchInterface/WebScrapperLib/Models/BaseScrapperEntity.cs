@@ -11,7 +11,7 @@ namespace WebScrapperLib.Models
     public abstract class BaseScrapperEntity
     {
         public readonly string BaseUrl;
-        public readonly int TimeStampRequest = 4000;
+        public readonly int TimeStampRequest = 100;
         public Dictionary<string, dynamic> DictionaryEntity { get; set; }
         public DateTime LastUpdateEntity { get; set; }
 

@@ -18,5 +18,6 @@ namespace WebScrapperLib.Models
         public string MinimumCurrentBid { get; set; }
         public bool IsBidded { get; set; }
         public string UrlEntityInfo { get; set; }
+        public CharacterSpecificInformationEntity SpecifcInformationEntity = new CharacterSpecificInformationEntity();
     }
 }

@@ -141,14 +141,14 @@ namespace LookAndSearchInterface
 
         private async Task FillUpdateBazaarData()
         {
-            Extender.UpdateComponentText(lblDteUpdatedBazaar, $"Last time updated: || Refreshing... ||");
+            Extender.UpdateComponentText(lblDteUpdatedBazaar, $"Last time updated: || Requesting data... ||");
             Extender.UpdateComponentEnable(btnBazaarApplyFilter, false);
             Extender.UpdateComponentEnable(btnUpdateBazaar, false);
 
             BuildQueryParametersPath();
             ScrapperService = new BazaarScrapper(QueryParameters);
 
-            Task.Run(() => ScrapperService.RecoverScrapperDataAsyncPercentage(prgBarBazaarLoadingInfo))
+            Task.Run(() => ScrapperService.RecoverScrapperDataAsyncPercentage(this))
                 .GetAwaiter().GetResult();
 
             FillUpdateTxtBoxCharacterNamesAsync().GetAwaiter().GetResult();
@@ -198,7 +198,7 @@ namespace LookAndSearchInterface
             Extender.UpdateComponentValue(prgBarBazaarLoadingInfo, 70);
         }
 
-        public async Task FillGridViewGeneralPart2(CharacterSpecificInfoScrapper SpecificScrapper)
+        public async Task FillGridViewGeneralPart2()
         {
             dtaGridSkillsPart2Info.Invoke((MethodInvoker)delegate
             {
@@ -207,12 +207,17 @@ namespace LookAndSearchInterface
                 dt.Columns.Add("Value", typeof(string));
                 dt.Columns.Add("Percentage", typeof(string));
 
-                foreach (var item in SpecificScrapper.Entity.General.SKillsValuePercentage)
+                BazaarEntity entity = ScrapperService.DictionaryEntity
+                .Where(w => w.Key.Equals(lstBoxCharacterNamesValues.SelectedItem))
+                .Select(s => s.Value)
+                .FirstOrDefault();
+                
+                foreach (var item in entity.SpecifcInformationEntity.General.SKillsValuePercentage)
                 {
                     string[] valuePercentSplited = item.Value.Split(';');
                     dt.Rows.Add(item.Key, valuePercentSplited[0], valuePercentSplited[1]);
 
-                    if (prgBarBazaarLoadingInfo.Value < 100)
+                    if (prgBarBazaarLoadingInfo.Value < 96)
                         Extender.UpdateComponentValue(prgBarBazaarLoadingInfo, prgBarBazaarLoadingInfo.Value += 5);
                 }
 
@@ -353,17 +358,11 @@ namespace LookAndSearchInterface
                 lblBazaarEntityEndAuctionValue.Text = Extender.FormatAuctionDateFromEntity(entity.AuctionEnd, Extender.DateTimeFormatBrazil);
 
                 prgBarBazaarLoadingInfo.Value = 35;
-
-                lblDteUpdatedBazaar.Text = $"Last time updated: || Requesting skills data... ||";
-
-                CharacterSpecificInfoScrapper SpecificScrapper = new CharacterSpecificInfoScrapper(lblStoreUrlAuctionValueDisabled.Text);
-                SpecificScrapper.RecoverScrapperSkillsAndName(lstBoxCharacterNamesValues.Text, this);
-
+                
                 lblDteUpdatedBazaar.Text = $"Last time updated: || Refreshing skills... ||";
 
-                if (SpecificScrapper.Entity.General.SKillsValuePercentage.Count > 0
-                    && dtaGridSkillsPart2Info.DataSource == null)
-                    FillGridViewGeneralPart2(SpecificScrapper);
+                if (dtaGridSkillsPart2Info.DataSource == null)
+                    FillGridViewGeneralPart2();
 
                 prgBarBazaarLoadingInfo.Value = 0;
                 lblDteUpdatedBazaar.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";

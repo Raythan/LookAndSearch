@@ -145,13 +145,14 @@ namespace WebScrapperLib.ScrapperController
             Client = new HttpClient();
             Client.BaseAddress = new Uri(base.BaseUrl);
 
-            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 45);
+            Extender.UpdateComponentText(GetControlByName(FormParameter.Controls, "lblDteUpdatedBazaar"), $"Searching for {characterName} skills...");
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 15);
 
             AddClientHeaders();
             HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
                 .GetAwaiter().GetResult();
 
-            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 55);
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 35);
 
             if (response.IsSuccessStatusCode)
                 responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -168,10 +169,11 @@ namespace WebScrapperLib.ScrapperController
             Entity.CharacterName = characterName;
             UpdateEntityLastTime();
 
-            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 80);
-
+            Extender.UpdateComponentText(GetControlByName(FormParameter.Controls, "lblDteUpdatedBazaar"), $"Search done...");
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 97);
             Thread.Sleep(TimeStampRequest);
         }
+
         public async Task RecoverScrapperDataAsync(dynamic FormToFillAsync)
         {
             string responseString = "";

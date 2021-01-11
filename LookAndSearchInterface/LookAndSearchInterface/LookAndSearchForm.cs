@@ -18,7 +18,8 @@ namespace LookAndSearchInterface
             "Bazaar",
             "HighScores",
             "Mundos",
-            "Polls"
+            "Polls",
+            "About"
         };
 
         Dictionary<string, Form> panelForms = new Dictionary<string, Form>();
@@ -50,6 +51,7 @@ namespace LookAndSearchInterface
                 { "HighScores", new HighScoreForm() },
                 { "Mundos", new WorldsForm() },
                 { "Polls", new PollsForm() },
+                { "About", new AboutForm() },
             };
         }
 

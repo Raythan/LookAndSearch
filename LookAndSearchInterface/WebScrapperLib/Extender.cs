@@ -271,6 +271,25 @@ namespace WebScrapperLib
             }
         }
 
+        public static string RecoverStringFromUrl(string url, string methodKey)
+        {
+            try
+            {
+                Client = new HttpClient()
+                {
+                    BaseAddress = new Uri(url)
+                };
+                DictionaryMethods[methodKey]();
+
+                using(var responseString = Client.GetAsync(url).GetAwaiter().GetResult())
+                    return responseString.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static List<string> RecoverAdSenseUrlListFromGitHub(string pathParam)
         {
             try
@@ -382,5 +401,15 @@ namespace WebScrapperLib
                 dtaGrdViewParam.Columns[i].Width = colw;
             }
         }
+        
+        public static dynamic GetControlByName(dynamic controls, string controlName)
+        {
+            foreach (var item in controls)
+                if (item.Name.Equals(controlName))
+                    return item;
+
+            return null;
+        }
+
     }
 }
