@@ -76,7 +76,7 @@
             // 
             // picBoxAdSenseLogo
             // 
-            this.picBoxAdSenseLogo.Location = new System.Drawing.Point(12, 281);
+            this.picBoxAdSenseLogo.Location = new System.Drawing.Point(348, 303);
             this.picBoxAdSenseLogo.Name = "picBoxAdSenseLogo";
             this.picBoxAdSenseLogo.Size = new System.Drawing.Size(170, 175);
             this.picBoxAdSenseLogo.TabIndex = 4;
@@ -85,18 +85,19 @@
             // linkLblOtServerAdSense
             // 
             this.linkLblOtServerAdSense.AutoSize = true;
-            this.linkLblOtServerAdSense.Location = new System.Drawing.Point(188, 281);
+            this.linkLblOtServerAdSense.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLblOtServerAdSense.Location = new System.Drawing.Point(265, 278);
             this.linkLblOtServerAdSense.Name = "linkLblOtServerAdSense";
-            this.linkLblOtServerAdSense.Size = new System.Drawing.Size(118, 13);
+            this.linkLblOtServerAdSense.Size = new System.Drawing.Size(175, 22);
             this.linkLblOtServerAdSense.TabIndex = 5;
             this.linkLblOtServerAdSense.TabStop = true;
-            this.linkLblOtServerAdSense.Text = "Ot Server Patrocinador.";
+            this.linkLblOtServerAdSense.Text = "Server Patrocinador.";
             this.linkLblOtServerAdSense.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLblOtServerAdSense_LinkClicked);
             // 
             // lblUrlStoreServer
             // 
             this.lblUrlStoreServer.AutoSize = true;
-            this.lblUrlStoreServer.Location = new System.Drawing.Point(188, 294);
+            this.lblUrlStoreServer.Location = new System.Drawing.Point(221, 303);
             this.lblUrlStoreServer.Name = "lblUrlStoreServer";
             this.lblUrlStoreServer.Size = new System.Drawing.Size(121, 13);
             this.lblUrlStoreServer.TabIndex = 6;

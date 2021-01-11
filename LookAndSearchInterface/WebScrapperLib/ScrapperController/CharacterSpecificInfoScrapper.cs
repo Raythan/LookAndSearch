@@ -110,150 +110,6 @@ namespace WebScrapperLib.ScrapperController
             Entity.General.HirelingOutfits = listInfoValue[2];
         }
 
-        public async Task FillGridViewGeneralPart1(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-                dt.Rows.Add("Hit Points", Entity.General.HitPoints);
-                dt.Rows.Add("Mana", Entity.General.Mana);
-                dt.Rows.Add("Capacity", Entity.General.Capacity);
-                dt.Rows.Add("Speed", Entity.General.Speed);
-                dt.Rows.Add("Blessings", Entity.General.Blessings);
-                dt.Rows.Add("Mounts", Entity.General.Mounts);
-                dt.Rows.Add("Outfits", Entity.General.Outfits);
-                dt.Rows.Add("Titles", Entity.General.Titles);
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        public async Task FillGridViewGeneralPart2(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-
-                foreach (var item in Entity.General.SKillsValuePercentage)
-                    dt.Rows.Add(item.Key, item.Value.Replace(";", " // "));
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        public async Task FillGridViewGeneralPart3(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-                
-                dt.Rows.Add("Creation Date", Extender.FormatAuctionDateFromEntity(Entity.General.CreationDate, Extender.DateTimeFormatBrazil));
-                dt.Rows.Add("Experience", Entity.General.Experience);
-                dt.Rows.Add("Gold", Entity.General.Gold);
-                dt.Rows.Add("Achievement Points", Entity.General.AchievementPoints);
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        public async Task FillGridViewGeneralPart4(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-                dt.Rows.Add("Regular World Transfer", Entity.General.RegularWorldTransfer);
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        public async Task FillGridViewGeneralPart5(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-                dt.Rows.Add("Charm Expansion", Entity.General.CharmExpansion);
-                dt.Rows.Add("Available Charm Points", Entity.General.AvailableCharmPoints);
-                dt.Rows.Add("Spent Charm Points", Entity.General.SpentCharmPoints);
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        public async Task FillGridViewGeneralPart6(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-                dt.Rows.Add("Daily Reward Streak", Entity.General.DailyRewardStreak);
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        public async Task FillGridViewGeneralPart7(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-                dt.Rows.Add("Hunting Task Points", Entity.General.HuntingTaskPoints);
-                dt.Rows.Add("Permanent Hunting Task Slots", Entity.General.PermanentHuntingTaskSlots);
-                dt.Rows.Add("Permanent Prey Slots", Entity.General.PermanentPreySlots);
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        public async Task FillGridViewGeneralPart8(DataGridView dtaGrdView)
-        {
-            dtaGrdView.Invoke((MethodInvoker)delegate
-            {
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Status", typeof(string));
-                dt.Columns.Add("Value", typeof(string));
-                dt.Rows.Add("Hirelings", Entity.General.Hirelings);
-                dt.Rows.Add("Hireling Jobs", Entity.General.HirelingJobs);
-                dt.Rows.Add("Hireling Outfits", Entity.General.HirelingOutfits);
-
-                dtaGrdView.DataSource = dt;
-                dtaGrdView.BackgroundColor = Color.PapayaWhip;
-                ResizeDtaGrdView(dt, dtaGrdView);
-            });
-        }
-        private void ResizeDtaGrdView(DataTable dtParam, DataGridView dtaGrdViewParam)
-        {
-            dtaGrdViewParam.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dtaGrdViewParam.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            for (int i = 0; i <= dtaGrdViewParam.Columns.Count - 1; i++)
-            {
-                int colw = dtaGrdViewParam.Columns[i].Width;
-                dtaGrdViewParam.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-                dtaGrdViewParam.Columns[i].Width = colw;
-            }
-        }
-
         public void RecoverScrapperData()
         {
             string responseString = "";
@@ -268,7 +124,7 @@ namespace WebScrapperLib.ScrapperController
                 responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
             List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListBasicInfo);
-            listInfo = Extender.CleanListName(listInfo);
+            //listInfo = Extender.CleanListName(listInfo);
             listInfo.RemoveAt(0);
             BuildPart1(listInfo[0]);
             BuildPart2(listInfo[1]);
@@ -282,6 +138,40 @@ namespace WebScrapperLib.ScrapperController
             Thread.Sleep(TimeStampRequest);
         }
 
+        public void RecoverScrapperSkillsAndName(string characterName, dynamic FormParameter)
+        {
+            string responseString = "";
+            base.DictionaryEntity = new Dictionary<string, dynamic>();
+            Client = new HttpClient();
+            Client.BaseAddress = new Uri(base.BaseUrl);
+
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 45);
+
+            AddClientHeaders();
+            HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
+                .GetAwaiter().GetResult();
+
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 55);
+
+            if (response.IsSuccessStatusCode)
+                responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 60);
+
+            List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListBasicInfo);
+            //listInfo = Extender.CleanListName(listInfo);
+            listInfo.RemoveAt(0);
+            BuildPart2(listInfo[1]);
+
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 70);
+
+            Entity.CharacterName = characterName;
+            UpdateEntityLastTime();
+
+            UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 80);
+
+            Thread.Sleep(TimeStampRequest);
+        }
         public async Task RecoverScrapperDataAsync(dynamic FormToFillAsync)
         {
             string responseString = "";
@@ -289,8 +179,7 @@ namespace WebScrapperLib.ScrapperController
             Client = new HttpClient();
             Client.BaseAddress = new Uri(base.BaseUrl);
             AddClientHeaders();
-
-
+            
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 5);
 
             HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
@@ -304,44 +193,34 @@ namespace WebScrapperLib.ScrapperController
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 15);
 
             List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListBasicInfo);
-            listInfo = Extender.CleanListName(listInfo);
+            //listInfo = Extender.CleanListName(listInfo);
             listInfo.RemoveAt(0);
 
             List<string> listOutfitsUrls = RecoverAttributeFromTagList(responseString, ScrapListInfoOutfitValue, "src", "nothing");
             BuildMainOutfit(listOutfitsUrls);
-
-            UpdateFillComponentPicBoxIcon(GetControlByName(FormToFillAsync.Controls, "picBoxMainIconStatus"));
-
+            
             BuildPart1(listInfo[0]);
-            await FillGridViewGeneralPart1(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart1Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 25);
 
             BuildPart2(listInfo[1]);
-            await FillGridViewGeneralPart2(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart2Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 35);
 
             BuildPart3(listInfo[2]);
-            await FillGridViewGeneralPart3(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart3Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 45);
 
             BuildPart4(listInfo[3]);
-            await FillGridViewGeneralPart4(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart4Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 55);
 
             BuildPart5(listInfo[4]);
-            await FillGridViewGeneralPart5(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart5Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 65);
 
             BuildPart6(listInfo[5]);
-            await FillGridViewGeneralPart6(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart6Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 75);
 
             BuildPart7(listInfo[6]);
-            await FillGridViewGeneralPart7(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart7Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 85);
 
             BuildPart8(listInfo[7]);
-            await FillGridViewGeneralPart8(GetControlByName(FormToFillAsync.Controls, "dtaGridGeneralPart8Info"));
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 95);
 
             UpdateEntityLastTime();
@@ -362,15 +241,7 @@ namespace WebScrapperLib.ScrapperController
         {
             Entity.General.UrlMainOutfit = listOutfitsUrls[0];
         }
-
-        public async Task UpdateFillComponentPicBoxIcon(PictureBox prgBarParam)
-        {
-            prgBarParam.Invoke((MethodInvoker)delegate
-            {
-                prgBarParam.Image = Extender.RecoverImageFromUrl(Entity.General.UrlMainOutfit, "IconSize64x64", "CipSoftHeaders");
-            });
-        }
-
+        
         public async Task UpdateComponentProgressBar(ProgressBar prgBarParam, int percentage)
         {
             prgBarParam.Invoke((MethodInvoker)delegate

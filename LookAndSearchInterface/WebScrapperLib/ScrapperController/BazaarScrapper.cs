@@ -13,7 +13,8 @@ namespace WebScrapperLib.ScrapperController
     public class BazaarScrapper : BaseScrapperEntity, IWebScrapper
     {
         private static int LastPage = 0, CurrentPage = 1;
-        private readonly string UrlToGetAsync = $"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades&filter_profession=0&filter_levelrangefrom=0&filter_levelrangeto=0&filter_world=&filter_worldpvptype=9&filter_worldbattleyestate=0&filter_skillid=&filter_skillrangefrom=0&filter_skillrangeto=0&order_column=101&order_direction=1&searchtype=1&currentpage=";
+        private readonly string UrlToGetAsync = $"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades";
+        public readonly string QueryParameters;
         private readonly List<string> ScrapListBasicInfo = new List<string>
         {
             "//div[@class='TableContainer']",
@@ -164,9 +165,11 @@ namespace WebScrapperLib.ScrapperController
         {
             string responseString = "";
             Client = new HttpClient();
-            Client.BaseAddress = new Uri($"{UrlToGetAsync}{CurrentPage}");
+            Client.BaseAddress = new Uri($"{base.BaseUrl}{QueryParameters}&currentpage={CurrentPage}");
             AddClientHeaders();
-            HttpResponseMessage response = Client.GetAsync($"{UrlToGetAsync}{CurrentPage}")
+            //HttpResponseMessage response = Client.GetAsync($"{base.BaseUrl}{QueryParameters}&current_page={CurrentPage}")
+            StringContent content = new StringContent("");
+            HttpResponseMessage response = Client.PostAsync($"{base.BaseUrl}{QueryParameters}&currentpage={CurrentPage}", content)
                 .GetAwaiter().GetResult();
 
             if (response.IsSuccessStatusCode)
@@ -224,8 +227,9 @@ namespace WebScrapperLib.ScrapperController
             }
         }
 
-        public BazaarScrapper() : base($"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades&filter_profession=0&filter_levelrangefrom=0&filter_levelrangeto=0&filter_world=&filter_worldpvptype=9&filter_worldbattleyestate=0&filter_skillid=&filter_skillrangefrom=0&filter_skillrangeto=0&order_column=101&order_direction=1&searchtype=1&currentpage={CurrentPage}")
+        public BazaarScrapper(string queryParameters) : base($"https://www.tibia.com/charactertrade/?subtopic=currentcharactertrades")
         {
+            QueryParameters = queryParameters;
         }
     }
 }

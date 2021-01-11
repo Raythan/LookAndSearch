@@ -11,7 +11,6 @@ namespace LookAndSearchInterface
     {
         PollsScrapper ScrapperService = new PollsScrapper();
         private readonly string AlertMessageEmptyFields = "Before click you need refresh informations.";
-        public PollsForm() => InitializeComponent();
 
         private void FillUpdateComboTopicNames()
         {
@@ -28,14 +27,12 @@ namespace LookAndSearchInterface
 
         private void cboBoxPollsTopicsData_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dynamic source = new PollsEntity();
-            ScrapperService.DictionaryEntity.TryGetValue(cboBoxPollsTopicsData.SelectedIndex.ToString(), out source);
-            lblPollsStatusValue.Text = source.IsActive ? "Active" : "Closed";
-            string[] endDateSplited = source.EndDate.Split(';');
-            lblPollsEndDateValue.Text = new DateTime(Convert.ToInt32(endDateSplited[2]),
-                Extender.GetMonthNumberFromAbreviate(endDateSplited[0]),
-                Convert.ToInt32(endDateSplited[1])).ToString(Extender.DateFormatBrazil);
-            lnkLblPollsTopicAnchorDisabled.Text = source.Anchor;
+            dynamic entity = new PollsEntity();
+            ScrapperService.DictionaryEntity.TryGetValue(cboBoxPollsTopicsData.SelectedIndex.ToString(), out entity);
+            lblPollsStatusValue.Text = entity.IsActive ? "Active" : "Closed";
+            string[] endDateSplited = entity.EndDate.Split(';');
+            lblPollsEndDateValue.Text = Extender.FormatAuctionDateFromEntity(entity.EndDate, Extender.DateFormatBrazil);
+            lnkLblPollsTopicAnchorDisabled.Text = entity.Anchor;
         }
 
         private void lnkLabelPollsToRedirectClick_DoubleClick(object sender, EventArgs e)
@@ -54,5 +51,7 @@ namespace LookAndSearchInterface
             FillUpdateComboTopicNames();
             lblPollsLastTimeUpdate.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
+
+        public PollsForm() => InitializeComponent();
     }
 }

@@ -21,7 +21,7 @@ namespace WebScrapperLib.Models
         public string encoding { get; set; }
         public Links _links { get; set; }
     }
-    
+
     public class Links
     {
         public string self { get; set; }

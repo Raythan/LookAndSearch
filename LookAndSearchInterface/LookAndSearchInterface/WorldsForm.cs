@@ -8,17 +8,7 @@ namespace LookAndSearchInterface
     public partial class WorldsForm : Form
     {
         WorldScrapper ScrapperService = new WorldScrapper();
-        public WorldsForm()
-        {
-            InitializeComponent();
-        }
-
-        public void LoadComponentsData()
-        {
-            cboBoxWorldNames.DataSource = null;
-            cboBoxWorldNames.DataSource = ScrapperService.DictionaryEntity.Keys.ToList();
-        }
-
+        
         private void cboBoxWorldNames_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             if (!string.IsNullOrEmpty(cboBoxWorldNames.Text))
@@ -50,5 +40,8 @@ namespace LookAndSearchInterface
             LoadComponentsData();
             lblHoraUltimaAtualizacao.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
         }
+
+        public void LoadComponentsData() => cboBoxWorldNames.DataSource = ScrapperService.DictionaryEntity.Keys.ToList();
+        public WorldsForm() => InitializeComponent();
     }
 }

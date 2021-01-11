@@ -16,11 +16,7 @@ namespace LookAndSearchInterface
     public partial class HighScoreForm : Form
     {
         HighScoreScrapper Scrapper = new HighScoreScrapper();
-        public HighScoreForm()
-        {
-            InitializeComponent();
-        }
-
+        
         private void BuildGridViewData()
         {
             Scrapper.RecoverScrapperData();
@@ -36,5 +32,7 @@ namespace LookAndSearchInterface
         }
 
         private void btnHighScoreRefresh_Click(object sender, EventArgs e) => BuildGridViewData();
+
+        public HighScoreForm() => InitializeComponent();
     }
 }

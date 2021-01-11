@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 using WebScrapperLib.Models;
@@ -35,17 +37,13 @@ namespace WebScrapperLib
             { "PanelSize536x273", new Size(536, 273) }
         };
 
-        private static readonly Dictionary<string, Action> DictionaryMethods = 
-            new Dictionary<string, Action>
+        private static readonly Dictionary<string, Action> DictionaryMethods = new Dictionary<string, Action>
         {
             { "CipSoftHeaders", AddCipsoftHeaders },
             { "GitHubHeaders", AddGitHubHeaders }
         };
 
-        public static string GetLibVersionFromAssembly()
-        {
-            return FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
-        }
+        public static string GetLibVersionFromAssembly() => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
 
         private static void AddGitHubHeaders()
         {
@@ -107,7 +105,7 @@ namespace WebScrapperLib
             }
 
         }
-        
+
         public static string SerializeObjectToXml(this object obj)
         {
             try
@@ -137,7 +135,7 @@ namespace WebScrapperLib
                 throw new Exception("Ocorreu um erro ao tentar serializar o objeto." + ex.Message);
             }
         }
-        
+
         public static T DeserializeXmlToObject<T>(this string xml) where T : new()
         {
             T xmlObject = new T();
@@ -146,14 +144,14 @@ namespace WebScrapperLib
             xmlObject = (T)xmlSerializer.Deserialize(stringReader);
             return xmlObject;
         }
-        
+
         public static void WriteLog(this object obj, string message, string especifyLog = null)
         {
             if (IsDebugActive())
             {
                 try
                 {
-                    if(!File.Exists(string.Format("{0}\\logs", AssemblyDirectory)))
+                    if (!File.Exists(string.Format("{0}\\logs", AssemblyDirectory)))
                         File.Create(string.Format("{0}\\logs", AssemblyDirectory));
 
                     if (string.IsNullOrEmpty(especifyLog))
@@ -178,13 +176,13 @@ namespace WebScrapperLib
                         }
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     throw ex;
                 }
             }
         }
-        
+
         public static bool IsDebugActive()
         {
             try
@@ -200,7 +198,7 @@ namespace WebScrapperLib
 
         private static string AnalyseException(Exception ex)
         {
-            if(ex.InnerException != null)
+            if (ex.InnerException != null)
                 return $"Exception Message: {ex.Message} || Inner Message: {ex.InnerException.Message} || Stack: {ex.StackTrace}";
             return $"Exception Message: {ex.Message} || Stack: {ex.StackTrace}";
         }
@@ -220,7 +218,7 @@ namespace WebScrapperLib
                 obj.Equals("Nov") ? 11 :
                 obj.Equals("Dec") ? 12 : 0;
         }
-        
+
         public static Image RecoverImageFromUrl(string url, string sizeKey, string methodKey)
         {
             try
@@ -238,7 +236,7 @@ namespace WebScrapperLib
                     .Select(s => s.Value)
                     .FirstOrDefault());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new Bitmap(
                     Image.FromFile($"{AssemblyDirectory}\\Images\\not_found_img_1990x1448.jpg"),
@@ -266,12 +264,12 @@ namespace WebScrapperLib
                     .Select(s => s.Value)
                     .FirstOrDefault());
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
         }
-        
+
         public static List<string> RecoverAdSenseUrlListFromGitHub(string pathParam)
         {
             try
@@ -288,7 +286,7 @@ namespace WebScrapperLib
                 string DecodedContent = Encoding.UTF8.GetString(ContentFromBase64);
                 return DecodedContent.Split(';').ToList();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
@@ -307,7 +305,7 @@ namespace WebScrapperLib
 
             return paramList;
         }
-        
+
         public static string FormatAuctionDateFromEntity(string entityAuctionDate, string format)
         {
             try
@@ -328,6 +326,51 @@ namespace WebScrapperLib
             catch (Exception ex)
             {
                 return AnalyseException(ex);
+            }
+        }
+
+        public static void UpdateComponentEnable(dynamic component, bool enableParameter)
+        {
+            component.Invoke((MethodInvoker)delegate
+            {
+                component.Enabled = enableParameter;
+            });
+        }
+
+        public static void UpdateComponentValue(dynamic component, dynamic value)
+        {
+            component.Invoke((MethodInvoker)delegate
+            {
+                component.Value = value;
+            });
+        }
+
+        public static void UpdateComponentText(dynamic component, dynamic text)
+        {
+            component.Invoke((MethodInvoker)delegate
+            {
+                component.Text = text.ToString();
+            });
+        }
+
+        public static void UpdateComponentDataSource(dynamic component, dynamic dataSource)
+        {
+            component.Invoke((MethodInvoker)delegate
+            {
+                component.DataSource = dataSource;
+            });
+        }
+
+        public static void ResizeDtaGrdView(DataTable dtParam, DataGridView dtaGrdViewParam)
+        {
+            for (int i = 0; i <= dtaGrdViewParam.Columns.Count - 1; i++)
+                dtaGrdViewParam.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            for (int i = 0; i <= dtaGrdViewParam.Columns.Count - 1; i++)
+            {
+                int colw = dtaGrdViewParam.Columns[i].Width;
+                dtaGrdViewParam.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                dtaGrdViewParam.Columns[i].Width = colw;
             }
         }
     }

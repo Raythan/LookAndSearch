@@ -8,6 +8,7 @@ namespace WebScrapperLib.Models
 {
     public class CharacterSpecificInformationEntity
     {
+        public string CharacterName { get; set; }
         public GeneralInfo General { get; set; }
         public class GeneralInfo
         {
