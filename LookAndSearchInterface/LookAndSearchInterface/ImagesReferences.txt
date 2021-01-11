@@ -1,4 +1,4 @@
-﻿<<!! Images References...
+﻿!! Images References...
 
 Robot Icon - https://www.flaticon.com/free-icon/robot_2432846?term=robot&page=1&position=1
 
@@ -16,4 +16,4 @@ Eraser Icon - https://www.flaticon.com/free-icon/eraser_2607887?term=eraser&page
 
 Filter Icon - https://www.flaticon.com/free-icon/funnel_929427?term=filter&page=1&position=28&related_id=929427&origin=search
 
-...End of Images References !!>>
+...End of Images References !!
