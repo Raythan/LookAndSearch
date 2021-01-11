@@ -14,7 +14,10 @@ namespace LookAndSearchInterface
     {
         public KillStatisticsForm()
         {
-            InitializeComponent();
+        }
+
+        private void KillStatisticsForm_Load(object sender, EventArgs e)
+        {
         }
     }
 }

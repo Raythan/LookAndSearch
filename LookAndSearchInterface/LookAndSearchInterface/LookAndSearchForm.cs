@@ -50,7 +50,6 @@ namespace LookAndSearchInterface
                 { "HighScores", new HighScoreForm() },
                 { "Mundos", new WorldsForm() },
                 { "Polls", new PollsForm() },
-                { "Error", new ErrorContextForm() },
             };
         }
 

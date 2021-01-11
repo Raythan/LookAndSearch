@@ -90,12 +90,6 @@
     <Compile Include="CharacterSpecificInfoForm.Designer.cs">
       <DependentUpon>CharacterSpecificInfoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ErrorContextForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ErrorContextForm.Designer.cs">
-      <DependentUpon>ErrorContextForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="HighScoresForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,9 +133,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CharacterSpecificInfoForm.resx">
       <DependentUpon>CharacterSpecificInfoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ErrorContextForm.resx">
-      <DependentUpon>ErrorContextForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HighScoresForm.resx">
       <DependentUpon>HighScoresForm.cs</DependentUpon>

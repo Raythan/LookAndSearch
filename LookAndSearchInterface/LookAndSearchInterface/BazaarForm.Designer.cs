@@ -39,6 +39,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnUpdateBazaar = new System.Windows.Forms.Button();
             this.grpBoxBazaarEntityStatus = new System.Windows.Forms.GroupBox();
+            this.lblBazaarEntityVocationValue = new System.Windows.Forms.Label();
+            this.lblBazaarEntityVocationTag = new System.Windows.Forms.Label();
             this.lblBazaarEntityUrlStatusTag = new System.Windows.Forms.LinkLabel();
             this.lblBazaarEntityWorldValue = new System.Windows.Forms.Label();
             this.lblBazaarEntityWorldTag = new System.Windows.Forms.Label();
@@ -46,7 +48,6 @@
             this.lblBazaarEntityEndAuctionTag = new System.Windows.Forms.Label();
             this.lblBazaarEntityStartedAuctionValue = new System.Windows.Forms.Label();
             this.lblBazaarEntityStartedAuctionTag = new System.Windows.Forms.Label();
-            this.lblStoreUrlAuctionValueDisabled = new System.Windows.Forms.Label();
             this.lblBazaarEntityUrlAuctionTag = new System.Windows.Forms.LinkLabel();
             this.lblBazaarEntityCurrMinBidValue = new System.Windows.Forms.Label();
             this.lblBazaarEntityCurrMinBidTag = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@
             this.lblBazaarEntityGenderTag = new System.Windows.Forms.Label();
             this.lblBazaarEntityLevelTag = new System.Windows.Forms.Label();
             this.lblBazaarEntityLevelValue = new System.Windows.Forms.Label();
+            this.lblStoreUrlAuctionValueDisabled = new System.Windows.Forms.Label();
             this.prgBarBazaarLoadingInfo = new System.Windows.Forms.ProgressBar();
             this.chkLstBoxWorldFilter = new System.Windows.Forms.CheckedListBox();
             this.chkLstBoxVocationFilter = new System.Windows.Forms.CheckedListBox();
@@ -66,10 +68,9 @@
             this.numMinSkillFilter = new System.Windows.Forms.NumericUpDown();
             this.lblMinSkillFilter = new System.Windows.Forms.Label();
             this.cboBoxSkillsFilter = new System.Windows.Forms.ComboBox();
-            this.lblBazaarEntityVocationValue = new System.Windows.Forms.Label();
-            this.lblBazaarEntityVocationTag = new System.Windows.Forms.Label();
             this.dtaGridSkillsPart2Info = new System.Windows.Forms.DataGridView();
             this.grpBoxBazaarEntitySkills = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownBidMaxFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMinLevelFilter)).BeginInit();
             this.grpBoxBazaarEntityStatus.SuspendLayout();
@@ -211,6 +212,24 @@
             this.grpBoxBazaarEntityStatus.Text = "Status Info";
             this.grpBoxBazaarEntityStatus.Visible = false;
             // 
+            // lblBazaarEntityVocationValue
+            // 
+            this.lblBazaarEntityVocationValue.AutoSize = true;
+            this.lblBazaarEntityVocationValue.Location = new System.Drawing.Point(77, 133);
+            this.lblBazaarEntityVocationValue.Name = "lblBazaarEntityVocationValue";
+            this.lblBazaarEntityVocationValue.Size = new System.Drawing.Size(76, 13);
+            this.lblBazaarEntityVocationValue.TabIndex = 16;
+            this.lblBazaarEntityVocationValue.Text = "VocationValue";
+            // 
+            // lblBazaarEntityVocationTag
+            // 
+            this.lblBazaarEntityVocationTag.AutoSize = true;
+            this.lblBazaarEntityVocationTag.Location = new System.Drawing.Point(6, 133);
+            this.lblBazaarEntityVocationTag.Name = "lblBazaarEntityVocationTag";
+            this.lblBazaarEntityVocationTag.Size = new System.Drawing.Size(52, 13);
+            this.lblBazaarEntityVocationTag.TabIndex = 15;
+            this.lblBazaarEntityVocationTag.Text = "Vocation:";
+            // 
             // lblBazaarEntityUrlStatusTag
             // 
             this.lblBazaarEntityUrlStatusTag.AutoSize = true;
@@ -278,16 +297,6 @@
             this.lblBazaarEntityStartedAuctionTag.TabIndex = 8;
             this.lblBazaarEntityStartedAuctionTag.Text = "Started Auction:";
             // 
-            // lblStoreUrlAuctionValueDisabled
-            // 
-            this.lblStoreUrlAuctionValueDisabled.AutoSize = true;
-            this.lblStoreUrlAuctionValueDisabled.Location = new System.Drawing.Point(409, 472);
-            this.lblStoreUrlAuctionValueDisabled.Name = "lblStoreUrlAuctionValueDisabled";
-            this.lblStoreUrlAuctionValueDisabled.Size = new System.Drawing.Size(139, 13);
-            this.lblStoreUrlAuctionValueDisabled.TabIndex = 7;
-            this.lblStoreUrlAuctionValueDisabled.Text = "LabelStoreUrlValueDisabled";
-            this.lblStoreUrlAuctionValueDisabled.Visible = false;
-            // 
             // lblBazaarEntityUrlAuctionTag
             // 
             this.lblBazaarEntityUrlAuctionTag.AutoSize = true;
@@ -353,6 +362,16 @@
             this.lblBazaarEntityLevelValue.Size = new System.Drawing.Size(90, 13);
             this.lblBazaarEntityLevelValue.TabIndex = 0;
             this.lblBazaarEntityLevelValue.Text = "LevelStatusValue";
+            // 
+            // lblStoreUrlAuctionValueDisabled
+            // 
+            this.lblStoreUrlAuctionValueDisabled.AutoSize = true;
+            this.lblStoreUrlAuctionValueDisabled.Location = new System.Drawing.Point(409, 472);
+            this.lblStoreUrlAuctionValueDisabled.Name = "lblStoreUrlAuctionValueDisabled";
+            this.lblStoreUrlAuctionValueDisabled.Size = new System.Drawing.Size(139, 13);
+            this.lblStoreUrlAuctionValueDisabled.TabIndex = 7;
+            this.lblStoreUrlAuctionValueDisabled.Text = "LabelStoreUrlValueDisabled";
+            this.lblStoreUrlAuctionValueDisabled.Visible = false;
             // 
             // prgBarBazaarLoadingInfo
             // 
@@ -487,24 +506,6 @@
             this.cboBoxSkillsFilter.Size = new System.Drawing.Size(120, 21);
             this.cboBoxSkillsFilter.TabIndex = 26;
             // 
-            // lblBazaarEntityVocationValue
-            // 
-            this.lblBazaarEntityVocationValue.AutoSize = true;
-            this.lblBazaarEntityVocationValue.Location = new System.Drawing.Point(77, 133);
-            this.lblBazaarEntityVocationValue.Name = "lblBazaarEntityVocationValue";
-            this.lblBazaarEntityVocationValue.Size = new System.Drawing.Size(76, 13);
-            this.lblBazaarEntityVocationValue.TabIndex = 16;
-            this.lblBazaarEntityVocationValue.Text = "VocationValue";
-            // 
-            // lblBazaarEntityVocationTag
-            // 
-            this.lblBazaarEntityVocationTag.AutoSize = true;
-            this.lblBazaarEntityVocationTag.Location = new System.Drawing.Point(6, 133);
-            this.lblBazaarEntityVocationTag.Name = "lblBazaarEntityVocationTag";
-            this.lblBazaarEntityVocationTag.Size = new System.Drawing.Size(52, 13);
-            this.lblBazaarEntityVocationTag.TabIndex = 15;
-            this.lblBazaarEntityVocationTag.Text = "Vocation:";
-            // 
             // dtaGridSkillsPart2Info
             // 
             this.dtaGridSkillsPart2Info.AllowUserToAddRows = false;
@@ -538,11 +539,23 @@
             this.grpBoxBazaarEntitySkills.Text = "Skills";
             this.grpBoxBazaarEntitySkills.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.DarkOrchid;
+            this.button1.Location = new System.Drawing.Point(266, 361);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 102);
+            this.button1.TabIndex = 29;
+            this.button1.Text = "Reset Fields!";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // BazaarForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(560, 510);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.grpBoxBazaarEntitySkills);
             this.Controls.Add(this.cboBoxSkillsFilter);
             this.Controls.Add(this.numMaxSkillFilter);
@@ -629,5 +642,6 @@
         private System.Windows.Forms.Label lblBazaarEntityVocationTag;
         private System.Windows.Forms.DataGridView dtaGridSkillsPart2Info;
         private System.Windows.Forms.GroupBox grpBoxBazaarEntitySkills;
+        private System.Windows.Forms.Button button1;
     }
 }

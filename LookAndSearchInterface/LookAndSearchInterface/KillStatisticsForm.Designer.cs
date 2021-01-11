@@ -49,6 +49,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "KillStatisticsForm";
             this.Text = "KillStatisticsForm";
+            this.Load += new System.EventHandler(this.KillStatisticsForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
