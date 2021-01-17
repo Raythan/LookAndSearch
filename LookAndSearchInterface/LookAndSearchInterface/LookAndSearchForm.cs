@@ -23,7 +23,7 @@ namespace LookAndSearchInterface
         };
 
         Dictionary<string, Form> panelForms = new Dictionary<string, Form>();
-
+        Form inputFormPanel;
         public MainForm()
         {
             InitializeComponent();
@@ -52,6 +52,7 @@ namespace LookAndSearchInterface
                 { "Mundos", new WorldsForm() },
                 { "Polls", new PollsForm() },
                 { "About", new AboutForm() },
+                { "Error", new ErrorForm()}
             };
         }
 
@@ -59,12 +60,11 @@ namespace LookAndSearchInterface
         {
             if (this.panelLookAndSearch.Controls.Count > 0)
                 this.panelLookAndSearch.Controls.RemoveAt(0);
-
+            
             try
             {
                 if (panelForms.ContainsKey(cboBoxMenuSelector.Text))
                 {
-                    Form inputFormPanel;
                     panelForms.TryGetValue(cboBoxMenuSelector.Text, out inputFormPanel);
                     inputFormPanel.TopLevel = false;
                     inputFormPanel.AutoScroll = true;
@@ -74,7 +74,6 @@ namespace LookAndSearchInterface
             }
             catch (Exception ex)
             {
-                Form inputFormPanel;
                 panelForms.TryGetValue("Error", out inputFormPanel);
                 inputFormPanel.TopLevel = false;
                 inputFormPanel.AutoScroll = true;

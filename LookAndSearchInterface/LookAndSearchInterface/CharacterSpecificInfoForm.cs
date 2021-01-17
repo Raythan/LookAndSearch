@@ -109,7 +109,7 @@ namespace LookAndSearchInterface
                 dt.Columns.Add("Status", typeof(string));
                 dt.Columns.Add("Value", typeof(string));
 
-                dt.Rows.Add("Creation Date", Extender.FormatAuctionDateFromEntity(ScrapperService.Entity.General.CreationDate, Extender.DateTimeFormatBrazil));
+                dt.Rows.Add("Creation Date", Extender.FormatAuctionDateFromEntity(ScrapperService.Entity.General.CreationDate, 0));
                 dt.Rows.Add("Experience", ScrapperService.Entity.General.Experience);
                 dt.Rows.Add("Gold", ScrapperService.Entity.General.Gold);
                 dt.Rows.Add("Achievement Points", ScrapperService.Entity.General.AchievementPoints);

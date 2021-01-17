@@ -439,7 +439,7 @@
             this.btnBazaarApplyFilter.Text = "Apply Filter!";
             this.btnBazaarApplyFilter.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnBazaarApplyFilter.UseVisualStyleBackColor = true;
-            this.btnBazaarApplyFilter.Click += new System.EventHandler(this.btnBazaarAppleFilter_Click);
+            this.btnBazaarApplyFilter.Click += new System.EventHandler(this.btnBazaarApplyFilter_Click);
             // 
             // chkLstBoxPvpTypeFilter
             // 

@@ -153,7 +153,7 @@ namespace LookAndSearchInterface
 
             FillUpdateTxtBoxCharacterNamesAsync().GetAwaiter().GetResult();
 
-            Extender.UpdateComponentText(lblDteUpdatedBazaar, $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}");
+            Extender.UpdateComponentText(lblDteUpdatedBazaar, $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.GetDateFormatFromKey(0))}");
             Extender.UpdateComponentValue(prgBarBazaarLoadingInfo, 99);
             Extender.UpdateComponentEnable(btnBazaarApplyFilter, true);
             Extender.UpdateComponentEnable(chkBoxIsBiddedFilter, true);
@@ -354,9 +354,9 @@ namespace LookAndSearchInterface
                 lblStoreUrlAuctionValueDisabled.Text = entity.UrlEntityInfo;
                 lblBazaarEntityWorldValue.Text = entity.World;
                 lblBazaarEntityVocationValue.Text = entity.Vocation;
-                lblBazaarEntityStartedAuctionValue.Text = Extender.FormatAuctionDateFromEntity(entity.AuctionStarted, Extender.DateTimeFormatBrazil);
-                lblBazaarEntityEndAuctionValue.Text = Extender.FormatAuctionDateFromEntity(entity.AuctionEnd, Extender.DateTimeFormatBrazil);
-
+                lblBazaarEntityStartedAuctionValue.Text = Extender.FormatAuctionDateFromEntity(entity.AuctionStarted, 0);
+                lblBazaarEntityEndAuctionValue.Text = Extender.FormatAuctionDateFromEntity(entity.AuctionEnd, 0);
+                
                 prgBarBazaarLoadingInfo.Value = 35;
                 
                 lblDteUpdatedBazaar.Text = $"Last time updated: || Refreshing skills... ||";
@@ -365,7 +365,7 @@ namespace LookAndSearchInterface
                     FillGridViewGeneralPart2();
 
                 prgBarBazaarLoadingInfo.Value = 0;
-                lblDteUpdatedBazaar.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
+                lblDteUpdatedBazaar.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.GetDateFormatFromKey(0))}";
                 return;
             }
 
@@ -418,7 +418,7 @@ namespace LookAndSearchInterface
                 chkLstBoxWorldFilter.Items.Add(item.Key);
         }
 
-        private void btnBazaarAppleFilter_Click(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames();
+        private void btnBazaarApplyFilter_Click(object sender, EventArgs e) => FillUpdateTxtBoxCharacterNames();
 
         public BazaarForm() => InitializeComponent();
     }

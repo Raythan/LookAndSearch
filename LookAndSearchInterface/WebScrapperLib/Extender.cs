@@ -19,23 +19,35 @@ namespace WebScrapperLib
 {
     public static class Extender
     {
-        public static readonly string DateTimeFormatBrazil = "dd/MM/yyyy HH:mm:ss";
-        public static readonly string DateFormatBrazil = "dd/MM/yyyy";
-        public static readonly string DateTimeFormatEnglish = "MM/dd/yyyy HH:mm:ss";
-        public static readonly string DateFormatEnglish = "MM/dd/yyyy";
         private static readonly string GitHubUrlApiBaseProject = "https://api.github.com/repos/Raythan/LookAndSearch/contents/";
         private static HttpClient Client = new HttpClient();
+        
+        private static readonly string[] formats = new[]
+        {
+            "MMM dd yyyy, HH:mm CET",
+            "MMM dd yyyy, HH:mm:ss CEST",
+            "MMM dd yyyy, HH:mm:ss CET",
+            "MMM dd yyyy"
+        };
 
+        private static readonly Dictionary<int, LocationTimeFormat> DictionaryDateFormat = new Dictionary<int, LocationTimeFormat>
+        {
+            { 0, new LocationTimeFormat("dd/MM/yyyy HH:mm:ss", -4) },
+            { 1, new LocationTimeFormat("dd/MM/yyyy", -4) },
+            { 2, new LocationTimeFormat("MM/dd/yyyy HH:mm:ss", -6) },
+            { 3, new LocationTimeFormat("MM/dd/yyyy", -6) },
+        };
         private static readonly Dictionary<string, Size> DictionaryDimensions = new Dictionary<string, Size>
         {
-            { "FullSize1920x1448", new Size(1920, 1448) },
             { "IconSize16x16", new Size(16, 16) },
             { "IconSize18x18", new Size(18, 18) },
             { "IconSize32x32", new Size(32, 32) },
             { "IconSize64x64", new Size(64, 64) },
-            { "SelectionSize250x250", new Size(250, 250) },
             { "IconSize170x175", new Size(170, 175) },
-            { "PanelSize536x273", new Size(536, 273) }
+            { "IconSize400x400", new Size(400, 400) },
+            { "SelectionSize250x250", new Size(250, 250) },
+            { "PanelSize536x273", new Size(536, 273) },
+            { "FullSize1920x1448", new Size(1920, 1448) }
         };
 
         private static readonly Dictionary<string, Action> DictionaryMethods = new Dictionary<string, Action>
@@ -281,7 +293,7 @@ namespace WebScrapperLib
                 };
                 DictionaryMethods[methodKey]();
 
-                using(var responseString = Client.GetAsync(url).GetAwaiter().GetResult())
+                using (var responseString = Client.GetAsync(url).GetAwaiter().GetResult())
                     return responseString.Content.ReadAsStringAsync().GetAwaiter().GetResult();
             }
             catch (Exception)
@@ -312,6 +324,27 @@ namespace WebScrapperLib
             }
         }
 
+        public static string RecoverContentFromGitHub(string pathParam)
+        {
+            try
+            {
+                Client = new HttpClient()
+                {
+                    BaseAddress = new Uri($"{GitHubUrlApiBaseProject}{pathParam}")
+                };
+                AddGitHubHeaders();
+
+                var ResponseStringJson = Client.GetStringAsync($"{GitHubUrlApiBaseProject}{pathParam}").GetAwaiter().GetResult();
+                var GitHubObjectDeserialized = JsonConvert.DeserializeObject<GitHubFileBase64>(ResponseStringJson);
+                byte[] ContentFromBase64 = Convert.FromBase64String(GitHubObjectDeserialized.content);
+                return Encoding.UTF8.GetString(ContentFromBase64);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static List<string> CleanListName(this List<string> paramList)
         {
             for (int i = 0; i < paramList.Count; i++)
@@ -325,23 +358,22 @@ namespace WebScrapperLib
 
             return paramList;
         }
-
-        public static string FormatAuctionDateFromEntity(string entityAuctionDate, string format)
+        
+        public static string FormatAuctionDateFromEntity(string entityAuctionDate, int format)
         {
             try
             {
                 entityAuctionDate = entityAuctionDate.Replace("&#160;", " ");
-                string[] formats = new[]
-                {
-                    "MMM dd yyyy, HH:mm CET",
-                    "MMM dd yyyy, HH:mm:ss CEST",
-                    "MMM dd yyyy, HH:mm:ss CET"
-                };
+
+                LocationTimeFormat location = DictionaryDateFormat
+                    .Where(w => w.Key == format)
+                    .Select(s => s.Value)
+                    .FirstOrDefault();
 
                 return DateTime.ParseExact(entityAuctionDate,
                                                     formats,
                                                     CultureInfo.InvariantCulture,
-                                                    DateTimeStyles.None).AddHours(-4).ToString(format);
+                                                    DateTimeStyles.None).AddHours(location.AddHours).ToString(location.DateFormat);
             }
             catch (Exception ex)
             {
@@ -401,7 +433,7 @@ namespace WebScrapperLib
                 dtaGrdViewParam.Columns[i].Width = colw;
             }
         }
-        
+
         public static dynamic GetControlByName(dynamic controls, string controlName)
         {
             foreach (var item in controls)
@@ -411,5 +443,24 @@ namespace WebScrapperLib
             return null;
         }
 
+        public static string GetDateFormatFromKey(int keyParam)
+        {
+            return DictionaryDateFormat.Where(w => w.Key == keyParam)
+                .Select(s => s.Value.DateFormat)
+                .FirstOrDefault();
+        }
+    }
+
+
+    public class LocationTimeFormat
+    {
+        public string DateFormat;
+        public int AddHours;
+
+        public LocationTimeFormat(string formatParam, int hoursParam)
+        {
+            this.DateFormat = formatParam;
+            this.AddHours = hoursParam;
+        }
     }
 }

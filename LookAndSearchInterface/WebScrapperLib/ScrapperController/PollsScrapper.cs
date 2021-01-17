@@ -72,7 +72,7 @@ namespace WebScrapperLib.ScrapperController
                 }
                 else if (counter == 1)
                 {
-                    PollsEntity.EndDate = parameter.Replace("&#160", "");
+                    PollsEntity.EndDate = parameter;
                     counter = 0;
                     listNumericIndex++;
                     continue;

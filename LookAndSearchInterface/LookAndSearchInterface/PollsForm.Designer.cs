@@ -107,9 +107,9 @@
             // 
             // btnRefreshPollsInfo
             // 
-            this.btnRefreshPollsInfo.Location = new System.Drawing.Point(223, 46);
+            this.btnRefreshPollsInfo.Location = new System.Drawing.Point(6, 108);
             this.btnRefreshPollsInfo.Name = "btnRefreshPollsInfo";
-            this.btnRefreshPollsInfo.Size = new System.Drawing.Size(307, 58);
+            this.btnRefreshPollsInfo.Size = new System.Drawing.Size(208, 58);
             this.btnRefreshPollsInfo.TabIndex = 10;
             this.btnRefreshPollsInfo.Text = "Refresh!";
             this.btnRefreshPollsInfo.UseVisualStyleBackColor = true;

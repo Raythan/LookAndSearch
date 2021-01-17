@@ -37,6 +37,8 @@
             this.txtBoxAboutInfo.Location = new System.Drawing.Point(12, 12);
             this.txtBoxAboutInfo.Multiline = true;
             this.txtBoxAboutInfo.Name = "txtBoxAboutInfo";
+            this.txtBoxAboutInfo.ReadOnly = true;
+            this.txtBoxAboutInfo.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.txtBoxAboutInfo.Size = new System.Drawing.Size(520, 447);
             this.txtBoxAboutInfo.TabIndex = 0;
             // 

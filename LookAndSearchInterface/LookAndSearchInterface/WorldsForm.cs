@@ -38,7 +38,7 @@ namespace LookAndSearchInterface
             lblHoraUltimaAtualizacao.Text = $"Last time updated: || Refreshing... ||";
             ScrapperService.RecoverScrapperData();
             LoadComponentsData();
-            lblHoraUltimaAtualizacao.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            lblHoraUltimaAtualizacao.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.GetDateFormatFromKey(0))}";
         }
 
         public void LoadComponentsData() => cboBoxWorldNames.DataSource = ScrapperService.DictionaryEntity.Keys.ToList();

@@ -30,8 +30,7 @@ namespace LookAndSearchInterface
             dynamic entity = new PollsEntity();
             ScrapperService.DictionaryEntity.TryGetValue(cboBoxPollsTopicsData.SelectedIndex.ToString(), out entity);
             lblPollsStatusValue.Text = entity.IsActive ? "Active" : "Closed";
-            string[] endDateSplited = entity.EndDate.Split(';');
-            lblPollsEndDateValue.Text = Extender.FormatAuctionDateFromEntity(entity.EndDate, Extender.DateFormatBrazil);
+            lblPollsEndDateValue.Text = Extender.FormatAuctionDateFromEntity(entity.EndDate, 0);
             lnkLblPollsTopicAnchorDisabled.Text = entity.Anchor;
         }
 
@@ -49,7 +48,7 @@ namespace LookAndSearchInterface
             lblPollsLastTimeUpdate.Text = $"Last time updated: || Refreshing... ||";
             ScrapperService.RecoverScrapperData();
             FillUpdateComboTopicNames();
-            lblPollsLastTimeUpdate.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            lblPollsLastTimeUpdate.Text = $"Last time updated: {ScrapperService.LastUpdateEntity.ToString(Extender.GetDateFormatFromKey(0))}";
         }
 
         public PollsForm() => InitializeComponent();

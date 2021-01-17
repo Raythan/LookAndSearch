@@ -11,7 +11,7 @@ namespace WebScrapperLib.Models
     public abstract class BaseScrapperEntity
     {
         public readonly string BaseUrl;
-        public readonly int TimeStampRequest = 100;
+        public readonly int TimeStampRequest = 3000;
         public Dictionary<string, dynamic> DictionaryEntity { get; set; }
         public DateTime LastUpdateEntity { get; set; }
 
@@ -89,8 +89,7 @@ namespace WebScrapperLib.Models
             tagListForward.RemoveAt(0);
             return RecoverAttributeFromTagList(document.Text, tagListForward, attribute, defaultAttributeValue);
         }
-
-
+        
         public static string RecoverInnerHtmlFromTagFirst(string htmlString, List<string> tagList)
         {
             HtmlDocument document = new HtmlDocument();

@@ -28,7 +28,7 @@ namespace LookAndSearchInterface
                 entities.Add(item.Value);
 
             this.dtGridViewHighScores.DataSource = new BindingList<HighScoreEntity>(entities);
-            lblHighScoreLastTimeUpdate.Text = $"Last time updated: {Scrapper.LastUpdateEntity.ToString(Extender.DateTimeFormatBrazil)}";
+            lblHighScoreLastTimeUpdate.Text = $"Last time updated: {Scrapper.LastUpdateEntity.ToString(Extender.GetDateFormatFromKey(0))}";
         }
 
         private void btnHighScoreRefresh_Click(object sender, EventArgs e) => BuildGridViewData();
