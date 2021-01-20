@@ -22,4 +22,10 @@ Sound Alert - https://soundbible.com/1540-Computer-Error-Alert.html
 
 Stop Icon - https://www.flaticon.com/free-icon/no-stopping_1810746?term=stop&page=1&position=12&page=1&position=12&related_id=1810746&origin=search
 
+VeryHappy Icon - https://www.flaticon.com/free-icon/happy_3084424?term=emotion&page=1&position=47&page=1&position=47&related_id=3084424&origin=search
+
+Sad Icon - https://www.flaticon.com/free-icon/sad_3084419?term=emotion&page=1&position=40&page=1&position=40&related_id=3084419&origin=search
+
+Confused Icon - https://www.flaticon.com/free-icon/confused_3084437?term=emotion&page=1&position=86&page=1&position=86&related_id=3084437&origin=search
+
 ...End of Images References !!
