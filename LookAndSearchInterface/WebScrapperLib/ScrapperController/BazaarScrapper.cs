@@ -228,11 +228,11 @@ namespace WebScrapperLib.ScrapperController
             base.DictionaryEntity = new Dictionary<string, dynamic>();
             Client = new HttpClient
             {
-                BaseAddress = new Uri(base.BaseUrl)
+                BaseAddress = new Uri($"{base.BaseUrl}{QueryParameters}")
             };
             AddClientHeaders();
             
-            HttpResponseMessage response = Client.GetAsync(base.BaseUrl)
+            HttpResponseMessage response = Client.GetAsync($"{base.BaseUrl}{QueryParameters}")
                 .GetAwaiter().GetResult();
             
             if (response.IsSuccessStatusCode)
@@ -309,11 +309,7 @@ namespace WebScrapperLib.ScrapperController
                     entity.AuctionEnd = AuctionInfo[7];
                     entity.IsBidded = AuctionInfo[10].Contains("Current") ? true : false;
                     entity.MinimumCurrentBid = AuctionInfo[13];
-
-                    SpecificInfoScrapper = new CharacterSpecificInfoScrapper(entity.UrlEntityInfo);
-                    SpecificInfoScrapper.RecoverScrapperData();
-                    entity.SpecifcInformationEntity = SpecificInfoScrapper.Entity;
-
+                    
                     if (paramForFilter.IsBiddedFilter && !entity.IsBidded ||
                         paramForFilter.MaxBidFilter > 0 && Convert.ToInt64(entity.MinimumCurrentBid.Replace(",", "")) > paramForFilter.MaxBidFilter ||
                         paramForFilter.MaxLevelFilter < entity.Level ||
@@ -321,6 +317,10 @@ namespace WebScrapperLib.ScrapperController
                         (paramForFilter.VocationsFilter.Count > 0 && !paramForFilter.VocationsFilter.Contains(entity.Vocation)) ||
                         (paramForFilter.WorldsFilter.Count > 0 && !paramForFilter.WorldsFilter.Contains(entity.World)))
                         continue;
+
+                    SpecificInfoScrapper = new CharacterSpecificInfoScrapper(entity.UrlEntityInfo);
+                    SpecificInfoScrapper.RecoverScrapperData();
+                    entity.SpecifcInformationEntity = SpecificInfoScrapper.Entity;
 
                     if (!string.IsNullOrEmpty(paramForFilter.PropSkillFilter) && !paramForFilter.PropSkillFilter.Equals("Select.."))
                     {

@@ -415,7 +415,7 @@
             // lblStatusMonitorInfo
             // 
             this.lblStatusMonitorInfo.AutoSize = true;
-            this.lblStatusMonitorInfo.Location = new System.Drawing.Point(290, 356);
+            this.lblStatusMonitorInfo.Location = new System.Drawing.Point(290, 376);
             this.lblStatusMonitorInfo.Name = "lblStatusMonitorInfo";
             this.lblStatusMonitorInfo.Size = new System.Drawing.Size(100, 13);
             this.lblStatusMonitorInfo.TabIndex = 25;
@@ -435,7 +435,7 @@
             // 
             this.lnkLblBazaarCheckNames.AutoSize = true;
             this.lnkLblBazaarCheckNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lnkLblBazaarCheckNames.Location = new System.Drawing.Point(290, 400);
+            this.lnkLblBazaarCheckNames.Location = new System.Drawing.Point(290, 356);
             this.lnkLblBazaarCheckNames.Name = "lnkLblBazaarCheckNames";
             this.lnkLblBazaarCheckNames.Size = new System.Drawing.Size(147, 20);
             this.lnkLblBazaarCheckNames.TabIndex = 26;

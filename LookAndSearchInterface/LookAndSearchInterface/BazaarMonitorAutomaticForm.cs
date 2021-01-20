@@ -96,7 +96,7 @@ namespace LookAndSearchInterface
                     if (chkBoxNotifiedByEmail.Checked)
                         SendEmailWithListName();
 
-                    Extender.UpdateComponentText(lblStatusMonitorInfo, "Unbelievable, check the names I found out.");
+                    Extender.UpdateComponentText(lblStatusMonitorInfo, "Unbelievable, check the names I found out.\r\nBecame a little tired, just resting\r\nbefore search for you again.");
                     Extender.UpdateComponentVisible(picBoxBazaarCheckResultMonitor, true);
                     Extender.UpdateComponentImage(picBoxBazaarCheckResultMonitor, Extender.RecoverImageFromRepository("SurprisedIcon", "IconSize64x64"));
                     Extender.UpdateComponentVisible(lnkLblBazaarCheckNames, true);
@@ -110,7 +110,7 @@ namespace LookAndSearchInterface
                 }
                 else
                 {
-                    Extender.UpdateComponentText(lblStatusMonitorInfo, "Well, I'm finished and we don't had lucky\r\nMaybe in next search.");
+                    Extender.UpdateComponentText(lblStatusMonitorInfo, "Well, I'm finished and we don't had lucky\r\nMaybe in next search.\r\nBecame a little tired, just resting\r\nbefore search for you again.");
                     Extender.UpdateComponentVisible(picBoxBazaarCheckResultMonitor, true);
                     Extender.UpdateComponentImage(picBoxBazaarCheckResultMonitor, Extender.RecoverImageFromRepository("SadIcon", "IconSize64x64"));
                     Thread.Sleep((int)numUpDownCheckTimeMinutes.Value * 60000);
