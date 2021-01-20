@@ -1,6 +1,6 @@
 ﻿namespace LookAndSearchInterface
 {
-    partial class MainForm
+    partial class LookAndSearchForm
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,7 @@
             this.panelLookAndSearch.Size = new System.Drawing.Size(560, 510);
             this.panelLookAndSearch.TabIndex = 1;
             // 
-            // MainForm
+            // LookAndSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -58,8 +58,7 @@
             this.Controls.Add(this.cboBoxMenuSelector);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "MainForm";
+            this.Name = "LookAndSearchForm";
             this.Text = "Watch Info!";
             this.ResumeLayout(false);
 

@@ -49,14 +49,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailSender.cs" />
     <Compile Include="Extender.cs" />
+    <Compile Include="FlashWindow.cs" />
     <Compile Include="Interfaces\IWebScrapper.cs" />
     <Compile Include="Models\BaseScrapperEntity.cs" />
     <Compile Include="Models\BazaarEntity.cs" />
     <Compile Include="Models\CharacterSpecificInformationEntity.cs" />
+    <Compile Include="Models\EmailEntity.cs" />
     <Compile Include="Models\GitHubFileBase64.cs" />
     <Compile Include="Models\HighScoreEntity.cs" />
     <Compile Include="Models\KillStatisticsEntity.cs" />
+    <Compile Include="Models\ParameterForFilterMonitorEntity.cs" />
     <Compile Include="Models\PollsEntity.cs" />
     <Compile Include="Models\WorldEntity.cs" />
     <Compile Include="ScrapperController\BazaarScrapper.cs" />
@@ -73,6 +77,7 @@
     <Content Include="Images\adsense1.png" />
     <Content Include="Images\adsense2.png" />
     <Content Include="Images\adsense3.png" />
+    <Content Include="Images\confused.png" />
     <Content Include="Images\eraser.png" />
     <Content Include="Images\erro.png" />
     <Content Include="Images\funnel.png" />
@@ -83,6 +88,11 @@
     <Content Include="Images\reset.png" />
     <Content Include="Images\robot.ico" />
     <Content Include="Images\robot.png" />
+    <Content Include="Images\sad.png" />
+    <Content Include="Images\stop.png" />
+    <Content Include="Images\surprised.png" />
+    <Content Include="Images\veryhappy.png" />
+    <Content Include="Sounds\alert_bazaar.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

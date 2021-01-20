@@ -271,9 +271,9 @@ namespace LookAndSearchInterface
             btnBazaarApplyFilter.Image = Extender.RecoverImageFromUrl(FilterIconUrl, "IconSize32x32", "GitHubHeaders");
             btnResetFields.Image = Extender.RecoverImageFromUrl(EraserIconUrl, "IconSize32x32", "GitHubHeaders");
             btnUpdateBazaar.Image = Extender.RecoverImageFromUrl(RefreshIconUrl, "IconSize32x32", "GitHubHeaders");
-            //Extender.UpdateComponentImage(btnBazaarApplyFilter.Image, Extender.RecoverImageFromUrl(FilterIconUrl, "IconSize18x18", "GitHubHeaders"));
-            //Extender.UpdateComponentImage(btnResetFields.Image, Extender.RecoverImageFromUrl(EraserIconUrl, "IconSize18x18", "GitHubHeaders"));
-            //Extender.UpdateComponentImage(btnUpdateBazaar.Image, Extender.RecoverImageFromUrl(RefreshIconUrl, "IconSize18x18", "GitHubHeaders"));
+            //Extender.UpdateComponentImage(btnBazaarApplyFilter.Image, Extender.RecoverImageFromUrl(FilterIconUrl, "IconSize32x32", "GitHubHeaders"));
+            //Extender.UpdateComponentImage(btnResetFields.Image, Extender.RecoverImageFromUrl(EraserIconUrl, "IconSize32x32", "GitHubHeaders"));
+            //Extender.UpdateComponentImage(btnUpdateBazaar.Image, Extender.RecoverImageFromUrl(RefreshIconUrl, "IconSize32x32", "GitHubHeaders"));
         }
 
         private void lblBazaarEntityUrlStatusTag_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -390,6 +390,7 @@ namespace LookAndSearchInterface
             grpBoxBazaarEntitySkills.Visible = false;
             chkBoxIsBiddedFilter.CheckState = CheckState.Unchecked;
             numUpDownBidMaxFilter.Value = 0;
+            numUpDownBidMaxFilter.Enabled = false;
             numMinLevelFilter.Value = 0;
             numMaxLevelFilter.Value = 10000;
             numMinSkillFilter.Value = 0;

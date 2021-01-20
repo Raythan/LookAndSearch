@@ -9,13 +9,14 @@ using WebScrapperLib;
 
 namespace LookAndSearchInterface
 {
-    public partial class MainForm : Form
+    public partial class LookAndSearchForm : Form
     {
         private readonly string IconUrl = "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/robot.ico";
         List<string> comboMenuItems = new List<string>()
         {
             "Selecione..",
             "Bazaar",
+            "Bazaar (Monitor)",
             "HighScores",
             "Mundos",
             "Polls",
@@ -24,7 +25,7 @@ namespace LookAndSearchInterface
 
         Dictionary<string, Form> panelForms = new Dictionary<string, Form>();
         Form inputFormPanel;
-        public MainForm()
+        public LookAndSearchForm()
         {
             InitializeComponent();
             this.Icon = Extender.RecoverIconFromUrl(IconUrl, "IconSize18x18", "GitHubHeaders");
@@ -48,6 +49,7 @@ namespace LookAndSearchInterface
             {
                 { "Selecione..", new SelectionForm() },
                 { "Bazaar", new BazaarForm() },
+                { "Bazaar (Monitor)", new BazaarMonitorAutomaticForm() },
                 { "HighScores", new HighScoreForm() },
                 { "Mundos", new WorldsForm() },
                 { "Polls", new PollsForm() },

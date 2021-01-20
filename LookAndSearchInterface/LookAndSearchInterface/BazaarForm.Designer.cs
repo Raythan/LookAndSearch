@@ -87,7 +87,7 @@
             this.lblBazaarTitle.Location = new System.Drawing.Point(12, 9);
             this.lblBazaarTitle.Name = "lblBazaarTitle";
             this.lblBazaarTitle.Size = new System.Drawing.Size(74, 13);
-            this.lblBazaarTitle.TabIndex = 1;
+            this.lblBazaarTitle.TabIndex = 0;
             this.lblBazaarTitle.Text = "Bazaar Check";
             // 
             // lblDteUpdatedBazaar
@@ -96,7 +96,7 @@
             this.lblDteUpdatedBazaar.Location = new System.Drawing.Point(10, 472);
             this.lblDteUpdatedBazaar.Name = "lblDteUpdatedBazaar";
             this.lblDteUpdatedBazaar.Size = new System.Drawing.Size(176, 13);
-            this.lblDteUpdatedBazaar.TabIndex = 2;
+            this.lblDteUpdatedBazaar.TabIndex = 21;
             this.lblDteUpdatedBazaar.Text = "Last time updated: Not updated yet!";
             // 
             // numUpDownBidMaxFilter
@@ -110,7 +110,7 @@
             0});
             this.numUpDownBidMaxFilter.Name = "numUpDownBidMaxFilter";
             this.numUpDownBidMaxFilter.Size = new System.Drawing.Size(75, 20);
-            this.numUpDownBidMaxFilter.TabIndex = 5;
+            this.numUpDownBidMaxFilter.TabIndex = 7;
             this.numUpDownBidMaxFilter.ValueChanged += new System.EventHandler(this.numUpDownBidMaxFilter_ValueChanged);
             // 
             // lblBidMaxFilter
@@ -128,7 +128,7 @@
             this.lstBoxCharacterNamesValues.Location = new System.Drawing.Point(139, 25);
             this.lstBoxCharacterNamesValues.Name = "lstBoxCharacterNamesValues";
             this.lstBoxCharacterNamesValues.Size = new System.Drawing.Size(169, 212);
-            this.lstBoxCharacterNamesValues.TabIndex = 7;
+            this.lstBoxCharacterNamesValues.TabIndex = 5;
             this.lstBoxCharacterNamesValues.SelectedIndexChanged += new System.EventHandler(this.lstBoxCharacterNamesValues_SelectedIndexChanged);
             // 
             // chkBoxIsBiddedFilter
@@ -138,7 +138,7 @@
             this.chkBoxIsBiddedFilter.Location = new System.Drawing.Point(220, 259);
             this.chkBoxIsBiddedFilter.Name = "chkBoxIsBiddedFilter";
             this.chkBoxIsBiddedFilter.Size = new System.Drawing.Size(118, 17);
-            this.chkBoxIsBiddedFilter.TabIndex = 9;
+            this.chkBoxIsBiddedFilter.TabIndex = 8;
             this.chkBoxIsBiddedFilter.Text = "Only Not Auctioned";
             this.chkBoxIsBiddedFilter.UseVisualStyleBackColor = true;
             this.chkBoxIsBiddedFilter.CheckedChanged += new System.EventHandler(this.chkBoxIsBiddedFilter_CheckedChanged);
@@ -149,7 +149,7 @@
             this.lblMinLevelFilter.Location = new System.Drawing.Point(138, 282);
             this.lblMinLevelFilter.Name = "lblMinLevelFilter";
             this.lblMinLevelFilter.Size = new System.Drawing.Size(56, 13);
-            this.lblMinLevelFilter.TabIndex = 10;
+            this.lblMinLevelFilter.TabIndex = 9;
             this.lblMinLevelFilter.Text = "Min. Level";
             // 
             // numMinLevelFilter
@@ -162,7 +162,7 @@
             0});
             this.numMinLevelFilter.Name = "numMinLevelFilter";
             this.numMinLevelFilter.Size = new System.Drawing.Size(55, 20);
-            this.numMinLevelFilter.TabIndex = 11;
+            this.numMinLevelFilter.TabIndex = 10;
             this.numMinLevelFilter.ValueChanged += new System.EventHandler(this.numMinLevelFilter_ValueChanged);
             // 
             // label1
@@ -171,7 +171,7 @@
             this.label1.Location = new System.Drawing.Point(139, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(207, 13);
-            this.label1.TabIndex = 12;
+            this.label1.TabIndex = 1;
             this.label1.Text = "Character names, ordered by End Auction.";
             // 
             // btnUpdateBazaar
@@ -181,7 +181,7 @@
             this.btnUpdateBazaar.Location = new System.Drawing.Point(140, 388);
             this.btnUpdateBazaar.Name = "btnUpdateBazaar";
             this.btnUpdateBazaar.Size = new System.Drawing.Size(119, 75);
-            this.btnUpdateBazaar.TabIndex = 13;
+            this.btnUpdateBazaar.TabIndex = 19;
             this.btnUpdateBazaar.Text = "Refresh Data!";
             this.btnUpdateBazaar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnUpdateBazaar.UseVisualStyleBackColor = true;
@@ -208,7 +208,7 @@
             this.grpBoxBazaarEntityStatus.Location = new System.Drawing.Point(314, 25);
             this.grpBoxBazaarEntityStatus.Name = "grpBoxBazaarEntityStatus";
             this.grpBoxBazaarEntityStatus.Size = new System.Drawing.Size(234, 212);
-            this.grpBoxBazaarEntityStatus.TabIndex = 14;
+            this.grpBoxBazaarEntityStatus.TabIndex = 23;
             this.grpBoxBazaarEntityStatus.TabStop = false;
             this.grpBoxBazaarEntityStatus.Text = "Status Info";
             this.grpBoxBazaarEntityStatus.Visible = false;
@@ -222,7 +222,7 @@
             this.lblBazaarEntityVocationValue.Location = new System.Drawing.Point(95, 133);
             this.lblBazaarEntityVocationValue.Name = "lblBazaarEntityVocationValue";
             this.lblBazaarEntityVocationValue.Size = new System.Drawing.Size(89, 13);
-            this.lblBazaarEntityVocationValue.TabIndex = 16;
+            this.lblBazaarEntityVocationValue.TabIndex = 13;
             this.lblBazaarEntityVocationValue.Text = "VocationValue";
             // 
             // lblBazaarEntityVocationTag
@@ -232,7 +232,7 @@
             this.lblBazaarEntityVocationTag.Location = new System.Drawing.Point(6, 133);
             this.lblBazaarEntityVocationTag.Name = "lblBazaarEntityVocationTag";
             this.lblBazaarEntityVocationTag.Size = new System.Drawing.Size(61, 13);
-            this.lblBazaarEntityVocationTag.TabIndex = 15;
+            this.lblBazaarEntityVocationTag.TabIndex = 12;
             this.lblBazaarEntityVocationTag.Text = "Vocation:";
             // 
             // lblBazaarEntityUrlStatusTag
@@ -257,7 +257,7 @@
             this.lblBazaarEntityWorldValue.Location = new System.Drawing.Point(95, 120);
             this.lblBazaarEntityWorldValue.Name = "lblBazaarEntityWorldValue";
             this.lblBazaarEntityWorldValue.Size = new System.Drawing.Size(72, 13);
-            this.lblBazaarEntityWorldValue.TabIndex = 13;
+            this.lblBazaarEntityWorldValue.TabIndex = 11;
             this.lblBazaarEntityWorldValue.Text = "WorldValue";
             // 
             // lblBazaarEntityWorldTag
@@ -267,7 +267,7 @@
             this.lblBazaarEntityWorldTag.Location = new System.Drawing.Point(6, 120);
             this.lblBazaarEntityWorldTag.Name = "lblBazaarEntityWorldTag";
             this.lblBazaarEntityWorldTag.Size = new System.Drawing.Size(44, 13);
-            this.lblBazaarEntityWorldTag.TabIndex = 12;
+            this.lblBazaarEntityWorldTag.TabIndex = 10;
             this.lblBazaarEntityWorldTag.Text = "World:";
             // 
             // lblBazaarEntityEndAuctionValue
@@ -279,7 +279,7 @@
             this.lblBazaarEntityEndAuctionValue.Location = new System.Drawing.Point(59, 107);
             this.lblBazaarEntityEndAuctionValue.Name = "lblBazaarEntityEndAuctionValue";
             this.lblBazaarEntityEndAuctionValue.Size = new System.Drawing.Size(104, 13);
-            this.lblBazaarEntityEndAuctionValue.TabIndex = 11;
+            this.lblBazaarEntityEndAuctionValue.TabIndex = 9;
             this.lblBazaarEntityEndAuctionValue.Text = "EndAuctionValue";
             // 
             // lblBazaarEntityEndAuctionTag
@@ -289,7 +289,7 @@
             this.lblBazaarEntityEndAuctionTag.Location = new System.Drawing.Point(6, 94);
             this.lblBazaarEntityEndAuctionTag.Name = "lblBazaarEntityEndAuctionTag";
             this.lblBazaarEntityEndAuctionTag.Size = new System.Drawing.Size(80, 13);
-            this.lblBazaarEntityEndAuctionTag.TabIndex = 10;
+            this.lblBazaarEntityEndAuctionTag.TabIndex = 8;
             this.lblBazaarEntityEndAuctionTag.Text = "End Auction:";
             // 
             // lblBazaarEntityStartedAuctionValue
@@ -301,7 +301,7 @@
             this.lblBazaarEntityStartedAuctionValue.Location = new System.Drawing.Point(59, 81);
             this.lblBazaarEntityStartedAuctionValue.Name = "lblBazaarEntityStartedAuctionValue";
             this.lblBazaarEntityStartedAuctionValue.Size = new System.Drawing.Size(123, 13);
-            this.lblBazaarEntityStartedAuctionValue.TabIndex = 9;
+            this.lblBazaarEntityStartedAuctionValue.TabIndex = 7;
             this.lblBazaarEntityStartedAuctionValue.Text = "StartedAuctionValue";
             // 
             // lblBazaarEntityStartedAuctionTag
@@ -311,7 +311,7 @@
             this.lblBazaarEntityStartedAuctionTag.Location = new System.Drawing.Point(6, 64);
             this.lblBazaarEntityStartedAuctionTag.Name = "lblBazaarEntityStartedAuctionTag";
             this.lblBazaarEntityStartedAuctionTag.Size = new System.Drawing.Size(99, 13);
-            this.lblBazaarEntityStartedAuctionTag.TabIndex = 8;
+            this.lblBazaarEntityStartedAuctionTag.TabIndex = 6;
             this.lblBazaarEntityStartedAuctionTag.Text = "Started Auction:";
             // 
             // lblBazaarEntityUrlAuctionTag
@@ -321,7 +321,7 @@
             this.lblBazaarEntityUrlAuctionTag.Location = new System.Drawing.Point(6, 194);
             this.lblBazaarEntityUrlAuctionTag.Name = "lblBazaarEntityUrlAuctionTag";
             this.lblBazaarEntityUrlAuctionTag.Size = new System.Drawing.Size(202, 15);
-            this.lblBazaarEntityUrlAuctionTag.TabIndex = 6;
+            this.lblBazaarEntityUrlAuctionTag.TabIndex = 15;
             this.lblBazaarEntityUrlAuctionTag.TabStop = true;
             this.lblBazaarEntityUrlAuctionTag.Text = "Offer an Auction on Official Web Site";
             this.lblBazaarEntityUrlAuctionTag.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblBazaarEntityUrlAuctionTag_LinkClicked);
@@ -377,7 +377,7 @@
             this.lblBazaarEntityLevelTag.Location = new System.Drawing.Point(6, 21);
             this.lblBazaarEntityLevelTag.Name = "lblBazaarEntityLevelTag";
             this.lblBazaarEntityLevelTag.Size = new System.Drawing.Size(42, 13);
-            this.lblBazaarEntityLevelTag.TabIndex = 1;
+            this.lblBazaarEntityLevelTag.TabIndex = 0;
             this.lblBazaarEntityLevelTag.Text = "Level:";
             // 
             // lblBazaarEntityLevelValue
@@ -389,7 +389,7 @@
             this.lblBazaarEntityLevelValue.Location = new System.Drawing.Point(95, 21);
             this.lblBazaarEntityLevelValue.Name = "lblBazaarEntityLevelValue";
             this.lblBazaarEntityLevelValue.Size = new System.Drawing.Size(106, 13);
-            this.lblBazaarEntityLevelValue.TabIndex = 0;
+            this.lblBazaarEntityLevelValue.TabIndex = 1;
             this.lblBazaarEntityLevelValue.Text = "LevelStatusValue";
             // 
             // lblStoreUrlAuctionValueDisabled
@@ -398,7 +398,7 @@
             this.lblStoreUrlAuctionValueDisabled.Location = new System.Drawing.Point(409, 472);
             this.lblStoreUrlAuctionValueDisabled.Name = "lblStoreUrlAuctionValueDisabled";
             this.lblStoreUrlAuctionValueDisabled.Size = new System.Drawing.Size(139, 13);
-            this.lblStoreUrlAuctionValueDisabled.TabIndex = 7;
+            this.lblStoreUrlAuctionValueDisabled.TabIndex = 25;
             this.lblStoreUrlAuctionValueDisabled.Text = "LabelStoreUrlValueDisabled";
             this.lblStoreUrlAuctionValueDisabled.Visible = false;
             // 
@@ -407,7 +407,7 @@
             this.prgBarBazaarLoadingInfo.Location = new System.Drawing.Point(12, 488);
             this.prgBarBazaarLoadingInfo.Name = "prgBarBazaarLoadingInfo";
             this.prgBarBazaarLoadingInfo.Size = new System.Drawing.Size(536, 10);
-            this.prgBarBazaarLoadingInfo.TabIndex = 15;
+            this.prgBarBazaarLoadingInfo.TabIndex = 22;
             // 
             // chkLstBoxWorldFilter
             // 
@@ -416,7 +416,7 @@
             this.chkLstBoxWorldFilter.Location = new System.Drawing.Point(12, 110);
             this.chkLstBoxWorldFilter.Name = "chkLstBoxWorldFilter";
             this.chkLstBoxWorldFilter.Size = new System.Drawing.Size(120, 169);
-            this.chkLstBoxWorldFilter.TabIndex = 16;
+            this.chkLstBoxWorldFilter.TabIndex = 3;
             // 
             // chkLstBoxVocationFilter
             // 
@@ -425,7 +425,7 @@
             this.chkLstBoxVocationFilter.Location = new System.Drawing.Point(12, 285);
             this.chkLstBoxVocationFilter.Name = "chkLstBoxVocationFilter";
             this.chkLstBoxVocationFilter.Size = new System.Drawing.Size(120, 79);
-            this.chkLstBoxVocationFilter.TabIndex = 17;
+            this.chkLstBoxVocationFilter.TabIndex = 4;
             // 
             // btnBazaarApplyFilter
             // 
@@ -448,7 +448,7 @@
             this.chkLstBoxPvpTypeFilter.Location = new System.Drawing.Point(12, 25);
             this.chkLstBoxPvpTypeFilter.Name = "chkLstBoxPvpTypeFilter";
             this.chkLstBoxPvpTypeFilter.Size = new System.Drawing.Size(120, 79);
-            this.chkLstBoxPvpTypeFilter.TabIndex = 19;
+            this.chkLstBoxPvpTypeFilter.TabIndex = 2;
             this.chkLstBoxPvpTypeFilter.Leave += new System.EventHandler(this.chkLstBoxPvpTypeFilter_Leave);
             // 
             // numMaxLevelFilter
@@ -461,7 +461,7 @@
             0});
             this.numMaxLevelFilter.Name = "numMaxLevelFilter";
             this.numMaxLevelFilter.Size = new System.Drawing.Size(55, 20);
-            this.numMaxLevelFilter.TabIndex = 21;
+            this.numMaxLevelFilter.TabIndex = 12;
             this.numMaxLevelFilter.Value = new decimal(new int[] {
             10000,
             0,
@@ -475,7 +475,7 @@
             this.lblMaxLevelFilter.Location = new System.Drawing.Point(203, 282);
             this.lblMaxLevelFilter.Name = "lblMaxLevelFilter";
             this.lblMaxLevelFilter.Size = new System.Drawing.Size(59, 13);
-            this.lblMaxLevelFilter.TabIndex = 20;
+            this.lblMaxLevelFilter.TabIndex = 11;
             this.lblMaxLevelFilter.Text = "Máx. Level";
             // 
             // numMaxSkillFilter
@@ -488,7 +488,7 @@
             0});
             this.numMaxSkillFilter.Name = "numMaxSkillFilter";
             this.numMaxSkillFilter.Size = new System.Drawing.Size(55, 20);
-            this.numMaxSkillFilter.TabIndex = 25;
+            this.numMaxSkillFilter.TabIndex = 17;
             this.numMaxSkillFilter.Value = new decimal(new int[] {
             500,
             0,
@@ -502,7 +502,7 @@
             this.lblMaxSkillFilter.Location = new System.Drawing.Point(204, 348);
             this.lblMaxSkillFilter.Name = "lblMaxSkillFilter";
             this.lblMaxSkillFilter.Size = new System.Drawing.Size(52, 13);
-            this.lblMaxSkillFilter.TabIndex = 24;
+            this.lblMaxSkillFilter.TabIndex = 16;
             this.lblMaxSkillFilter.Text = "Máx. Skill";
             // 
             // numMinSkillFilter
@@ -515,7 +515,7 @@
             0});
             this.numMinSkillFilter.Name = "numMinSkillFilter";
             this.numMinSkillFilter.Size = new System.Drawing.Size(55, 20);
-            this.numMinSkillFilter.TabIndex = 23;
+            this.numMinSkillFilter.TabIndex = 15;
             this.numMinSkillFilter.ValueChanged += new System.EventHandler(this.numMinSkillFilter_ValueChanged);
             // 
             // lblMinSkillFilter
@@ -524,7 +524,7 @@
             this.lblMinSkillFilter.Location = new System.Drawing.Point(139, 348);
             this.lblMinSkillFilter.Name = "lblMinSkillFilter";
             this.lblMinSkillFilter.Size = new System.Drawing.Size(49, 13);
-            this.lblMinSkillFilter.TabIndex = 22;
+            this.lblMinSkillFilter.TabIndex = 14;
             this.lblMinSkillFilter.Text = "Min. Skill";
             // 
             // cboBoxSkillsFilter
@@ -534,7 +534,7 @@
             this.cboBoxSkillsFilter.Location = new System.Drawing.Point(139, 324);
             this.cboBoxSkillsFilter.Name = "cboBoxSkillsFilter";
             this.cboBoxSkillsFilter.Size = new System.Drawing.Size(120, 21);
-            this.cboBoxSkillsFilter.TabIndex = 26;
+            this.cboBoxSkillsFilter.TabIndex = 13;
             // 
             // dtaGridSkillsPart2Info
             // 
@@ -556,7 +556,7 @@
             this.dtaGridSkillsPart2Info.RowHeadersVisible = false;
             this.dtaGridSkillsPart2Info.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dtaGridSkillsPart2Info.Size = new System.Drawing.Size(181, 177);
-            this.dtaGridSkillsPart2Info.TabIndex = 27;
+            this.dtaGridSkillsPart2Info.TabIndex = 0;
             // 
             // grpBoxBazaarEntitySkills
             // 
@@ -564,7 +564,7 @@
             this.grpBoxBazaarEntitySkills.Location = new System.Drawing.Point(358, 243);
             this.grpBoxBazaarEntitySkills.Name = "grpBoxBazaarEntitySkills";
             this.grpBoxBazaarEntitySkills.Size = new System.Drawing.Size(190, 199);
-            this.grpBoxBazaarEntitySkills.TabIndex = 28;
+            this.grpBoxBazaarEntitySkills.TabIndex = 24;
             this.grpBoxBazaarEntitySkills.TabStop = false;
             this.grpBoxBazaarEntitySkills.Text = "Skills";
             this.grpBoxBazaarEntitySkills.Visible = false;
@@ -576,7 +576,7 @@
             this.btnResetFields.Location = new System.Drawing.Point(266, 361);
             this.btnResetFields.Name = "btnResetFields";
             this.btnResetFields.Size = new System.Drawing.Size(75, 102);
-            this.btnResetFields.TabIndex = 29;
+            this.btnResetFields.TabIndex = 20;
             this.btnResetFields.Text = "Reset Fields!";
             this.btnResetFields.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnResetFields.UseVisualStyleBackColor = true;

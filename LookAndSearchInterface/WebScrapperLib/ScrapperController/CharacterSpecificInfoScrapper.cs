@@ -135,7 +135,7 @@ namespace WebScrapperLib.ScrapperController
             BuildPart7(listInfo[6]);
             BuildPart8(listInfo[7]);
             UpdateEntityLastTime();
-            Thread.Sleep(TimeStampRequest);
+            Thread.Sleep(TimeStampRequestSleep);
         }
 
         public void RecoverScrapperSkillsAndName(string characterName, dynamic FormParameter)
@@ -171,7 +171,7 @@ namespace WebScrapperLib.ScrapperController
 
             Extender.UpdateComponentText(GetControlByName(FormParameter.Controls, "lblDteUpdatedBazaar"), $"Search done...");
             UpdateComponentProgressBar(GetControlByName(FormParameter.Controls, "prgBarBazaarLoadingInfo"), 97);
-            Thread.Sleep(TimeStampRequest);
+            Thread.Sleep(TimeStampRequestSleep);
         }
 
         public async Task RecoverScrapperDataAsync(dynamic FormToFillAsync)
@@ -226,7 +226,7 @@ namespace WebScrapperLib.ScrapperController
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 95);
 
             UpdateEntityLastTime();
-            Thread.Sleep(TimeStampRequest);
+            Thread.Sleep(TimeStampRequestSleep);
             await UpdateComponentProgressBar(GetControlByName(FormToFillAsync.Controls, "prgBarSpecificInfo"), 0);
         }
 

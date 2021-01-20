@@ -7,9 +7,12 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
@@ -21,7 +24,19 @@ namespace WebScrapperLib
     {
         private static readonly string GitHubUrlApiBaseProject = "https://api.github.com/repos/Raythan/LookAndSearch/contents/";
         private static HttpClient Client = new HttpClient();
-        
+
+        private static readonly Dictionary<string, string> DictionaryIconsImages = new Dictionary<string, string>
+        {
+            { "FilterIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/funnel.png" },
+            { "RefreshIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/reset.png" },
+            { "EraserIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/eraser.png" },
+            { "StopIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/stop.png" },
+            { "SadIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/sad.png" },
+            { "ConfusedIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/confused.png" },
+            { "VeryHappyIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/veryhappy.png" },
+            { "SurprisedIcon", "https://raw.githubusercontent.com/Raythan/LookAndSearch/main/LookAndSearchInterface/WebScrapperLib/Images/surprised.png" },
+        };
+
         private static readonly string[] formats = new[]
         {
             "MMM dd yyyy, HH:mm CET",
@@ -34,8 +49,8 @@ namespace WebScrapperLib
         {
             { 0, new LocationTimeFormat("dd/MM/yyyy HH:mm:ss", -4) },
             { 1, new LocationTimeFormat("dd/MM/yyyy", -4) },
-            { 2, new LocationTimeFormat("MM/dd/yyyy HH:mm:ss", -6) },
-            { 3, new LocationTimeFormat("MM/dd/yyyy", -6) },
+            { 2, new LocationTimeFormat("yyyy-MM-dd HH:mm:ss", -6) },
+            { 3, new LocationTimeFormat("yyyy-MM-dd", -6) },
         };
         private static readonly Dictionary<string, Size> DictionaryDimensions = new Dictionary<string, Size>
         {
@@ -242,8 +257,8 @@ namespace WebScrapperLib
                 };
                 DictionaryMethods[methodKey]();
 
-                using (var responseTeste = Client.GetAsync(url).GetAwaiter().GetResult())
-                using (var stream = responseTeste.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+                using (var responseFromRequest = Client.GetAsync(url).GetAwaiter().GetResult())
+                using (var stream = responseFromRequest.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
                     return new Bitmap(Bitmap.FromStream(stream), DictionaryDimensions
                     .Where(w => w.Key.Equals(sizeKey))
                     .Select(s => s.Value)
@@ -260,6 +275,39 @@ namespace WebScrapperLib
             }
         }
 
+        public static Image RecoverImageFromRepository(string dictionaryKey, string sizeKey)
+        {
+            try
+            {
+                string url = DictionaryIconsImages
+                    .Where(w => w.Key.Equals(dictionaryKey))
+                    .Select(s => s.Value)
+                    .FirstOrDefault();
+
+                Client = new HttpClient()
+                {
+                    BaseAddress = new Uri(url)
+                };
+                DictionaryMethods["GitHubHeaders"]();
+
+                using (var responseFromRequest = Client.GetAsync(url).GetAwaiter().GetResult())
+                using (var stream = responseFromRequest.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+                    return new Bitmap(Bitmap.FromStream(stream), DictionaryDimensions
+                    .Where(w => w.Key.Equals(sizeKey))
+                    .Select(s => s.Value)
+                    .FirstOrDefault());
+            }
+            catch (Exception)
+            {
+                return new Bitmap(
+                    Image.FromFile($"{AssemblyDirectory}\\Images\\not_found_img_1990x1448.jpg"),
+                    DictionaryDimensions
+                    .Where(w => w.Key.Equals(sizeKey))
+                    .Select(s => s.Value)
+                    .FirstOrDefault());
+            }
+        }
+        
         public static Icon RecoverIconFromUrl(string url, string sizeKey, string methodKey)
         {
             try
@@ -270,8 +318,8 @@ namespace WebScrapperLib
                 };
                 DictionaryMethods[methodKey]();
 
-                using (var responseTeste = Client.GetAsync(url).GetAwaiter().GetResult())
-                using (var stream = responseTeste.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
+                using (var responseFromRequest = Client.GetAsync(url).GetAwaiter().GetResult())
+                using (var stream = responseFromRequest.Content.ReadAsStreamAsync().GetAwaiter().GetResult())
                     return new Icon(stream, DictionaryDimensions
                     .Where(w => w.Key.Equals(sizeKey))
                     .Select(s => s.Value)
@@ -280,6 +328,29 @@ namespace WebScrapperLib
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        public static void PlaySoundFromUrlStream(string url, string methodKey, int milisecondsDuration)
+        {
+            try
+            {
+                Client = new HttpClient()
+                {
+                    BaseAddress = new Uri(url)
+                };
+                DictionaryMethods[methodKey]();
+
+                using (var responseFromRequest = Client.GetAsync(url).GetAwaiter().GetResult())
+                using (var player = new SoundPlayer(responseFromRequest.Content.ReadAsStreamAsync().GetAwaiter().GetResult()))
+                    for (int i = 0; i < 3; i++)
+                    {
+                        player.Play();
+                        Thread.Sleep(milisecondsDuration);
+                    }
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -358,7 +429,7 @@ namespace WebScrapperLib
 
             return paramList;
         }
-        
+
         public static string FormatAuctionDateFromEntity(string entityAuctionDate, int format)
         {
             try
@@ -402,6 +473,14 @@ namespace WebScrapperLib
             component.Invoke((MethodInvoker)delegate
             {
                 component.Text = text.ToString();
+            });
+        }
+
+        public static void UpdateComponentVisible(dynamic component, bool value)
+        {
+            component.Invoke((MethodInvoker)delegate
+            {
+                component.Visible = value;
             });
         }
 
@@ -450,7 +529,6 @@ namespace WebScrapperLib
                 .FirstOrDefault();
         }
     }
-
 
     public class LocationTimeFormat
     {

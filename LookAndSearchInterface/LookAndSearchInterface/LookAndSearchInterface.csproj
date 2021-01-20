@@ -67,6 +67,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -90,11 +91,23 @@
     <Compile Include="BazaarForm.Designer.cs">
       <DependentUpon>BazaarForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="BazaarMonitorAutomaticForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BazaarMonitorAutomaticForm.Designer.cs">
+      <DependentUpon>BazaarMonitorAutomaticForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CharacterSpecificInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CharacterSpecificInfoForm.Designer.cs">
       <DependentUpon>CharacterSpecificInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DialogListCharacterNamesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DialogListCharacterNamesForm.Designer.cs">
+      <DependentUpon>DialogListCharacterNamesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorForm.cs">
       <SubType>Form</SubType>
@@ -146,8 +159,14 @@
     <EmbeddedResource Include="BazaarForm.resx">
       <DependentUpon>BazaarForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BazaarMonitorAutomaticForm.resx">
+      <DependentUpon>BazaarMonitorAutomaticForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CharacterSpecificInfoForm.resx">
       <DependentUpon>CharacterSpecificInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DialogListCharacterNamesForm.resx">
+      <DependentUpon>DialogListCharacterNamesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorForm.resx">
       <DependentUpon>ErrorForm.cs</DependentUpon>
