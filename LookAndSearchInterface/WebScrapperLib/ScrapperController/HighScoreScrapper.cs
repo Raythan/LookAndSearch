@@ -39,7 +39,6 @@ namespace WebScrapperLib.ScrapperController
             List<string> listHighScore = RecoverInnerHtmlFromTagList(responseString, ListHighScoreInfo);
             listHighScore.RemoveRange(0, 6);
             listHighScore.RemoveAt(listHighScore.Count() - 1);
-            DictionaryEntity.Clear();
             BuildDictionaryData(listHighScore);
             UpdateEntityLastTime();
         }

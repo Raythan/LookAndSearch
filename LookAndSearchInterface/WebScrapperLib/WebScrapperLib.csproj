@@ -55,6 +55,7 @@
     <Compile Include="Interfaces\IWebScrapper.cs" />
     <Compile Include="Models\BaseScrapperEntity.cs" />
     <Compile Include="Models\BazaarEntity.cs" />
+    <Compile Include="Models\CharacterInfoEntity.cs" />
     <Compile Include="Models\CharacterSpecificInformationEntity.cs" />
     <Compile Include="Models\EmailEntity.cs" />
     <Compile Include="Models\GitHubFileBase64.cs" />
@@ -64,6 +65,7 @@
     <Compile Include="Models\PollsEntity.cs" />
     <Compile Include="Models\WorldEntity.cs" />
     <Compile Include="ScrapperController\BazaarScrapper.cs" />
+    <Compile Include="ScrapperController\CharacterScrapper.cs" />
     <Compile Include="ScrapperController\CharacterSpecificInfoScrapper.cs" />
     <Compile Include="ScrapperController\HighScoreScrapper.cs" />
     <Compile Include="ScrapperController\PollsScrapper.cs" />

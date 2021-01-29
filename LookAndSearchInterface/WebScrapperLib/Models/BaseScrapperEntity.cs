@@ -215,6 +215,19 @@ namespace WebScrapperLib.Models
             return document.DocumentNode.InnerText;
         }
 
+        public string RemoveAllTagsFromString(string param)
+        {
+            string paramInternal = param;
+            while (param.Contains("<"))
+            {
+                param = param.Substring(0, param.IndexOf('<'));
+                param += paramInternal.Substring(paramInternal.IndexOf('>') + 1);
+                paramInternal = param;
+            }
+
+            return param;
+        }
+
         public virtual void UpdateEntityLastTime() => this.LastUpdateEntity = DateTime.Now;
 
         public BaseScrapperEntity(string paramUrl)

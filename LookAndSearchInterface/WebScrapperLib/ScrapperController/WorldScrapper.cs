@@ -48,8 +48,7 @@ namespace WebScrapperLib.ScrapperController
 
             List<string> listEvenWorld = RecoverInnerHtmlFromTagList(product, ListWorldsEven);
             List<string> listOddWorld = RecoverInnerHtmlFromTagList(product, ListWorldsOdd);
-
-            base.DictionaryEntity.Clear();
+            
             BuildDictionaryData(listEvenWorld);
             BuildDictionaryData(listOddWorld);
             OrderDictionaryWorld();

@@ -42,7 +42,6 @@ namespace WebScrapperLib.ScrapperController
 
             List<string> listInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListBasicInfo);
             listInfo.RemoveRange(0, 3);
-            DictionaryEntity.Clear();
             BuildDictionaryData(listInfo, true);
             UpdateEntityLastTime();
         }

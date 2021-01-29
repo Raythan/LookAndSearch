@@ -434,7 +434,10 @@ namespace WebScrapperLib
         {
             try
             {
-                entityAuctionDate = entityAuctionDate.Replace("&#160;", " ");
+                if (string.IsNullOrEmpty(entityAuctionDate))
+                    return null;
+
+                entityAuctionDate = CleanHtmlWhiteSpace(entityAuctionDate);
 
                 LocationTimeFormat location = DictionaryDateFormat
                     .Where(w => w.Key == format)
@@ -450,6 +453,14 @@ namespace WebScrapperLib
             {
                 return AnalyseException(ex);
             }
+        }
+
+        public static string CleanHtmlWhiteSpace(string param)
+        {
+            if (string.IsNullOrEmpty(param))
+                return null;
+            else
+                return param.Replace("&#160;", " ");
         }
 
         public static void UpdateComponentEnable(dynamic component, bool enableParameter)

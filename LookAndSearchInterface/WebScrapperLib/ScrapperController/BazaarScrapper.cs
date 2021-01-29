@@ -238,14 +238,23 @@ namespace WebScrapperLib.ScrapperController
             if (response.IsSuccessStatusCode)
                 responseString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
-            List<string> pageListInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListGetLastPage);
-            string pageListInfoLastAttributes = RecoverAttributeFromTagLast(pageListInfo[0], ScrapListGetLastPageAttribute, "href", "nothing");
-            LastPage = Convert.ToInt32(pageListInfoLastAttributes.Split('=').LastOrDefault());
-            
-            for (; CurrentPage <= LastPage && StillScrapping; CurrentPage++)
-                MonitoringBazaarPageAsyncOnLoop(paramForFilter);
-            
-            CurrentPage = 1;
+            try
+            {
+                List<string> pageListInfo = RecoverInnerHtmlFromTagList(responseString, ScrapListGetLastPage);
+                string pageListInfoLastAttributes = RecoverAttributeFromTagLast(pageListInfo[0], ScrapListGetLastPageAttribute, "href", "nothing");
+                LastPage = Convert.ToInt32(pageListInfoLastAttributes.Split('=').LastOrDefault());
+
+                for (; CurrentPage <= LastPage && StillScrapping; CurrentPage++)
+                    MonitoringBazaarPageAsyncOnLoop(paramForFilter);
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            finally
+            {
+                CurrentPage = 1;
+            }
         }
 
         public void MonitoringBazaarPageAsyncOnLoop(ParameterForFilterMonitorEntity paramForFilter)
