@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace WebScrapperLib
+namespace WebScrapperLib.Utils
 {
     public static class FlashWindow
     {

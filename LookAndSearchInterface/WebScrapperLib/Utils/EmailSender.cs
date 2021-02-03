@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebScrapperLib.Models;
 
-namespace WebScrapperLib
+namespace WebScrapperLib.Utils
 {
     public static class EmailSender
     {

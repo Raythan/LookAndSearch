@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebScrapperLib;
 using WebScrapperLib.Models;
+using WebScrapperLib.Utils;
 using WebScrapperLib.ScrapperController;
 
 namespace LookAndSearchInterface

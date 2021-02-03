@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebScrapperLib;
+using WebScrapperLib.Utils;
 
 namespace LookAndSearchInterface
 {
@@ -84,6 +82,6 @@ namespace LookAndSearchInterface
                 this.panelLookAndSearch.Controls.Add(inputFormPanel);
                 inputFormPanel.Show();
             }
-        }
+        }        
     }
 }

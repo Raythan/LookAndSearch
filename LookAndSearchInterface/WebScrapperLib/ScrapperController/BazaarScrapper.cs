@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using WebScrapperLib.Interfaces;
 using WebScrapperLib.Models;
+using WebScrapperLib.Utils;
 
 namespace WebScrapperLib.ScrapperController
 {

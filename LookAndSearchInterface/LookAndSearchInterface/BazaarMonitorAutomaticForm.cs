@@ -7,8 +7,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebScrapperLib;
 using WebScrapperLib.Models;
+using WebScrapperLib.Utils;
 using WebScrapperLib.ScrapperController;
 
 namespace LookAndSearchInterface

@@ -18,12 +18,14 @@ using System.Xml;
 using System.Xml.Serialization;
 using WebScrapperLib.Models;
 
-namespace WebScrapperLib
+namespace WebScrapperLib.Utils
 {
     public static class Extender
     {
         private static readonly string GitHubUrlApiBaseProject = "https://api.github.com/repos/Raythan/LookAndSearch/contents/";
         private static HttpClient Client = new HttpClient();
+        public static string PalletColorActive = "Blue";
+        private static StylistComponents stylistComponents = new StylistComponents();
 
         private static readonly Dictionary<string, string> DictionaryIconsImages = new Dictionary<string, string>
         {
@@ -70,9 +72,7 @@ namespace WebScrapperLib
             { "CipSoftHeaders", AddCipsoftHeaders },
             { "GitHubHeaders", AddGitHubHeaders }
         };
-
-        public static string GetLibVersionFromAssembly() => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
-
+        
         private static void AddGitHubHeaders()
         {
             Client.DefaultRequestHeaders.Clear();
@@ -524,6 +524,50 @@ namespace WebScrapperLib
             }
         }
 
+        public static void ApplyStyleDataGridView(DataGridView dtaGrd, bool headerVisible, DataTable dt, bool resizeCol = false)
+        {
+            StylistComponents.DataGridViewProperties cellStyle = stylistComponents.DataGridViewPropertiesList[PalletColorActive];
+            
+            dtaGrd.BackgroundColor = cellStyle.HeaderBackgroundColor;
+            dtaGrd.BorderStyle = cellStyle.BorderStyle;
+            dtaGrd.CellBorderStyle = cellStyle.CellBorderStyle;
+            dtaGrd.ColumnHeadersBorderStyle = cellStyle.ColumnHeadersBorderStyle;
+            dtaGrd.ColumnHeadersDefaultCellStyle = cellStyle.DataGridViewCellStyleList[$"{PalletColorActive}#Header"];
+            dtaGrd.ColumnHeadersVisible = headerVisible;
+            dtaGrd.DefaultCellStyle = cellStyle.DataGridViewCellStyleList[$"{PalletColorActive}#Cell"];
+            dtaGrd.EnableHeadersVisualStyles = false; // Validate
+            dtaGrd.GridColor = cellStyle.HeaderGridColor;
+            dtaGrd.RowHeadersBorderStyle = cellStyle.RowHeadersBorderStyle;
+            dtaGrd.RowHeadersDefaultCellStyle = cellStyle.DataGridViewCellStyleList[$"{PalletColorActive}#Row"];
+            dtaGrd.RowHeadersVisible = cellStyle.RowHeadersVisible;
+            dtaGrd.RowTemplate = new DataGridViewRow(); // Validate
+            dtaGrd.ShowCellErrors = true; // Validate
+            dtaGrd.ShowCellToolTips = true; // Validate
+            dtaGrd.ShowEditingIcon = true; // Validate
+            dtaGrd.ShowRowErrors = true; // Validate
+            dtaGrd.UseWaitCursor = false; // Validate
+            dtaGrd.AllowDrop = false; // Validate
+            dtaGrd.AllowUserToAddRows = false; // Validate
+            dtaGrd.AllowUserToDeleteRows = false; // Validate
+            dtaGrd.AllowUserToOrderColumns = true; // Validate
+            dtaGrd.AllowUserToResizeColumns = true; // Validate
+            dtaGrd.AllowUserToResizeRows = false; // Validate
+            dtaGrd.ClipboardCopyMode = DataGridViewClipboardCopyMode.EnableAlwaysIncludeHeaderText; // Validate
+            dtaGrd.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize; // Validate
+            dtaGrd.ContextMenuStrip = new ContextMenuStrip(); // Validate
+            dtaGrd.EditMode = DataGridViewEditMode.EditOnKeystrokeOrF2; // Validate
+            dtaGrd.Enabled = true; // Validate
+            dtaGrd.ImeMode = ImeMode.NoControl; // Validate
+            dtaGrd.MultiSelect = true; // Validate
+            dtaGrd.ReadOnly = true; // Validate
+            dtaGrd.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing; // Validate
+            dtaGrd.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Validate
+            dtaGrd.Visible = true; // Validate
+            
+            if(resizeCol)
+                ResizeDtaGrdView(dt, dtaGrd);
+        }
+
         public static dynamic GetControlByName(dynamic controls, string controlName)
         {
             foreach (var item in controls)
@@ -539,6 +583,8 @@ namespace WebScrapperLib
                 .Select(s => s.Value.DateFormat)
                 .FirstOrDefault();
         }
+
+        public static string GetLibVersionFromAssembly() => FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileVersion;
     }
 
     public class LocationTimeFormat

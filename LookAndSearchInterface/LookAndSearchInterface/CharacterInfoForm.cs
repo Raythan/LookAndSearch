@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using WebScrapperLib;
 using WebScrapperLib.Models;
+using WebScrapperLib.Utils;
 using WebScrapperLib.ScrapperController;
 
 namespace LookAndSearchInterface
@@ -20,6 +16,21 @@ namespace LookAndSearchInterface
         public CharacterInfoForm()
         {
             InitializeComponent();
+            LoadThemeForms();
+        }
+        
+        private void LoadThemeForms()
+        {
+            List<string> themeNames = new List<string>
+            {
+                "Blue",
+                "Pink",
+                "Black"
+            };
+
+            cboBoxTheme.DataSource = themeNames;
+            cboBoxTheme.SelectedIndex = 0;
+            Extender.PalletColorActive = (string)cboBoxTheme.SelectedItem;
         }
 
         private void btnCharacterSearch_Click(object sender, EventArgs e)
@@ -30,14 +41,7 @@ namespace LookAndSearchInterface
                 ScrapperService.RecoverScrapperData();
 
                 if (ScrapperService.CharacterEntity != null)
-                {
-                    DataTable dt = new DataTable();
-                    dt.Columns.Add("Attribute", typeof(string));
-                    dt.Columns.Add("Value", typeof(string));
-                    BuildDataGridViewByEntity(dt, ScrapperService.CharacterEntity);
-                    dtaGridCharacterInformation.DataSource = dt;
-                    Extender.ResizeDtaGrdView(dt, dtaGridCharacterInformation);
-                }
+                    BuildDataGridViewByEntity(ScrapperService.CharacterEntity);
                 else
                 {
                     dtaGridCharacterInformation.DataSource = null;
@@ -52,10 +56,14 @@ namespace LookAndSearchInterface
                 MessageBox.Show("Plase fill the name before query data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
 
-        private void BuildDataGridViewByEntity(DataTable dt, object paramObj = null)
+        private void BuildDataGridViewByEntity(object paramObj = null)
         {
             if (paramObj != null)
             {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Attribute", typeof(string));
+                dt.Columns.Add("Value", typeof(string));
+
                 foreach (var property in paramObj.GetType().GetProperties())
                 {
                     try
@@ -76,6 +84,9 @@ namespace LookAndSearchInterface
                     {
                     }
                 }
+
+                dtaGridCharacterInformation.DataSource = dt;
+                Extender.ApplyStyleDataGridView(dtaGridCharacterInformation, false, dt, true);
             }
         }
 
@@ -86,10 +97,10 @@ namespace LookAndSearchInterface
             {
                 try
                 {
-                    DataTable dtParam = new DataTable();
+                    DataTable dt = new DataTable();
 
                     foreach (var property in paramObjList[0].GetType().GetProperties())
-                        dtParam.Columns
+                        dt.Columns
                                 .Add(((DescriptionAttribute)property.GetCustomAttributes(typeof(DescriptionAttribute), true)[0])
                                 .Description, typeof(string));
 
@@ -107,15 +118,22 @@ namespace LookAndSearchInterface
                     }
 
                     foreach (var item in listKeyValuePair)
-                        dtParam.Rows.Add(item.Value.ToArray());
+                        dt.Rows.Add(item.Value.ToArray());
 
-                    dtaGrdParam.DataSource = dtParam;
-                    Extender.ResizeDtaGrdView(dtParam, dtaGrdParam);
+                    dtaGrdParam.DataSource = dt;
+                    Extender.ApplyStyleDataGridView(dtaGrdParam, true, dt, true);
                 }
                 catch (Exception ex)
                 {
                 }
             }
+        }
+
+        private void cboBoxTheme_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Extender.PalletColorActive = (string)cboBoxTheme.SelectedItem;
+            if (ScrapperService != null && ScrapperService.CharacterEntity != null)
+                BuildDataGridViewByEntity(ScrapperService.CharacterEntity);
         }
     }
 }

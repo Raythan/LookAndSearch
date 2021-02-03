@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
-using WebScrapperLib;
 using WebScrapperLib.ScrapperController;
+using WebScrapperLib.Utils;
 
 namespace LookAndSearchInterface
 {
